@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+    <h1>Create a return</h1>
+    <%= simple_form_for(@return) do |f| %>
+    <%= f.error_notification %>
+        <%= f.input :item_number, required: true, autofocus: true %>
+        <%= f.input :model_number, required: true, autofocus: true %>
+        <%= f.input :serial_number, required: true, autofocus: true %>
+        <%= f.input :invoice_date, required: true, autofocus: true  %>
+        <%= f.input :lease_date, required: true, autofocus: true %>
+        <%= f.input :part_number, collection: ['Panel', 'Digital Main', 'Power Board', 'Other item']  %>
+        <%= f.input :return_reason, collection: ['Unrepairable by servicer', 'Part Not Available', 'Concealed Damage', 'No Servicer Available']  %>
+        <%= f.input :comment, required: true, autofocus: true %>
+      <%= f.button :submit, "Submit" %>
+    <% end %>
+    </div>
+  </div>
+</div>

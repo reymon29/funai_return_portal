@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-3">
+      <h1>RMA Log</h1>
+      <% @returns.each do |return_item| %>
+        <%= return_item.item_number %> <%= return_item.model_number %> <%= link_to "Show", return_path(return_item) %>
+      <% end %>
+    </div>
+  </div>
+</div>

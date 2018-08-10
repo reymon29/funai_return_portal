@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4 text-center">
+      <h1>Welcome, <%= current_user.store_number%></h1>
+      <h2>Dashboard</h2>
+      <%= link_to new_return_path do%>
+      <h4>New RMA Request</h4>
+      <% end %>
+      <%= link_to returns_path do %>
+      <h4>Past RMAs</h4>
+      <% end %>
+    </div>
+  </div>
+</div>
