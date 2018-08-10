@@ -1,7 +1,8 @@
 class Return < ApplicationRecord
-  has_many: users
+  belongs_to :user
+  validates :user_id, presence: true
   validates :item_number, uniqueness: true, presence: true
-  validates :model, presence: true
+  validates :model_number, presence: true
   validates :serial_number, uniqueness: true, presence: true, length: { is: 14 }
   validates :invoice_date, presence: true
   validates :lease_date, presence: true
