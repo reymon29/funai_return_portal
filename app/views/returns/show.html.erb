@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
-      <h1>Submitted: <%= @return.item_number %></h1>
+      <h2>Submitted: <%= @return.item_number %></h2>
 
+      <%= link_to 'RMA Log', returns_path, class: 'btn btn-primary' %>
+      <%= link_to 'Update Log', edit_return_path(@return), class: 'btn btn-info' %>
     </div>
   </div>
 </div>

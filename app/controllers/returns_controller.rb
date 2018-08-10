@@ -1,5 +1,5 @@
 class ReturnsController < ApplicationController
-  before_action :return_id_find, only: [:show, :update]
+  before_action :return_id_find, only: [:show, :edit, :update]
   def index
     @returns = Return.all
   end
@@ -22,7 +22,15 @@ class ReturnsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   def update
+     if @return.update(return_params)
+      redirect_to return_path(@return)
+    else
+      render :edit
+    end
   end
 
   private
