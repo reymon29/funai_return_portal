@@ -25,21 +25,93 @@ rma_status = "Submitted for Approval"
  create_user.save
  puts "user created"
 
-15.times do
-  create_return = Return.new(
-    item_number: Faker::IDNumber.valid,
-    model_number: model_number_random,
-    serial_number: Faker::Invoice.reference,
-    invoice_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
-    lease_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
-    part_number: part_number_random,
-    return_reason: Faker::Lorem.sentence,
-    comment: Faker::Lorem.paragraphs(1),
-    rma_status: rma_status
-    )
-  create_return.user = create_user
-  create_return.save
-  puts "User has been assigned returns"
-  end
+# 15.times do
+#   create_return = Return.new(
+#     item_number: Faker::IDNumber.valid,
+#     model_number: model_number_random,
+#     serial_number: Faker::Invoice.reference,
+#     invoice_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
+#     lease_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
+#     part_number: part_number_random,
+#     return_reason: Faker::Lorem.sentence,
+#     comment: Faker::Lorem.paragraphs(1),
+#     rma_status: rma_status
+#     )
+#   create_return.user = create_user
+#   create_return.save
+#   puts "User has been assigned returns"
+  # end
 end
 
+puts '<'
+puts 'creating model list'
+
+model_1 = Product.new(
+                model_number: "32ME303V/F7",
+                product_type: "TV",
+                weight: 25
+                )
+model_1.save
+
+model_2 = Product.new(
+                model_number: "32ME303V/F7A",
+                product_type: "TV",
+                weight: 25
+                )
+model_2.save
+
+model_3 = Product.new(
+                model_number: "32ME304V/F7",
+                product_type: "TV",
+                weight: 25
+                )
+model_3.save
+
+model_4 = Product.new(
+                model_number: "32MV304X/F7",
+                product_type: "TV",
+                weight: 25
+                )
+model_4.save
+
+model_5 = Product.new(
+                model_number: "32PFL4507/F7",
+                product_type: "TV",
+                weight: 25
+                )
+model_5.save
+
+model_6 = Product.new(
+                model_number: "32PFL4508/F7",
+                product_type: "TV",
+                weight: 25
+                )
+model_6.save
+
+model_7 = Product.new(
+                model_number: "32PFL4609/F7",
+                product_type: "TV",
+                weight: 25
+                )
+model_7.save
+
+model_8 = Product.new(
+                model_number: "32PFL4609/F7",
+                product_type: "TV",
+                weight: 25
+                )
+model_8.save
+
+model_9 = Product.new(
+                model_number: "32PFL4909/F7",
+                product_type: "TV",
+                weight: 25
+                )
+model_9.save
+
+model_10 = Product.new(
+                model_number: "39ME313V/F7",
+                product_type: "TV",
+                weight: 35
+                )
+model_10.save

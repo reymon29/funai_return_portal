@@ -1,5 +1,7 @@
+<%= content_for(:title) do %>
+Funai - Aaron's return
+<% end %>
 <div class="container">
-
   <h2>Item Number: <%= @return.item_number %></h2>
     <%= simple_form_for(@return) do |f| %>
     <%= f.error_notification %>
@@ -13,7 +15,7 @@
       </div>
 
       <div class="form-group col-md-4 col-sm-4 col-xs-8">
-        <%= f.input :model_number, readonly: true %>
+        <%= f.association :product, label_method: :model_number, readonly: true %>
       </div>
 
       <div class="form-group col-md-4 col-sm-4 col-xs-8">

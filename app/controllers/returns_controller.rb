@@ -1,17 +1,20 @@
 class ReturnsController < ApplicationController
   before_action :return_id_find, only: [:show, :edit, :update]
   def index
-    @returns = Return.all
+    # @returns = Return.all
+    @returns = policy_scope(Return).order(created_at: :desc)
   end
 
   def new
     @return = Return.new
+    authorize @return
   end
 
   def create
     @return = Return.new(return_params)
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
+    authorize @return
     if @return.save
       redirect_to dashboard_path
       flash[:notice] = "Return for Aaron's #{@return.item_number} has been submitted and will be reviewed shortly"
@@ -38,9 +41,10 @@ class ReturnsController < ApplicationController
 
   def return_id_find
     @return = Return.find(params[:id])
+    authorize @return
   end
 
   def return_params
-    params.require(:return).permit(:item_number, :model_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment)
+    params.require(:return).permit(:item_number, :model_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id)
   end
 end

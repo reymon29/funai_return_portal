@@ -10,14 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_10_175240) do
+ActiveRecord::Schema.define(version: 2018_08_11_104727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "products", force: :cascade do |t|
+    t.string "model_number"
+    t.string "product_type"
+    t.integer "weight"
+    t.boolean "enable", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "returns", force: :cascade do |t|
     t.integer "item_number"
-    t.string "model_number"
     t.string "serial_number"
     t.date "invoice_date"
     t.date "lease_date"
@@ -29,6 +37,8 @@ ActiveRecord::Schema.define(version: 2018_08_10_175240) do
     t.datetime "updated_at", null: false
     t.string "rma_number"
     t.string "rma_status"
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_returns_on_product_id"
     t.index ["user_id"], name: "index_returns_on_user_id"
   end
 
@@ -55,5 +65,6 @@ ActiveRecord::Schema.define(version: 2018_08_10_175240) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "returns", "products"
   add_foreign_key "returns", "users"
 end
