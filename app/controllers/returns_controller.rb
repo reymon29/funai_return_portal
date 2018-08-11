@@ -10,6 +10,7 @@ class ReturnsController < ApplicationController
 
   def create
     @return = Return.new(return_params)
+    @return.rma_status = "Submitted for Approval"
     @return.user = current_user
     if @return.save
       redirect_to dashboard_path

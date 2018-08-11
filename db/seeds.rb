@@ -10,7 +10,7 @@ require 'faker'
 store_random = ['F1234', 'C1234', 'D1234', 'F1234'].sample
 model_number_random = ['50PFL5601/F7', '50MV336V/F7', '40MV336V/F7', '65PFL5603/F7'].sample
 part_number_random = ['Panel', 'Power Board', 'Digital Main', 'More than one reason refer to comment' ].sample
-
+rma_status = "Submitted for Approval"
 10.times do
  create_user = User.new(
     email: Faker::Internet.email,
@@ -24,7 +24,8 @@ part_number_random = ['Panel', 'Power Board', 'Digital Main', 'More than one rea
     )
  create_user.save
  puts "user created"
-5.times do
+
+15.times do
   create_return = Return.new(
     item_number: Faker::IDNumber.valid,
     model_number: model_number_random,
@@ -33,7 +34,8 @@ part_number_random = ['Panel', 'Power Board', 'Digital Main', 'More than one rea
     lease_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
     part_number: part_number_random,
     return_reason: Faker::Lorem.sentence,
-    comment: Faker::Lorem.paragraphs(1)
+    comment: Faker::Lorem.paragraphs(1),
+    rma_status: rma_status
     )
   create_return.user = create_user
   create_return.save
