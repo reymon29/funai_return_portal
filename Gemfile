@@ -11,6 +11,7 @@ gem 'redis'
 gem 'faker'
 gem "pundit"
 
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass', '~> 5.0.9'
@@ -22,6 +23,7 @@ gem 'webpacker'
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
+
 
 group :development, :test do
   gem 'pry-byebug'
