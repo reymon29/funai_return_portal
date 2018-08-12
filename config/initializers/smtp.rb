@@ -3,7 +3,7 @@ ActionMailer::Base.smtp_settings = {
   port: 26,
   domain: 'funaiservice.com',
   user_name: ENV['HOSTM_ADDRESS'],
-  password: ENV['cM7%Nw8sb('],
+  password: ENV['HOSTM_password'],
   authentication: :login,
   enable_starttls_auto: true
 }
