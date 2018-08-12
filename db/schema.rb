@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_11_104727) do
+ActiveRecord::Schema.define(version: 2018_08_12_084603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "images", force: :cascade do |t|
+    t.integer "return_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "model_number"
@@ -25,7 +32,7 @@ ActiveRecord::Schema.define(version: 2018_08_11_104727) do
   end
 
   create_table "returns", force: :cascade do |t|
-    t.integer "item_number"
+    t.bigint "item_number"
     t.string "serial_number"
     t.date "invoice_date"
     t.date "lease_date"

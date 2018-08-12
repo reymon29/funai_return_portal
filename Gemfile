@@ -10,7 +10,8 @@ gem 'rails', '5.2.1'
 gem 'redis'
 gem 'faker'
 gem "pundit"
-
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'

@@ -7,6 +7,7 @@ class ReturnsController < ApplicationController
 
   def new
     @return = Return.new
+    @image = @return.images.build
     authorize @return
   end
 
@@ -14,8 +15,14 @@ class ReturnsController < ApplicationController
     @return = Return.new(return_params)
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
+
     authorize @return
     if @return.save
+      if params[:images]
+        params[:images].each do |image|
+          @return.images.create(image: image)
+        end
+      end
       redirect_to dashboard_path
       flash[:notice] = "Return for Aaron's #{@return.item_number} has been submitted and will be reviewed shortly"
     else
@@ -31,6 +38,11 @@ class ReturnsController < ApplicationController
 
   def update
      if @return.update(return_params)
+      if params[:images]
+        params[:images].each do |image|
+          @return.images.create(image: image)
+        end
+      end
       redirect_to return_path(@return)
     else
       render :edit
@@ -45,6 +57,6 @@ class ReturnsController < ApplicationController
   end
 
   def return_params
-    params.require(:return).permit(:item_number, :model_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id)
+    params.require(:return).permit(:item_number, :model_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id, images_attributes: [:image, :return_id])
   end
 end
