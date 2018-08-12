@@ -4,6 +4,10 @@ class ImagePolicy < ApplicationPolicy
     return true
   end
 
+  def show?
+    return true
+  end
+
   def destroy?
     return true
   end

@@ -47,7 +47,9 @@ Funai - Aaron's return
       <div class="form-group col-md-4 col-sm-8 col-xs-8">
         <h3 class="text-center">Photos</h3>
           <%  @return.images.each do |image| %>
-            <%= image_tag image.image_url(:returns_image) %>
+            <%= link_to image_path(image) do%>
+              <%= cl_image_tag image.image_url(:returns_image) %>
+            <% end %>
              <%= link_to "Delete", image_path(image), :method => :delete %>
           <% end %>
       </div>
