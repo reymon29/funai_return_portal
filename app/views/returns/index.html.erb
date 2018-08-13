@@ -6,11 +6,31 @@ Funai - Aaron's
     <div class="col-md-4 col-md-offset-4">
       <h1>RMA Log</h1>
     </div>
-      <div class="col-md-8 col-md-offset-3">
-      <% @returns.each do |return_item| %>
-        <h4><strong><%= return_item.item_number %> <%= return_item.product.model_number %>  <%= return_item.rma_status %> <%= link_to "Open", return_path(return_item) %></strong></h4></br>
-      <% end %>
-    </div>
+        <table class="table table-hover">
+          <tr>
+            <th>Item Number</th>
+            <th>Model Number</th>
+            <th>RMA Status</th>
+            <th>Show</th>
+          </tr>
+        <% @returns.each do |return_item| %>
+          <tr>
+            <td>
+              <%= return_item.item_number %>
+            </td>
+            <td>
+              <%= return_item.product.model_number %>
+            </td>
+            <td>
+              <%= return_item.rma_status %>
+            </td>
+            <td>
+              <%= link_to "Open", return_path(return_item) %>
+            </td>
+          </tr>
+        <% end %>
+        </table>
+
   </div>
 </div>
 
