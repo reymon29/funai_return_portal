@@ -48,7 +48,7 @@ Funai - Aaron's return
         <h3 class="text-center">Photos</h3>
           <%  @return.images.each do |image| %>
             <%= link_to image_path(image) do%>
-              <%= cl_image_tag image.image_url(:returns_image) %>
+              <%= cl_image_tag image.image_url(:returns_image), class: "img-rounded" %>
             <% end %>
              <%= link_to "Delete", image_path(image), :method => :delete %>
           <% end %>

@@ -3,13 +3,11 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
-    "babel": "^6.23.0",
     "bootstrap": "3",
     "jquery": "^3.3.1",
     "typed.js": "^2.0.9"
   },
   "devDependencies": {
-    "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
   },
