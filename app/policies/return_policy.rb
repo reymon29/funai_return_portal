@@ -5,20 +5,20 @@ class ReturnPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
-  end
-
-  def edit?
-    record.user == user
+    record.user == user || user.admin
   end
 
   def update?
-    record.user == user
+    record.user == user || user.admin
   end
   class Scope < Scope
     def resolve
       # scope.all
-      scope.where(user: user)
+      if user.admin?
+        scope.all
+      else
+        scope.where(user: user)
+      end
     end
   end
 end
