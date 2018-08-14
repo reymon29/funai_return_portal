@@ -15,7 +15,7 @@ Funai - Aaron's return
       </div>
 
       <div class="form-group col-md-4 col-sm-4 col-xs-8">
-        <%= f.association :product, label_method: :model_number, readonly: true %>
+        <%= f.association :product, label_method: :model_number, label: "Model number", readonly: true %>
       </div>
 
       <div class="form-group col-md-4 col-sm-4 col-xs-8">
@@ -41,7 +41,9 @@ Funai - Aaron's return
       <div class="form-group col-md-6 col-sm-8 col-xs-8">
         <%= f.input :comment, readonly: true %>
         <%= link_to 'RMA Log', returns_path, class: 'btn btn-primary' %>
+
         <%= link_to 'Update item', edit_return_path(@return), class: 'btn btn-info' %>
+
         <%= link_to 'Cancel', dashboard_path, class: "btn btn-warning" %>
       </div>
       <div class="form-group col-md-4 col-sm-8 col-xs-8">
@@ -50,7 +52,9 @@ Funai - Aaron's return
             <%= link_to image_path(image) do%>
               <%= cl_image_tag image.image_url(:returns_image), class: "img-rounded" %>
             <% end %>
-             <%= link_to "Delete", image_path(image), :method => :delete %>
+            <% if policy(image).destroy? %>
+              <%= link_to "Delete", image_path(image), :method => :delete %>
+             <% end %>
           <% end %>
       </div>
     <% end %>
