@@ -1,10 +1,5 @@
 class ImagesController < ApplicationController
 
-  def show
-    @image = Image.find(params[:id])
-    authorize @image
-  end
-
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
