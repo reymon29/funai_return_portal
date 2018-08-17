@@ -49,21 +49,25 @@ Funai - Return <%= @return.item_number %>
       <div class="form-group col-md-4 col-sm-8 col-xs-8">
         <h3 class="text-center">Photos</h3>
           <%  @return.images.each do |image| %>
-            <%= link_to image_path(image) do%>
-              <%= cl_image_tag image.image_url(:returns_image), class: "img-rounded", id: "#{image.id}" %>
-                            <!-- The Modal -->
-              <div id="myModal" class="modal">
-
-                <!-- The Close Button -->
-                <span class="close">&times;</span>
-
-                <!-- Modal Content (The Image) -->
-                <img class="modal-content" id="img01">
-
-                <!-- Modal Caption (Image Text) -->
-                <div id="caption"></div>
+              <%= cl_image_tag image.image, height: 150, width: 150 %>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal-<%= image.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><%= @return.item_number %></h4>
+                  </div>
+                  <div class="modal-body">
+                    <%= cl_image_tag image.image, height: 400, width: 570, crop: :fill %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
               </div>
-            <% end %>
+            </div>
+            <a type="button" data-toggle="modal" data-target="#myModal-<%= image.id %>">Show</a>
             <% if policy(image).destroy? %>
               <%= link_to "Delete", image_path(image), :method => :delete %>
              <% end %>
@@ -72,3 +76,4 @@ Funai - Return <%= @return.item_number %>
     <% end %>
   </div>
 </div>
+
