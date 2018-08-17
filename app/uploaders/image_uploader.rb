@@ -1,9 +1,6 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
-  version :returns_image do
-    process :resize_to_fill => [150, 150]
-  end
 
   def extension_white_list
     %w(jpg jpeg gif png)
