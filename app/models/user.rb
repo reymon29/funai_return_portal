@@ -12,8 +12,8 @@ class User < ApplicationRecord
   validates :country, presence: true
   # after_create :send_welcome_email
 
-  private
-  #Fix email
+  # private
+  # Fix email
   # def send_welcome_email
   #   UserMailer.welcome(self).deliver_now
   # end
