@@ -10,5 +10,6 @@ class Return < ApplicationRecord
   validates :invoice_date, presence: true
   validates :lease_date, presence: true
   validates :return_reason, presence: true
+  validates :part_number, presence: true
   validates :comment, presence: true
 end
