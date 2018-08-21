@@ -2,36 +2,163 @@
   <h1>Create a return</h1>
   <%= simple_form_for [@return] do |f| %>
     <%= f.error_notification %>
-  <div class="form-horizontal">
-    <div class="form-group col-md-4 col-sm-4">
-      <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.' %>
-    </div>
-    <div class="form-group col-md-4 col-sm-4">
-      <%= f.association :product, label_method: :model_number, label: "Model number", prompt: "Choose a product" %>
-    </div>
-    <div class="form-group col-md-4 col-sm-4">
-      <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.' %>
-    </div>
-    <div class="form-group col-md-4 col-sm-4">
-      <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
-    </div>
-    <div class="form-group col-md-4 col-sm-4">
-      <%= f.input :lease_date, as: :date, html5: true, hint: 'Aaron\'s inital lease date.' %>
-    </div>
-    <div class="form-group col-md-6 col-sm-8">
-      <%= f.input :part_number, collection: ['Panel', 'Digital Main', 'Power Board', 'Other item']  %>
-    </div>
-    <div class="form-group col-md-6 col-sm-8">
-      <%= f.input :return_reason, collection: ['Unrepairable by servicer', 'Part Not Available', 'Concealed Damage', 'No Servicer Available']  %>
-    </div>
-    <div class="form-group col-md-6 col-sm-8">
-      <%= f.input :comment, required: true, autofocus: true %>
-      <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos." %>
+      <div id="msform">
+        <ul id="progressbar">
+          <li class="active">Aaron's Product Info</li>
+          <li>Return Reason</li>
+          <li>Pickup Address</li>
+        </ul>
+          <!-- fieldsets -->
+         <fieldset>
+           <h2 class="fs-title">Enter the Aaron's Funai model info.</h2>
+          <h3 class="fs-subtitle">This is step 1</h3>
+          <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.' %>
 
-      <%= f.button :submit, "Submit", class: "btn btn-primary" %>
-      <%= link_to 'Cancel', dashboard_path, class: "btn btn-warning" %>
+
+          <%= f.association :product, label_method: :model_number, label: "Model number", prompt: "Choose a product" %>
+
+
+          <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.' %>
+
+
+          <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
+
+          <%= f.input :lease_date, as: :date, html5: true, hint: 'Aaron\'s inital lease date.' %>
+          <input type="button" name="next" class="next action-button" value="Next" />
+         </fieldset>
+        <fieldset>
+          <h2 class="fs-title">Return Reason</h2>
+          <h3 class="fs-subtitle">The reason for the return request.</h3>
+        <%= f.input :part_number, collection: ['Panel', 'Digital Main', 'Power Board', 'Other item']  %>
+
+
+        <%= f.input :return_reason, collection: ['Unrepairable by servicer', 'Part Not Available', 'Concealed Damage', 'No Servicer Available']  %>
+
+
+        <%= f.input :comment, required: true, autofocus: true %>
+        <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos." %>
+        <input type="button" name="previous" class="previous action-button" value="Previous" />
+        <input type="button" name="next" class="next action-button" value="Next" />
+      </fieldset>
+      <fieldset>
+      <h2 class="fs-title">Pick up address</h2>
+      <h3 class="fs-subtitle">We will need to know where to pick up the product from.</h3>
+       <%= f.input :attention_name, required: true, input_html: { value: "#{current_user.first_name} #{current_user.last_name}"  } %>
+       <%= f.input :address, required: true, input_html: { value: "#{current_user.address}" } %>
+       <%= f.input :address2, input_html: { value: "#{current_user.address2}" } %>
+       <%= f.input :city, required: true, input_html: { value: "#{current_user.city}" } %>
+       <%= f.input :state, required: true, input_html: { value: "#{current_user.state}" } %>
+       <%= f.input :zip, required: true, input_html: { value: "#{current_user.zip}" } %>
+       <%= f.input :contact_number, required: true, input_html: { value: "#{current_user.phone_number}" } %>
+       <%= f.input :special_comments, input_html: {placeholder: "Instructions we may need." } %>
+
+        <input type="button" name="previous" class="previous action-button" value="Previous" />
+        <%= f.button :submit, "Submit", class: "btn btn-primary" %>
+        <%= link_to 'Cancel', dashboard_path, class: "btn btn-warning" %>
+        </fieldset>
     </div>
+    <script>
+</script>
   <% end %>
-  </div>
 </div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", function(event) {
+  //do work with $
+
+//jQuery time
+(function($) {
+  var current_fs, next_fs, previous_fs; //fieldsets
+  var left, opacity, scale; //fieldset properties which we will animate
+  var animating; //flag to prevent quick multi-click glitches
+
+  $(".next").click(function() {
+    if (animating) return false;
+    animating = true;
+
+    current_fs = $(this).parent();
+    next_fs = $(this).parent().next();
+
+    //activate next step on progressbar using the index of next_fs
+    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+    //show the next fieldset
+    next_fs.show();
+    //hide the current fieldset with style
+    current_fs.animate({
+      opacity: 0
+    }, {
+      step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale current_fs down to 80%
+        scale = 1 - (1 - now) * 0.2;
+        //2. bring next_fs from the right(50%)
+        left = (now * 50) + "%";
+        //3. increase opacity of next_fs to 1 as it moves in
+        opacity = 1 - now;
+        current_fs.css({
+          'transform': 'scale(' + scale + ')'
+        });
+        next_fs.css({
+          'left': left,
+          'opacity': opacity
+        });
+      },
+      duration: 800,
+      complete: function() {
+        current_fs.hide();
+        animating = false;
+      },
+      //this comes from the custom easing plugin
+      easing: 'easeInOutBack'
+    });
+  });
+
+  $(".previous").click(function() {
+    if (animating) return false;
+    animating = true;
+
+    current_fs = $(this).parent();
+    previous_fs = $(this).parent().prev();
+
+    //de-activate current step on progressbar
+    $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+    //show the previous fieldset
+    previous_fs.show();
+    //hide the current fieldset with style
+    current_fs.animate({
+      opacity: 0
+    }, {
+      step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale previous_fs from 80% to 100%
+        scale = 0.8 + (1 - now) * 0.2;
+        //2. take current_fs to the right(50%) - from 0%
+        left = ((1 - now) * 50) + "%";
+        //3. increase opacity of previous_fs to 1 as it moves in
+        opacity = 1 - now;
+        current_fs.css({
+          'left': left
+        });
+        previous_fs.css({
+          'transform': 'scale(' + scale + ')',
+          'opacity': opacity
+        });
+      },
+      duration: 800,
+      complete: function() {
+        current_fs.hide();
+        animating = false;
+      },
+      //this comes from the custom easing plugin
+      easing: 'easeInOutBack'
+    });
+  });
+
+})(jQuery);
+});
+
+</script>
+
 

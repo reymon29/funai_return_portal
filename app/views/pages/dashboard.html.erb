@@ -4,9 +4,8 @@ Funai - Dashboard for <%= current_user.store_number %>
 <div class="container">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4 text-center">
-      <h1>Welcome, <%= current_user.store_number%></h1>
+      <h1>Welcome, <%= current_user.first_name %> from <%= current_user.store_number%></h1>
       <h2>Dashboard</h2>
-      <p><%= current_user.first_name %> here is your Funai Dashboard.</p>
       <%= link_to new_return_path do%>
       <h4>New RMA Request</h4>
       <% end %>

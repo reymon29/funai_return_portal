@@ -18,10 +18,10 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name,:store_number, :address, :address2, :city, :state,:zip, :country])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name,:store_number, :address, :address2, :city, :state,:zip, :phone_number, :country])
 
     # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name,:store_number, :address, :address2, :city, :zip, :country])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name,:store_number, :address, :address2, :city, :zip, :phone_number, :country])
   end
 
   def after_sign_in_path_for(resource)

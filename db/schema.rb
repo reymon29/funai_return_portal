@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_21_090635) do
+ActiveRecord::Schema.define(version: 2018_08_21_133619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 2018_08_21_090635) do
     t.string "rma_number"
     t.string "rma_status"
     t.bigint "product_id"
+    t.string "attention_name"
+    t.string "address"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "country"
+    t.string "contact_number"
+    t.text "special_comments"
     t.index ["product_id"], name: "index_returns_on_product_id"
     t.index ["user_id"], name: "index_returns_on_user_id"
   end
@@ -73,6 +82,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_090635) do
     t.string "address2"
     t.string "first_name"
     t.string "last_name"
+    t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
