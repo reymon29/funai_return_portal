@@ -44,7 +44,7 @@ rma_status = "Submitted for Approval"
 #   create_return.save
 #   puts "User has been assigned returns"
   # end
-end
+# end
 
 puts '<'
 puts 'creating model list'
