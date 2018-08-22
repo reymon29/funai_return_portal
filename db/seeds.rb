@@ -14,13 +14,16 @@ rma_status = "Submitted for Approval"
 10.times do
  create_user = User.new(
     email: Faker::Internet.email,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
     password: 'TopSecret',
     store_number: store_random,
     address: Faker::Address.street_name,
+    address2: Faker::Address.secondary_address,
     city: Faker::Address.city,
     state: Faker::Address.state_abbr,
     zip: Faker::Address.zip,
-    country: Faker::Address.country
+    country: "USA"
     )
  create_user.save
  puts "user created"
@@ -49,69 +52,79 @@ puts 'creating model list'
 model_1 = Product.new(
                 model_number: "32ME303V/F7",
                 product_type: "TV",
-                weight: 25
+                weight: 25,
+                carrier_default: "FedEx"
                 )
 model_1.save
 
 model_2 = Product.new(
                 model_number: "32ME303V/F7A",
                 product_type: "TV",
-                weight: 25
+                weight: 25,
+                carrier_default: "FedEx"
                 )
 model_2.save
 
 model_3 = Product.new(
                 model_number: "32ME304V/F7",
                 product_type: "TV",
-                weight: 25
+                weight: 25,
+                carrier_default: "FedEx"
                 )
 model_3.save
 
 model_4 = Product.new(
                 model_number: "32MV304X/F7",
                 product_type: "TV",
-                weight: 25
+                weight: 25,
+                carrier_default: "FedEx"
                 )
 model_4.save
 
 model_5 = Product.new(
                 model_number: "32PFL4507/F7",
                 product_type: "TV",
-                weight: 25
+                weight: 25,
+                carrier_default: "FedEx"
                 )
 model_5.save
 
 model_6 = Product.new(
                 model_number: "32PFL4508/F7",
                 product_type: "TV",
-                weight: 25
+                weight: 25,
+                carrier_default: "FedEx"
                 )
 model_6.save
 
 model_7 = Product.new(
                 model_number: "32PFL4609/F7",
                 product_type: "TV",
-                weight: 25
+                weight: 25,
+                carrier_default: "FedEx"
                 )
 model_7.save
 
 model_8 = Product.new(
                 model_number: "32PFL4609/F7",
                 product_type: "TV",
-                weight: 25
+                weight: 25,
+                carrier_default: "FedEx"
                 )
 model_8.save
 
 model_9 = Product.new(
                 model_number: "32PFL4909/F7",
                 product_type: "TV",
-                weight: 25
+                weight: 25,
+                carrier_default: "FedEx"
                 )
 model_9.save
 
 model_10 = Product.new(
                 model_number: "39ME313V/F7",
                 product_type: "TV",
-                weight: 35
+                weight: 35,
+                carrier_default: "LTL-TSG"
                 )
 model_10.save

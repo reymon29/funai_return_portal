@@ -1,5 +1,5 @@
 class Return < ApplicationRecord
-  has_many :images
+  has_many :images, dependent: :destroy
   belongs_to :user
   belongs_to :product
   accepts_nested_attributes_for :images, allow_destroy: :destroy
@@ -10,5 +10,13 @@ class Return < ApplicationRecord
   validates :invoice_date, presence: true
   validates :lease_date, presence: true
   validates :return_reason, presence: true
+  validates :part_number, presence: true
   validates :comment, presence: true
+  validates :attention_name, presence: true
+  validates :address, presence: true, length: { in: 0..60 }
+  validates :address2, length: { in: 0..60 }, allow_blank: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :zip, presence: true
+  validates :country, presence: true
 end
