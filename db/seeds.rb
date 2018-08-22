@@ -11,22 +11,22 @@ store_random = ['F1234', 'C1234', 'D1234', 'F1234'].sample
 model_number_random = ['50PFL5601/F7', '50MV336V/F7', '40MV336V/F7', '65PFL5603/F7'].sample
 part_number_random = ['Panel', 'Power Board', 'Digital Main', 'More than one reason refer to comment' ].sample
 rma_status = "Submitted for Approval"
-10.times do
- create_user = User.new(
-    email: Faker::Internet.email,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    password: 'TopSecret',
-    store_number: store_random,
-    address: Faker::Address.street_name,
-    address2: Faker::Address.secondary_address,
-    city: Faker::Address.city,
-    state: Faker::Address.state_abbr,
-    zip: Faker::Address.zip,
-    country: "USA"
-    )
- create_user.save
- puts "user created"
+# 10.times do
+#  create_user = User.new(
+#     email: Faker::Internet.email,
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     password: 'TopSecret',
+#     store_number: store_random,
+#     address: Faker::Address.street_name,
+#     address2: Faker::Address.secondary_address,
+#     city: Faker::Address.city,
+#     state: Faker::Address.state_abbr,
+#     zip: Faker::Address.zip,
+#     country: "USA"
+#     )
+#  create_user.save
+#  puts "user created"
 
 # 15.times do
 #   create_return = Return.new(
