@@ -1,5 +1,8 @@
 class ReturnsController < ApplicationController
   before_action :return_id_find, only: [:show, :edit, :update, :destroy]
+
+
+
   def index
     # @returns = Return.all
     @returns = policy_scope(Return).order(created_at: :desc)
@@ -38,7 +41,7 @@ class ReturnsController < ApplicationController
   end
 
   def update
-     if @return.update(return_params)
+    if @return.update(return_params)
       if params[:images]
         params[:images].each do |image|
           @return.images.create(image: image)
