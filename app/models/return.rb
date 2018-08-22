@@ -1,5 +1,5 @@
 class Return < ApplicationRecord
-  has_many :images
+  has_many :images, dependent: :destroy
   belongs_to :user
   belongs_to :product
   accepts_nested_attributes_for :images, allow_destroy: :destroy

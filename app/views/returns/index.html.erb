@@ -11,7 +11,7 @@ Funai - Return Items for <%= current_user.store_number %>
             <th>Item Number</th>
             <th>Model Number</th>
             <th>RMA Status</th>
-            <th>Show</th>
+            <th>Options</th>
           </tr>
         <% @returns.each do |return_item| %>
           <tr>
@@ -26,6 +26,9 @@ Funai - Return Items for <%= current_user.store_number %>
             </td>
             <td>
               <%= link_to "Open", return_path(return_item) %>
+              <% if policy(Return).destroy? %>
+              <%= link_to "Delete", return_path(return_item), method: :delete, data: { confirm: "Are you sure?" } %>
+              <% end %>
             </td>
           </tr>
         <% end %>

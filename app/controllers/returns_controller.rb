@@ -1,5 +1,5 @@
 class ReturnsController < ApplicationController
-  before_action :return_id_find, only: [:show, :edit, :update]
+  before_action :return_id_find, only: [:show, :edit, :update, :destroy]
   def index
     # @returns = Return.all
     @returns = policy_scope(Return).order(created_at: :desc)
@@ -48,6 +48,12 @@ class ReturnsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @return.destroy
+    redirect_to dashboard_path
+    flash[:notice] = "Return has been deleted"
   end
 
   private
