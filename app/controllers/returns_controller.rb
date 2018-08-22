@@ -1,5 +1,8 @@
 class ReturnsController < ApplicationController
-  before_action :return_id_find, only: [:show, :edit, :update]
+  before_action :return_id_find, only: [:show, :edit, :update, :destroy]
+
+
+
   def index
     # @returns = Return.all
     @returns = policy_scope(Return).order(created_at: :desc)
@@ -15,6 +18,7 @@ class ReturnsController < ApplicationController
     @return = Return.new(return_params)
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
+    @return.country = current_user.country
 
     authorize @return
     if @return.save
@@ -37,7 +41,7 @@ class ReturnsController < ApplicationController
   end
 
   def update
-     if @return.update(return_params)
+    if @return.update(return_params)
       if params[:images]
         params[:images].each do |image|
           @return.images.create(image: image)
@@ -49,6 +53,12 @@ class ReturnsController < ApplicationController
     end
   end
 
+  def destroy
+    @return.destroy
+    redirect_to dashboard_path
+    flash[:notice] = "Return has been deleted"
+  end
+
   private
 
   def return_id_find
@@ -57,6 +67,6 @@ class ReturnsController < ApplicationController
   end
 
   def return_params
-    params.require(:return).permit(:item_number, :model_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id, images_attributes: [:image, :return_id])
+    params.require(:return).permit(:item_number, :model_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id, :attention_name, :address, :address2, :city, :zip, :state, :contact_number, :special_comments, images_attributes: [:image, :return_id])
   end
 end
