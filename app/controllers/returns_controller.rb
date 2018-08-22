@@ -27,6 +27,7 @@ class ReturnsController < ApplicationController
           @return.images.create(image: image)
         end
       end
+      ReturnMailer.created(@return).deliver_now
       redirect_to dashboard_path
       flash[:notice] = "Return for Aaron's #{@return.item_number} has been submitted and will be reviewed shortly"
     else
