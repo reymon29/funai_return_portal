@@ -7,11 +7,15 @@
   <%= f.association :product, label_method: :model_number, label: "Model number", readonly: true %>
   <%= f.input :serial_number, required: true, readonly: true %>
 
-  <%= f.input :rma_status, collection: ["RMA Approved, assigning shipping", "RMA Denied, please review again"] %>
+  <%= f.input :rma_status, collection: ["RMA Approved, assigning shipping", "RMA Denied, please review again"]%>
+
 
   <%= f.input :rma_number, required: true %>
-  <%= f.input :rma_number, required: true %>
-  <%= f.input :rma_number, required: true %>
+  <%= f.input :return_carrier %>
+  <%= f.input :special_comments, required: true %>
+  <%= f.input :return_tracking, required: true %>
+
+
 
   <%= f.button :submit, "Submit", class: "btn btn-primary" %>
   <%= link_to 'Cancel', dashboard_path, class: "btn btn-warning" %>

@@ -44,11 +44,9 @@ Funai - Return <%= @return.item_number %>
       <div class="form-group col-md-6 col-sm-8 col-xs-8">
         <%= f.input :comment, readonly: true %>
 
-        <%= link_to 'Assign RMA', edit_shipping_return_path(@return), class: 'btn btn-info' %>
+        <%= link_to 'Assign RMA', edit_shipping_return_path(@return), class: 'btn btn-primary' %>
 
-        <%= link_to 'Update item', edit_return_path(@return), class: 'btn btn-info' %>
-
-        <%= link_to 'Cancel', dashboard_path, class: "btn btn-warning" %>
+        <%= link_to 'Shipping Dashboard', shipping_returns_path, class: "btn btn-warning" %>
       </div>
 
       <div class="form-group col-md-4 col-sm-8 col-xs-8 text-center">

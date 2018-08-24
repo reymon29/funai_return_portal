@@ -24,4 +24,14 @@ class Return < ApplicationRecord
     @returns = self
     @returns.where(rma_status: "Submitted for Approval").count
   end
+
+  def self.fedex_product
+    @returns = self
+    @returns.where(["return_carrier = ? and rma_status = ?", "FedEx", "RMA Approved, assigning shipping"]).count
+  end
+
+    def self.ltl_product
+    @returns = self
+    @returns.where(["return_carrier = ? and rma_status = ?", "LTL-TSG", "RMA Approved, assigning shipping"]).count
+  end
 end

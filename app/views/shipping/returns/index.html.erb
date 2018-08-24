@@ -10,11 +10,11 @@
         <p>Waiting for Approval</p>
       </a>
       <a class="tab" data-toggle="tab" href="#menu1">
-        <h3>456</h3>
+        <h3><%= Return.fedex_product %></h3>
         <p>Shipping (FedEx)</p>
       </a>
       <a class="tab" data-toggle="tab" href="#menu2">
-        <h3>189</h3>
+        <h3><%= Return.ltl_product %></h3>
         <p>Shipping (LTL)</p>
       </a>
       <a class="tab" data-toggle="tab" href="#menu3">
@@ -54,7 +54,32 @@
     </div>
     <div id="menu1" class="tab-pane fade">
       <h3>Shipping FedEx</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <table class="table table-hover">
+        <tr>
+          <th>Item Number</th>
+          <th>Model Number</th>
+          <th>RMA Status</th>
+          <th>Options</th>
+        </tr>
+        <% @returns.each do |return_item| %>
+        <% if return_item.rma_status == "RMA Approved, assigning shipping" %>
+          <tr>
+            <td>
+              <%= return_item.item_number %>
+            </td>
+            <td>
+              <%= return_item.product.model_number %>
+            </td>
+            <td>
+              <%= return_item.rma_status %>
+            </td>
+            <td>
+              <%= link_to "Open", shipping_return_path(return_item) %>
+            </td>
+          </tr>
+         <% end %>
+        <% end %>
+      </table>
     </div>
     <div id="menu2" class="tab-pane fade">
       <h3>Shipping TSG</h3>
