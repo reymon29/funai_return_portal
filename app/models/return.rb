@@ -19,4 +19,9 @@ class Return < ApplicationRecord
   validates :state, presence: true
   validates :zip, presence: true
   validates :country, presence: true
+
+  def self.pending_approval
+    @returns = self
+    @returns.where(rma_status: "Submitted for Approval").count
+  end
 end
