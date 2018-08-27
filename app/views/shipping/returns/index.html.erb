@@ -52,6 +52,7 @@
       <% end %>
     </table>
     </div>
+    <!-- Items for FedEx shipping -->
     <div id="menu1" class="tab-pane fade">
       <h3>Shipping FedEx</h3>
         <table class="table table-hover">
@@ -62,7 +63,7 @@
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
-        <% if return_item.rma_status == "RMA Approved, assigning shipping" %>
+        <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "FedEx" %>
           <tr>
             <td>
               <%= return_item.item_number %>
@@ -81,10 +82,37 @@
         <% end %>
       </table>
     </div>
+    <!-- Items for LTL shipping -->
     <div id="menu2" class="tab-pane fade">
       <h3>Shipping TSG</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      <table class="table table-hover">
+        <tr>
+          <th>Item Number</th>
+          <th>Model Number</th>
+          <th>RMA Status</th>
+          <th>Options</th>
+        </tr>
+        <% @returns.each do |return_item| %>
+        <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "LTL-TSG" %>
+          <tr>
+            <td>
+              <%= return_item.item_number %>
+            </td>
+            <td>
+              <%= return_item.product.model_number %>
+            </td>
+            <td>
+              <%= return_item.rma_status %>
+            </td>
+            <td>
+              <%= link_to "Open", shipping_return_path(return_item) %>
+            </td>
+          </tr>
+         <% end %>
+        <% end %>
+      </table>
     </div>
+    <!-- Compeleted items -->
     <div id="menu3" class="tab-pane fade">
       <h3>Completed</h3>
       <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>

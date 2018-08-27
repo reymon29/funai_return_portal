@@ -3,12 +3,23 @@ Funai - Return <%= @return.item_number %>
 <% end %>
 <div class="container">
   <h2>Item Number: <%= @return.item_number %></h2>
-  <p>Submitted by: <%= @return.user.first_name %> <%= @return.user.last_name %> </p>
-  <p>From: <%= @return.user.store_number %></p>
-  <p>Submitted on: <%= @return.created_at.strftime("%m/%d/%Y") %></p>
+  <div class="flex-container-show">
+    <div class="flex-item-show">
+      <p>Submitted by: <%= @return.user.first_name %> <%= @return.user.last_name %> </p>
+      <p>From: <%= @return.user.store_number %></p>
+      <p>Submitted on: <%= @return.created_at.strftime("%m/%d/%Y") %></p>
+    </div>
+    <div class="flex-item-show">
+      <p>Pickup Address: Atn: <%= @return.attention_name %>
+       <%= @return.address %> <%= @return.address2 %> <%=  @return.city %> <%= @return.state %> <%= @return.zip %></p>
+      <p>Contact: <%= @return.contact_number %></p>
+      <p>Special Message: <%= @return.special_comments %></p>
+    </div>
+  </div>
+
     <%= simple_form_for(@return) do |f| %>
     <%= f.error_notification %>
-    <div class="form-horizontal">
+    <div class="form-horizontal show-form" id="form">
       <div class="form-group col-md-4 col-sm-4 col-xs-6">
         <%= f.input :rma_status, readonly: true %>
       </div>
@@ -18,7 +29,7 @@ Funai - Return <%= @return.item_number %>
       </div>
 
       <div class="form-group col-md-4 col-sm-4 col-xs-8">
-        <%= f.association :product, label_method: :model_number, label: "Model number", readonly: true %>
+        <%= f.association :product, label_method: :model_number, label: "Model number", readonly: true, disabled: @return.product.id %>
       </div>
 
       <div class="form-group col-md-4 col-sm-4 col-xs-8">

@@ -14,7 +14,10 @@ module Shipping
     end
 
     def update
-      if @return.update(return_params)
+      if return_params[:rma_status].empty? || return_params[:rma_number].empty?
+        flash[:alert] = "No RMA Status or Number has been assigned"
+        render :edit
+      elsif @return.update(return_params)
         redirect_to shipping_returns_path
         flash[:notice] = "RMA has been assigned"
       else
