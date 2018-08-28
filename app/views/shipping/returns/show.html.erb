@@ -3,95 +3,67 @@ Funai - Return <%= @return.item_number %>
 <% end %>
 <div class="container">
   <h2>Item Number: <%= @return.item_number %></h2>
+    <div class="flex-item-show">
+    <h4>RMA Status: <%= @return.rma_status %> || <%= @return.rma_number.nil? ? "No RMA # Assigned" :  @return.rma_number %> </h4>
+  </div>
   <div class="flex-container-show">
     <div class="flex-item-show">
+      <h5>Aaron's Contact</h5>
       <p>Submitted by: <%= @return.user.first_name %> <%= @return.user.last_name %> </p>
       <p>From: <%= @return.user.store_number %></p>
       <p>Submitted on: <%= @return.created_at.strftime("%m/%d/%Y") %></p>
     </div>
     <div class="flex-item-show">
-      <p>Pickup Address: Atn: <%= @return.attention_name %>
-       <%= @return.address %> <%= @return.address2 %> <%=  @return.city %> <%= @return.state %> <%= @return.zip %></p>
+      <h5>Aaron's Pickup Address</h5>
+      <p> Atn: <%= @return.attention_name %></br>
+       <%= @return.address %> <%= @return.address2 %> </br><%=  @return.city %> <%= @return.state %> <%= @return.zip %></p>
       <p>Contact: <%= @return.contact_number %></p>
       <p>Special Message: <%= @return.special_comments %></p>
     </div>
+    <div class="flex-item-show">
+      <h5>Aaron's Funai Model</h5>
+      <p> Model: <%= @return.product.model_number %></p>
+      <p> Serial: <%= @return.serial_number %></p>
+      <p> Invoice Date: <%= @return.invoice_date.strftime("%m/%d/%Y") %></p>
+      <p> Lease Date: <%= @return.lease_date.strftime("%m/%d/%Y") %></p>
+    </div>
+    <div class="flex-item-show">
+      <h5>Aaron's Return Reason</h5>
+      <p>Return Reason: <%= @return.return_reason %></p>
+      <p>Part: <%= @return.part_number %></p>
+      <p>Return Comment:</p>
+      <textarea disabled="true"><%= @return.return_reason %></textarea>
+    </div>
   </div>
-
-    <%= simple_form_for(@return) do |f| %>
-    <%= f.error_notification %>
-    <div class="form-horizontal show-form" id="form">
-      <div class="form-group col-md-4 col-sm-4 col-xs-6">
-        <%= f.input :rma_status, readonly: true %>
+  <h3>Photos</h3>
+    <% if @return.images.empty? %>
+      <p>No photos were included.</p>
+    <% else %>
+      <% @return.images.each do |image| %>
+        <%= cl_image_tag image.image, height: 150, width: 150 %>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal-<%= image.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><%= @return.item_number %></h4>
+          </div>
+          <div class="modal-body">
+            <%= cl_image_tag image.image, height: 400, width: 570 %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
-
-      <div class="form-group col-md-4 col-sm-4 col-xs-6">
-        <%= f.input :rma_number, readonly: true %>
-      </div>
-
-      <div class="form-group col-md-4 col-sm-4 col-xs-8">
-        <%= f.association :product, label_method: :model_number, label: "Model number", readonly: true, disabled: @return.product.id %>
-      </div>
-
-      <div class="form-group col-md-4 col-sm-4 col-xs-8">
-        <%= f.input :serial_number, readonly: true %>
-      </div>
-
-      <div class="form-group col-md-4 col-sm-4 col-xs-8">
-        <%= f.input :invoice_date, as: :date, html5: true, readonly: true %>
-      </div>
-
-      <div class="form-group col-md-4 col-sm-4 col-xs-8">
-        <%= f.input :lease_date, as: :date, html5: true, readonly: true  %>
-      </div>
-
-      <div class="form-group col-md-6 col-sm-8 col-xs-8">
-        <%= f.input :part_number, readonly: true  %>
-      </div>
-
-      <div class="form-group col-md-6 col-sm-8 col-xs-8">
-        <%= f.input :return_reason, readonly: true %>
-      </div>
-
-      <div class="form-group col-md-6 col-sm-8 col-xs-8">
-        <%= f.input :comment, readonly: true %>
-
-        <%= link_to 'Assign RMA', edit_shipping_return_path(@return), class: 'btn btn-primary' %>
-
-        <%= link_to 'Shipping Dashboard', shipping_returns_path, class: "btn btn-warning" %>
-      </div>
-
-      <div class="form-group col-md-4 col-sm-8 col-xs-8 text-center">
-        <h3>Photos</h3>
-            <% if @return.images.empty? %>
-              <p>No photos were included.</p>
-            <% else %>
-              <% @return.images.each do |image| %>
-                <%= cl_image_tag image.image, height: 150, width: 150 %>
-                <!-- Modal -->
-                <div class="modal fade" id="myModal-<%= image.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel"><%= @return.item_number %></h4>
-                  </div>
-                  <div class="modal-body">
-                    <%= cl_image_tag image.image, height: 400, width: 570 %>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a type="button" href="" data-toggle="modal" data-target="#myModal-<%= image.id %>">Show</a>
-            <% if policy(image).destroy? %>
-              <%= link_to "Delete", image_path(image), :method => :delete %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
+    </div>
+    <a type="button" href="" data-toggle="modal" data-target="#myModal-<%= image.id %>">Show</a>
+    <% if policy(image).destroy? %>
+      <%= link_to "Delete", image_path(image), :method => :delete %>
     <% end %>
-  </div>
+  <% end %>
+<% end %>
+  <%= link_to 'Assign RMA', edit_shipping_return_path(@return), class: 'btn btn-primary' %>
+  <%= link_to 'Shipping Dashboard', shipping_returns_path, class: "btn btn-warning" %>
 </div>
-
