@@ -20,7 +20,8 @@ class ReturnsController < ApplicationController
     @return.user = current_user
     @return.country = current_user.country
     @product = Product.find_by_id(params[:return][:product_id].to_i)
-    @return.return_carrier = @product.carrier_default
+    if @product.nil?
+    end
     authorize @return
     if @return.save
       if params[:images]
