@@ -30,8 +30,13 @@ class Return < ApplicationRecord
     @returns.where(["return_carrier = ? and rma_status = ?", "FedEx", "RMA Approved, assigning shipping"]).count
   end
 
-    def self.ltl_product
+  def self.ltl_product
     @returns = self
     @returns.where(["return_carrier = ? and rma_status = ?", "LTL-TSG", "RMA Approved, assigning shipping"]).count
+  end
+
+  def self.completed
+    @returns = self
+    @returns.where(["rma_status = ?", "Completed, shipping assigned"]).count
   end
 end

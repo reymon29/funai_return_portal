@@ -18,9 +18,11 @@ class ReturnsController < ApplicationController
     @return = Return.new(return_params)
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
-    @return.country = current_user.country
     @product = Product.find_by_id(params[:return][:product_id].to_i)
     if @product.nil?
+      flash[:alert] = "Model number is required"
+    else
+      @return.return_carrier = @product.carrier_default
     end
     authorize @return
     if @return.save
@@ -70,6 +72,6 @@ class ReturnsController < ApplicationController
   end
 
   def return_params
-    params.require(:return).permit(:item_number, :model_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id, :attention_name, :address, :address2, :city, :zip, :state, :contact_number, :special_comments, images_attributes: [:image, :return_id])
+    params.require(:return).permit(:item_number, :model_number, :store_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id, :attention_name, :address, :address2, :city, :zip, :state, :country ,:contact_number, :special_comments, images_attributes: [:image, :return_id])
   end
 end

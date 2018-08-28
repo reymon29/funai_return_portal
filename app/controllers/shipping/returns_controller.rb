@@ -15,8 +15,8 @@ module Shipping
 
     def update
       if return_params[:rma_status].empty? || return_params[:rma_number].empty?
-        flash[:alert] = "No RMA Status or Number has been assigned"
-        render :edit
+        flash[:alert] = "No RMA Status has been assigned"
+        render :show
       elsif @return.update(return_params)
         redirect_to shipping_returns_path
         flash[:notice] = "RMA has been assigned"
@@ -32,7 +32,7 @@ module Shipping
     end
 
     def return_params
-      params.require(:return).permit(:rma_status, :rma_number)
+      params.require(:return).permit(:rma_status, :rma_number, :return_tracking)
     end
     def require_admin
       unless current_user.admin?

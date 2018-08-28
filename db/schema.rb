@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_101914) do
+ActiveRecord::Schema.define(version: 2018_08_28_024656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2018_08_24_101914) do
     t.string "return_tracking"
     t.string "return_carrier"
     t.date "date_tracking"
+    t.string "store_number"
     t.index ["product_id"], name: "index_returns_on_product_id"
     t.index ["user_id"], name: "index_returns_on_user_id"
   end

@@ -5,7 +5,13 @@ Funai - Return <%= @return.item_number %>
   <h2>Item Number: <%= @return.item_number %></h2>
     <div class="flex-item-show">
     <h4>RMA Status: <%= @return.rma_status %> || <%= @return.rma_number.nil? ? "No RMA # Assigned" :  @return.rma_number %> </h4>
-  </div>
+    <h4>Shipping Method: <%= @return.return_carrier %> || <%= @return.return_tracking.nil? ? "Awaiting to be assigned" :  @return.return_tracking %></h4>
+    <% if @return.rma_status == "RMA Approved, assigning shipping" %>
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+          Add Tracking
+        </button>
+      <% end %>
+    </div>
   <div class="flex-container-show">
     <div class="flex-item-show">
       <h5>Aaron's Contact</h5>
@@ -15,9 +21,9 @@ Funai - Return <%= @return.item_number %>
     </div>
     <div class="flex-item-show">
       <h5>Aaron's Pickup Address</h5>
-      <p> Atn: <%= @return.attention_name %></br>
+      <p> <%= @return.store_number %></br><%= @return.attention_name %></br>
        <%= @return.address %> <%= @return.address2 %> </br><%=  @return.city %> <%= @return.state %> <%= @return.zip %></p>
-      <p>Contact: <%= @return.contact_number %></p>
+      <p><%= @return.contact_number %></p>
       <p>Special Message: <%= @return.special_comments %></p>
     </div>
     <div class="flex-item-show">
@@ -31,8 +37,7 @@ Funai - Return <%= @return.item_number %>
       <h5>Aaron's Return Reason</h5>
       <p>Return Reason: <%= @return.return_reason %></p>
       <p>Part: <%= @return.part_number %></p>
-      <p>Return Comment:</p>
-      <textarea disabled="true"><%= @return.return_reason %></textarea>
+      <p>Return Comment: <%= @return.return_reason %></p>
     </div>
   </div>
   <h3>Photos</h3>
@@ -60,10 +65,39 @@ Funai - Return <%= @return.item_number %>
     </div>
     <a type="button" href="" data-toggle="modal" data-target="#myModal-<%= image.id %>">Show</a>
     <% if policy(image).destroy? %>
-      <%= link_to "Delete", image_path(image), :method => :delete %>
+      <%= link_to "Delete", image_path(image), method: :delete,
+      data: { confirm: "Delete, are you sure?" } %>
     <% end %>
   <% end %>
 <% end %>
-  <%= link_to 'Assign RMA', edit_shipping_return_path(@return), class: 'btn btn-primary' %>
-  <%= link_to 'Shipping Dashboard', shipping_returns_path, class: "btn btn-warning" %>
+  <%= link_to 'Assign RMA', edit_shipping_return_path(@return), class: 'btn btn-default' %>
+  <%= link_to 'Shipping Dashboard', shipping_returns_path, class: "btn btn-default" %>
 </div>
+<!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add Tracking</h4>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+            <%= simple_form_for [:shipping, @return] do |f| %>
+              <%= f.error_notification %>
+              <div class="col-md-4">
+                <%= f.input :return_tracking, required: true %>
+                <%= f.input :rma_status, required: true, collection: ["Completed, shipping assigned", "Pending, waiting on info"] %>
+                <%= f.input :rma_number, as: :hidden, input_html: { value: "#{@return.rma_number}" } %>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= f.button :submit, "Submit", class: "btn btn-primary" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
