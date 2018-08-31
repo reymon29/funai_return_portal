@@ -1,9 +1,9 @@
 .banner {
   color: white;
   text-align: center;
-  height: 95vh;
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
+
+  height: calc(100vh - 140px);
+  background-size: cover ;
   display: flex;
   align-items: center;
   justify-content: center;
