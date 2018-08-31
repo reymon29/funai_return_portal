@@ -27,12 +27,12 @@ class Return < ApplicationRecord
 
   def self.fedex_product
     @returns = self
-    @returns.where(["return_carrier = ? and rma_status = ?", "FedEx", "RMA Approved, assigning shipping"]).count
+    @returns.where("return_carrier = ? and rma_status = ?", "FedEx", "RMA Approved, assigning shipping").or(Return.where("return_carrier = ? and rma_status = ?", "FedEx", "Pending, waiting on info")).count
   end
 
   def self.ltl_product
     @returns = self
-    @returns.where(["return_carrier = ? and rma_status = ?", "LTL-TSG", "RMA Approved, assigning shipping"]).count
+    @returns.where(["return_carrier = ? and rma_status = ?", "LTL-TSG", "RMA Approved, assigning shipping"]).or(Return.where("return_carrier = ? and rma_status = ?", "LTL-TSG", "Pending, waiting on info")).count
   end
 
   def self.completed

@@ -14,6 +14,7 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'country_select', '~> 3.1'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'

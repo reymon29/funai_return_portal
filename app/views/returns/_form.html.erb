@@ -39,7 +39,7 @@
           <%= f.input :city, required: true, input_html: { value: "#{current_user.city}" } %>
           <%= f.input :state, required: true, input_html: { value: "#{current_user.state}" } %>
           <%= f.input :zip, required: true, input_html: { value: "#{current_user.zip}" } %>
-          <%= f.input :country, required: true, collection: ["USA", "CANADA"], selected: "#{current_user.country}" %>
+          <%= f.country_select :country, required: true, selected: "#{current_user.country}", only: ["CA"], priority_countries: ["US"] %>
           <%= f.input :contact_number, required: true, input_html: { value: "#{current_user.phone_number}" } %>
           <%= f.input :special_comments, input_html: {placeholder: "Instructions we may need." } %>
           <%= f.button :submit, "Submit", class: "btn btn-primary" %>

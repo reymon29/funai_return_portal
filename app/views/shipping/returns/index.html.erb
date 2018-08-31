@@ -63,7 +63,7 @@
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
-        <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "FedEx" %>
+        <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "FedEx" || return_item.rma_status == "Pending, waiting on info" &&  return_item.return_carrier == "FedEx" %>
           <tr>
             <td>
               <%= return_item.item_number %>
@@ -93,7 +93,7 @@
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
-        <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "LTL-TSG" %>
+        <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "LTL-TSG" || return_item.rma_status == "Pending, waiting on info" &&  return_item.return_carrier == "LTL-TSG" %>
           <tr>
             <td>
               <%= return_item.item_number %>
