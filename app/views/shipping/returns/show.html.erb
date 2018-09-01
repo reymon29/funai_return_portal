@@ -70,7 +70,9 @@ Funai - Return <%= @return.item_number %>
     <% end %>
   <% end %>
 <% end %>
+  <% if @return.rma_status == "Submitted for Approval" %>
   <%= link_to 'Assign RMA', edit_shipping_return_path(@return), class: 'btn btn-default' %>
+  <% end %>
   <%= link_to 'Shipping Dashboard', shipping_returns_path, class: "btn btn-default" %>
 </div>
 <!-- Button trigger modal -->
