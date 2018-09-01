@@ -1,4 +1,5 @@
 class Return < ApplicationRecord
+  mount_uploader :image, ImageUploader
   has_many :images, dependent: :destroy
   belongs_to :user
   belongs_to :product
