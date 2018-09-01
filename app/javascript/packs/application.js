@@ -1,5 +1,8 @@
+import "bootstrap";
 import { loadDynamicBannerText } from '../components/banner';
 loadDynamicBannerText();
-import "bootstrap";
+
+import { tabs } from '../components/tab';
+tabs();
 
 
