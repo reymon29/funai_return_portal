@@ -36,7 +36,7 @@ module Shipping
     end
 
     def return_params
-      params.require(:return).permit(:rma_status, :rma_number, :return_tracking)
+      params.require(:return).permit(:rma_status, :rma_number, :return_tracking, :date_tracking)
     end
     def require_admin
       unless current_user.admin?

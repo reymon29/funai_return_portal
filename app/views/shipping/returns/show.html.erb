@@ -90,8 +90,9 @@ Funai - Return <%= @return.item_number %>
               <%= f.error_notification %>
               <div class="col-md-4">
                 <%= f.input :return_tracking, required: true %>
-                <%= f.input :rma_status, required: true, collection: ["Completed, shipping assigned", "Pending, waiting on info"] %>
+                <%= f.input :rma_status, required: true, collection: ["Completed, shipping assigned"] %>
                 <%= f.input :rma_number, as: :hidden, input_html: { value: "#{@return.rma_number}" } %>
+                <%= f.input :date_tracking, as: :hidden, input_html: { value: Date.today } %>
               </div>
             </div>
           </div>
