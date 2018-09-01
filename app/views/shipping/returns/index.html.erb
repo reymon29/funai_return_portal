@@ -4,7 +4,7 @@
     <% @returns.each do |return_item| %>
 
     <% end %>
-    <div class="tabs nav nav-tabs">
+    <div class="tabs nav nav-tabs" id="nav-id">
       <a class="tab active" data-toggle="tab" href="#home">
         <h3><%= Return.pending_approval %></h3>
         <p>Waiting for Approval</p>
@@ -85,6 +85,9 @@
     <!-- Items for LTL shipping -->
     <div id="menu2" class="tab-pane fade">
       <h3>Shipping TSG</h3>
+      <%= link_to shipping_returns_path(format: "xls") do %>
+        <i class="fas fa-file-excel">Export to Excel</i>
+      <% end %>
       <table class="table table-hover">
         <tr>
           <th>Item Number</th>

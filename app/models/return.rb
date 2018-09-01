@@ -1,3 +1,4 @@
+
 class Return < ApplicationRecord
   mount_uploader :image, ImageUploader
   has_many :images, dependent: :destroy
@@ -40,4 +41,5 @@ class Return < ApplicationRecord
     @returns = self
     @returns.where(["rma_status = ?", "Completed, shipping assigned"]).count
   end
+
 end
