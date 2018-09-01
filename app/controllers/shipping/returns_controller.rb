@@ -5,6 +5,10 @@ module Shipping
     def index
       # @returns = Return.all
       @returns = policy_scope(Return).order(created_at: :desc)
+      respond_to do |format|
+        format.html
+        format.xls
+      end
     end
 
     def show
