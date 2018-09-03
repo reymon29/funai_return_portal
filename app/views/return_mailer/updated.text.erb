@@ -1,14 +1,18 @@
 Hi <%= @return.user.store_number %>
-
 <%= @return.item_number %> has been updated.
-Allow us 24-48 hours to review.
+Status <%= @return.rma_status %>
+<%if @return.rma_status == "RMA Approved, assigning shipping" %>
+  <%= @return.return_carrier %>Tracking: Shipping will be assigned shortly
+<% elsif @return.rma_status == "RMA Denied, please review again" %>
+Based off the information posted we cannot accept the return, please review the wiki page and update the return.
+  <% elsif @return.rma_status == "RMA Denied, past return period"%>
+The item posted cannot be accepted it is past the return policy.
+<% else %>
+Tracking:<%= @return.return_carrier %> || <%= @return.return_tracking %>
+<% end %>
 
 <%= @return.product.model_number %> <%= @return.serial_number %>
-Pickup Address
-<%= @return.store_number %>
-<%= @return.address %>
-<%= @return.address2 %>
-<%= @return.city %>, <%= @return.state %> <%= @return.zip %>
 
 Sincerly, Funai Team
 
+Please note: A FedEx return label is emailed sepeartely. If LTL-TSG is assigned then our frieght company TSG will be contacting you within 14-20 business days once a BOL is assigned, then they will reach out to schedule a pick up.

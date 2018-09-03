@@ -7,7 +7,7 @@ class ReturnMailerPreview < ActionMailer::Preview
     ReturnMailer.created(return_item)
   end
   def updated
-    return_item = Return.first
+    return_item = Return.find_by_id(8)
     ReturnMailer.updated(return_item)
   end
 end

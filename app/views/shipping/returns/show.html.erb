@@ -6,10 +6,13 @@ Funai - Return <%= @return.item_number %>
     <div class="flex-item-show">
     <h4>RMA Status: <%= @return.rma_status %> || <%= @return.rma_number.nil? ? "No RMA # Assigned" :  @return.rma_number %> </h4>
     <h4>Shipping Method: <%= @return.return_carrier %> || <%= @return.return_tracking.nil? ? "Awaiting to be assigned" :  @return.return_tracking %></h4>
-    <% if @return.rma_status == "RMA Approved, assigning shipping" || @return.rma_status == "Pending, waiting on info" %>
-        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-          Add Tracking
-        </button>
+      <% if @return.rma_number.blank? %>
+      <% else %>
+        <% if @return.rma_status == "RMA Approved, assigning shipping" || @return.rma_status == "Pending, waiting on info" || @return.rma_status == "Updated Info, awaiting review" %>
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+            Add Tracking
+          </button>
+        <% end %>
       <% end %>
     </div>
   <div class="flex-container-show">
@@ -82,7 +85,7 @@ Funai - Return <%= @return.item_number %>
     <% end %>
   <% end %>
 <% end %>
-  <% if @return.rma_status == "Submitted for Approval" %>
+  <% if @return.rma_number.blank?  %>
   <%= link_to 'Assign RMA', edit_shipping_return_path(@return), class: 'btn btn-default' %>
   <% end %>
   <%= link_to 'Shipping Dashboard', shipping_returns_path, class: "btn btn-default" %>
@@ -100,7 +103,7 @@ Funai - Return <%= @return.item_number %>
             <div class="container">
             <%= simple_form_for [:shipping, @return] do |f| %>
               <%= f.error_notification %>
-              <div class="col-md-4">
+              <div class="col-md-4 col-lg-4 col-sm-6">
                 <%= f.input :return_tracking, required: true %>
                 <%= f.input :rma_status, required: true, collection: ["Completed, shipping assigned"] %>
                 <%= f.input :rma_number, as: :hidden, input_html: { value: "#{@return.rma_number}" } %>

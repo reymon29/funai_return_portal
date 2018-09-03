@@ -1,4 +1,54 @@
 <%= content_for(:title) do %>
 Funai - Edit Return <%= @return.item_number %>
 <% end %>
-<%= render 'form', return: @return  %>
+<div class="flex-container">
+  <%= simple_form_for [@return] do |f| %>
+    <%= f.error_notification %>
+      <div class="flex-item">
+        <h1>Update return</h1>
+        <div class="flex-item col-md-4 col-lg-4">
+          <h4 class="fs-title">Funai model</h4>
+          <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "100000" }, readonly: true %>
+          <%= f.input :store_number, require: true, input_html: { value: "#{@return.store_number}" }, hint: 'Aaron\'s store the item belongs to.' %>
+
+          <%= f.association :product, as: :hidden ,label_method: :model_number, label: "Model number", readonly: true %>
+
+
+          <%= f.input :serial_number, as: :hidden, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', readonly: true %>
+
+
+
+          <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
+
+          <%= f.input :lease_date, as: :date, html5: true, hint: 'Aaron\'s inital lease date.' %>
+        </div>
+      </div>
+      <div class="flex-item col-md-4 col-lg-4">
+        <h4 class="fs-title">Return Reason</h4>
+        <%= f.input :part_number, collection: ['Panel', 'Digital Main', 'Power Board', 'Other item']  %>
+
+
+        <%= f.input :return_reason, collection: ['Unrepairable by servicer', 'Part Not Available', 'Concealed Damage', 'No Servicer Available']  %>
+
+
+        <%= f.input :comment, required: true, autofocus: true, input_html: { placeholder: "Comment for the return reason"} %>
+
+        <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos." %>
+      </div>
+      <div class="flex-item col-md-4 col-lg-4">
+        <h4 class="fs-title">Pick up address</h4>
+        <%= f.input :attention_name, required: true, label: "Contact Name", input_html: { value: "#{@return.attention_name}"  } %>
+        <%= f.input :address, required: true, input_html: { value: "#{@return.address}" } %>
+        <%= f.input :address2, input_html: { value: "#{@return.address2}" } %>
+        <%= f.input :city, required: true, input_html: { value: "#{@return.city}" } %>
+        <%= f.input :state, required: true, input_html: { value: "#{@return.state}" } %>
+        <%= f.input :zip, required: true, input_html: { value: "#{@return.zip}" } %>
+        <%= f.country_select :country, required: true, selected: "#{@return.country}", only: ["CA"], priority_countries: ["US"] %>
+        <%= f.input :contact_number, required: true, input_html: { value: "#{@return.contact_number}" } %>
+        <%= f.input :special_comments, input_html: {placeholder: "Instructions we may need." } %>
+        <%= f.button :submit, "Submit", class: "btn btn-primary" %>
+        <%= link_to 'Cancel', dashboard_path, class: "btn btn-warning" %>
+    </div>
+  <% end %>
+</div>
+

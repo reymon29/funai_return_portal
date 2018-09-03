@@ -1,22 +1,19 @@
 <h4>Hi <%= @return.user.store_number %></h4>
-
 <p><%= @return.item_number %> has been updated.</p>
 <p>Status <%= @return.rma_status %></p>
-<p>Tracking: <%if @return.rma_status == "RMA Approved, assigning shipping"%>
-<%= @return.return_carrier %>: Shipping will be assigned shortly
+<p><%if @return.rma_status == "RMA Approved, assigning shipping" %>
+  <%= @return.return_carrier %>Tracking: Shipping will be assigned shortly
+<% elsif @return.rma_status == "RMA Denied, not enough information" %>
+  <p>Based off the information posted we cannot accept the return, please review the wiki page and update the return.</p>
+  <% elsif @return.rma_status == "RMA Denied, past return period"%>
+  <p>The item posted cannot be accepted it is past the return policy.</p>
 <% else %>
-<%= @return.return_carrier %> || <%= @return.return_tracking %>
+  Tracking:<%= @return.return_carrier %> || <%= @return.return_tracking %>
 <% end %>
 </p>
-
-<p><%= @return.product.model_number %> <%= @return.serial_number %></br></br>
-Pickup Address</br>
-<%= @return.store_number %>
-<%= @return.address %>
-<%= @return.address2 %>
-<%= @return.city %>, <%= @return.state %> <%= @return.zip %></p>
+<p><%= @return.product.model_number %> <%= @return.serial_number %></p>
 
 <p>Sincerly, Funai Team</p>
 Login to your account please visit us again at <%= link_to "Funai Portal", dashboard_url %>
 
-<p>Please note: A FedEx return label is emailed sepeartely. If LTL-TSG is assigned then our frieght company TSG will be contacting you within 14 business days and once they have assigned BOL then they will reach out to schedule a pick up. </p>
+<p>Please note: A FedEx return label is emailed sepeartely. If LTL-TSG is assigned then our frieght company TSG will be contacting you within 14-20 business days once a BOL is assigned, then they will reach out to schedule a pick up. </p>
