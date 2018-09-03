@@ -4,6 +4,7 @@ class Return < ApplicationRecord
   has_many :images, dependent: :destroy
   belongs_to :user
   belongs_to :product
+  belongs_to :return_location
   accepts_nested_attributes_for :images, allow_destroy: :destroy
   validates :user_id, presence: true
   validates :item_number, uniqueness: { message: "has already been submitted please check your past RMAs or contact us"}, presence: true
@@ -21,20 +22,21 @@ class Return < ApplicationRecord
   validates :state, presence: true
   validates :zip, presence: true
   validates :country, presence: true
+  validates :rma_number, uniqueness: { message: "has already been assigned please check your past RMAs"}
 
   def self.pending_approval
     @returns = self
-    @returns.where(rma_status: "Submitted for Approval").count
+    @returns.where(rma_number: nil).count
   end
 
   def self.fedex_product
     @returns = self
-    @returns.where("return_carrier = ? and rma_status = ?", "FedEx", "RMA Approved, assigning shipping").or(Return.where("return_carrier = ? and rma_status = ?", "FedEx", "Pending, waiting on info")).count
+    @returns.where("return_carrier = ? and rma_status = ?", "FedEx", "RMA Approved, assigning shipping").or(Return.where("return_carrier = ? and rma_status = ?", "FedEx", "Pending, waiting on info")).or(Return.where("return_carrier = ? and rma_status = ?", "FedEx", "Updated Info, awaiting review")).count
   end
 
   def self.ltl_product
     @returns = self
-    @returns.where(["return_carrier = ? and rma_status = ?", "LTL-TSG", "RMA Approved, assigning shipping"]).or(Return.where("return_carrier = ? and rma_status = ?", "LTL-TSG", "Pending, waiting on info")).count
+    @returns.where(["return_carrier = ? and rma_status = ?", "LTL-TSG", "RMA Approved, assigning shipping"]).or(Return.where("return_carrier = ? and rma_status = ?", "LTL-TSG", "Pending, waiting on info")).or(Return.where("return_carrier = ? and rma_status = ?", "LTL-TSG", "Updated Info, awaiting review")).count
   end
 
   def self.completed

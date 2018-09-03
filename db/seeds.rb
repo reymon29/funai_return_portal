@@ -128,3 +128,25 @@ model_10 = Product.new(
                 carrier_default: "LTL-TSG"
                 )
 model_10.save
+
+puts '<'
+puts 'creating Return Locations'
+
+ReturnLocation.create(
+            company: "Funai Service",
+            attention_name: "Aaron's Product Return",
+            address: "2425 Speigel Dr",
+            city: "Columbus",
+            state: "OH",
+            zip: "43125",
+            country: "US",
+            contact_number: "614-645-6000")
+ReturnLocation.create(
+            company: "COSMO COMMUNICATIONS CANADA",
+            attention_name: "Aaron's Product Return",
+            address: "2750 14TH AVE UNIT G11",
+            city: "MARKHAM",
+            state: "ON",
+            zip: "L3R0B6",
+            country: "CA",
+            contact_number: "614-645-6000")

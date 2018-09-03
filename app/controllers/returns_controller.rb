@@ -19,6 +19,8 @@ class ReturnsController < ApplicationController
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
     @product = Product.find_by_id(params[:return][:product_id].to_i)
+    @location = params[:return][:country] == "US" ? ReturnLocation.find_by_id(1) : ReturnLocation.find_by_id(2)
+    @return.return_location = @location
     if @product.nil?
       flash[:alert] = "Model number is required"
     else
@@ -43,15 +45,37 @@ class ReturnsController < ApplicationController
   end
 
   def edit
+    if @return.rma_status == "Completed, shipping assigned"
+      flash[:notice] = "RMA was completed, please contact us if you are having trouble"
+      redirect_to return_path(@return)
+    elsif @return.rma_status == "RMA Denied, past return period"
+      flash[:notice] = "RMA was completed, please contact us if you are having trouble"
+      redirect_to return_path(@return)
+    else
+      flash[:notice] = "#{@return.product.model_number} #{@return.serial_number}, if you need to cancel or item number, model or serial was incorrectly entered please contact us."
+    end
   end
 
   def update
+    @return.rma_status = "Updated Info, awaiting review"
+    @product = Product.find_by(id: params[:return][:product_id])
+    @return.product = @product
+    @location = params[:return][:country] == "US" ? ReturnLocation.find_by_id(1) : ReturnLocation.find_by_id(2)
+    @return.return_location = @location
+    if @product.nil?
+      flash[:alert] = "Model number is required"
+    else
+      @return.return_carrier = @product.carrier_default
+    end
     if @return.update(return_params)
+
       if params[:images]
         params[:images].each do |image|
           @return.images.create(image: image)
         end
       end
+      ReturnMailer.updated(@return).deliver_now
+      flash.clear
       redirect_to return_path(@return)
     else
       render :edit

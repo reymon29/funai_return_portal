@@ -6,17 +6,21 @@ Funai - Return <%= @return.item_number %>
     <div class="flex-item-show">
     <h4>RMA Status: <%= @return.rma_status %> || <%= @return.rma_number.nil? ? "No RMA # Assigned" :  @return.rma_number %> </h4>
     <h4>Shipping Method: <%= @return.return_carrier %> || <%= @return.return_tracking.nil? ? "Awaiting to be assigned" :  @return.return_tracking %></h4>
-    <% if @return.rma_status == "RMA Approved, assigning shipping" || @return.rma_status == "Pending, waiting on info" %>
-        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-          Add Tracking
-        </button>
+      <% if @return.rma_number.blank? %>
+      <% else %>
+        <% if @return.rma_status == "RMA Approved, assigning shipping" || @return.rma_status == "Pending, waiting on info" || @return.rma_status == "Updated Info, awaiting review" %>
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+            Add Tracking
+          </button>
+        <% end %>
       <% end %>
     </div>
   <div class="flex-container-show">
     <div class="flex-item-show">
       <h5>Aaron's Contact</h5>
-      <p>Submitted by: <%= @return.user.first_name %> <%= @return.user.last_name %> </p>
-      <p>From: <%= @return.user.store_number %></p>
+      <p>From: <%= @return.user.store_number %></br>
+      <a href= "mailto:<%= @return.user.email %>"><%= @return.user.email %></a></p>
+
       <p>Submitted on: <%= @return.created_at.strftime("%m/%d/%Y") %></p>
     </div>
     <div class="flex-item-show">
@@ -38,6 +42,17 @@ Funai - Return <%= @return.item_number %>
       <p>Return Reason: <%= @return.return_reason %></p>
       <p>Part: <%= @return.part_number %></p>
       <p>Return Comment: <%= @return.return_reason %></p>
+    </div>
+    <div class="flex-item-show">
+      <h5>Return Location</h5>
+      <p><%= @return.return_location.company %></br>
+      <%= @return.return_location.attention_name %></br>
+      <%= @return.return_location.address %>
+      <%= @return.return_location.address2 %></br>
+      <%= @return.return_location.city %>
+      <%= @return.return_location.state %>
+      <%= @return.return_location.zip %>
+      <%= @return.return_location.country %></p>
     </div>
   </div>
   <h3>Photos</h3>
@@ -70,7 +85,7 @@ Funai - Return <%= @return.item_number %>
     <% end %>
   <% end %>
 <% end %>
-  <% if @return.rma_status == "Submitted for Approval" %>
+  <% if @return.rma_number.blank?  %>
   <%= link_to 'Assign RMA', edit_shipping_return_path(@return), class: 'btn btn-default' %>
   <% end %>
   <%= link_to 'Shipping Dashboard', shipping_returns_path, class: "btn btn-default" %>
@@ -88,7 +103,7 @@ Funai - Return <%= @return.item_number %>
             <div class="container">
             <%= simple_form_for [:shipping, @return] do |f| %>
               <%= f.error_notification %>
-              <div class="col-md-4">
+              <div class="col-md-4 col-lg-4 col-sm-6">
                 <%= f.input :return_tracking, required: true %>
                 <%= f.input :rma_status, required: true, collection: ["Completed, shipping assigned"] %>
                 <%= f.input :rma_number, as: :hidden, input_html: { value: "#{@return.rma_number}" } %>

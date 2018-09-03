@@ -11,13 +11,25 @@
         <Cell><Data ss:Type="String">rma_status</Data></Cell>
         <Cell><Data ss:Type="String">product_id</Data></Cell>
         <Cell><Data ss:Type="String">serial_number</Data></Cell>
-        <Cell><Data ss:Type="String">attention_name</Data></Cell>
-        <Cell><Data ss:Type="String">address</Data></Cell>
-        <Cell><Data ss:Type="String">address2</Data></Cell>
-        <Cell><Data ss:Type="String">city</Data></Cell>
-        <Cell><Data ss:Type="String">state</Data></Cell>
-        <Cell><Data ss:Type="String">zip</Data></Cell>
-        <Cell><Data ss:Type="String">country</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_store_number</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_attention_name</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_address</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_address2</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_city</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_state</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_zip</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_country</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_contact_number</Data></Cell>
+        <Cell><Data ss:Type="String">pickup_contact_email</Data></Cell>
+        <Cell><Data ss:Type="String">deliverto_company</Data></Cell>
+        <Cell><Data ss:Type="String">deliverto_attention_name</Data></Cell>
+        <Cell><Data ss:Type="String">deliverto_address</Data></Cell>
+        <Cell><Data ss:Type="String">deliverto_address2</Data></Cell>
+        <Cell><Data ss:Type="String">deliverto_city</Data></Cell>
+        <Cell><Data ss:Type="String">deliverto_state</Data></Cell>
+        <Cell><Data ss:Type="String">deliverto_zip</Data></Cell>
+        <Cell><Data ss:Type="String">deliverto_country</Data></Cell>
+        <Cell><Data ss:Type="String">deliverto_contact_number</Data></Cell>
       </Row>
     <% @returns.each do |return_item| %>
     <% if return_item.rma_status != "Completed, shipping assigned" && return_item.rma_number != nil && return_item.return_carrier == "LTL-TSG" %>
@@ -26,6 +38,7 @@
         <Cell><Data ss:Type="String"><%= return_item.rma_status %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.product.model_number %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.serial_number %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.store_number %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.attention_name %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.address %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.address2 %></Data></Cell>
@@ -33,6 +46,17 @@
         <Cell><Data ss:Type="String"><%= return_item.state %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.zip %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.country %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.contact_number %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.user.email %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.return_location.company %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.return_location.attention_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.return_location.address %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.return_location.address2 %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.return_location.city %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.return_location.state %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.return_location.zip %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.return_location.country %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.return_location.contact_number %></Data></Cell>
       </Row>
     <% end %>
     <% end %>

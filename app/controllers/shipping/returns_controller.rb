@@ -18,10 +18,25 @@ module Shipping
     end
 
     def update
-      if return_params[:rma_status].empty? || return_params[:rma_number].empty?
-        flash[:alert] = "No RMA Status has been assigned"
+      if return_params[:rma_status].empty? && return_params[:rma_number].empty?
+        flash[:alert] = "RMA number and status has to be assigned"
         render :show
+      elsif return_params[:rma_status] == "RMA Denied, not enough information" && return_params[:rma_number].empty?
+        return_status = return_params[:rma_status]
+        @return.rma_status = return_status
+        @return.save
+        ReturnMailer.updated(@return).deliver_now
+        redirect_to shipping_returns_path
+        flash[:notice] = "RMA has been assigned"
+      elsif return_params[:rma_status] == "RMA Denied, past return period" && return_params[:rma_number].empty?
+        return_status = return_params[:rma_status]
+        @return.rma_status = return_status
+        @return.save
+        ReturnMailer.updated(@return).deliver_now
+        redirect_to shipping_returns_path
+        flash[:notice] = "RMA has been assigned"
       elsif @return.update(return_params)
+        ReturnMailer.updated(@return).deliver_now
         redirect_to shipping_returns_path
         flash[:notice] = "RMA has been assigned"
       else
