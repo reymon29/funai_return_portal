@@ -2,8 +2,12 @@
 class ReturnMailerPreview < ActionMailer::Preview
 
   # Preview this email at http://localhost:3000/rails/mailers/return_mailer/create
-  def create
-    ReturnMailer.create
+  def created
+    return_item = Return.first
+    ReturnMailer.created(return_item)
   end
-
+  def updated
+    return_item = Return.first
+    ReturnMailer.updated(return_item)
+  end
 end

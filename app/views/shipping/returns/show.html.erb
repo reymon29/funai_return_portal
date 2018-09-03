@@ -15,8 +15,9 @@ Funai - Return <%= @return.item_number %>
   <div class="flex-container-show">
     <div class="flex-item-show">
       <h5>Aaron's Contact</h5>
-      <p>Submitted by: <%= @return.user.first_name %> <%= @return.user.last_name %> </p>
-      <p>From: <%= @return.user.store_number %></p>
+      <p>From: <%= @return.user.store_number %></br>
+      <a href= "mailto:<%= @return.user.email %>"><%= @return.user.email %></a></p>
+
       <p>Submitted on: <%= @return.created_at.strftime("%m/%d/%Y") %></p>
     </div>
     <div class="flex-item-show">
@@ -38,6 +39,17 @@ Funai - Return <%= @return.item_number %>
       <p>Return Reason: <%= @return.return_reason %></p>
       <p>Part: <%= @return.part_number %></p>
       <p>Return Comment: <%= @return.return_reason %></p>
+    </div>
+    <div class="flex-item-show">
+      <h5>Return Location</h5>
+      <p><%= @return.return_location.company %></br>
+      <%= @return.return_location.attention_name %></br>
+      <%= @return.return_location.address %>
+      <%= @return.return_location.address2 %></br>
+      <%= @return.return_location.city %>
+      <%= @return.return_location.state %>
+      <%= @return.return_location.zip %>
+      <%= @return.return_location.country %></p>
     </div>
   </div>
   <h3>Photos</h3>

@@ -48,12 +48,22 @@ class ReturnsController < ApplicationController
   end
 
   def update
+    @return.rma_status = "Updated Info, awaiting on RMA"
+    @product = Product.find_by_id(params[:return][:product_id].to_i)
+    @location = params[:return][:country] == "US" ? ReturnLocation.find_by_id(1) : ReturnLocation.find_by_id(2)
+    @return.return_location = @location
+    if @product.nil?
+      flash[:alert] = "Model number is required"
+    else
+      @return.return_carrier = @product.carrier_default
+    end
     if @return.update(return_params)
       if params[:images]
         params[:images].each do |image|
           @return.images.create(image: image)
         end
       end
+      ReturnMailer.updated(@return).deliver_now
       redirect_to return_path(@return)
     else
       render :edit

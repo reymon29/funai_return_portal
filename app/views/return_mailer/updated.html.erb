@@ -1,0 +1,14 @@
+<h4>Hi <%= @return.user.store_number %></h4>
+
+<p><%= @return.item_number %> has been updated.</p>
+<p>Allow us 24-48 hours to review.</p>
+
+<p><%= @return.product.model_number %> <%= @return.serial_number %></br></br>
+Pickup Address</br>
+<%= @return.store_number %>
+<%= @return.address %>
+<%= @return.address2 %>
+<%= @return.city %>, <%= @return.state %> <%= @return.zip %></p>
+
+<p>Sincerly, Funai Team</p>
+Login to your account please visit us again at <%= link_to "Funai Portal", dashboard_url %>
