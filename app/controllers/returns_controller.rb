@@ -1,8 +1,6 @@
 class ReturnsController < ApplicationController
   before_action :return_id_find, only: [:show, :edit, :update, :destroy]
 
-
-
   def index
     # @returns = Return.all
     @returns = policy_scope(Return).order(created_at: :desc)
@@ -16,6 +14,7 @@ class ReturnsController < ApplicationController
 
   def create
     @return = Return.new(return_params)
+    @return_log = ReturnLog.new
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
     @product = Product.find_by_id(params[:return][:product_id].to_i)
@@ -33,6 +32,10 @@ class ReturnsController < ApplicationController
           @return.images.create(image: image)
         end
       end
+      @return_log.return = @return
+      @return_log.user = @return.user
+      @return_log.comment = "Return request created"
+      @return_log.save
       ReturnMailer.created(@return).deliver_now
       redirect_to dashboard_path
       flash[:notice] = "Return for Aaron's #{@return.item_number} has been submitted and will be reviewed shortly"
@@ -57,6 +60,7 @@ class ReturnsController < ApplicationController
   end
 
   def update
+    @return_log = ReturnLog.new
     @return.rma_status = "Updated Info, awaiting review"
     @product = Product.find_by(id: params[:return][:product_id])
     @return.product = @product
@@ -74,6 +78,10 @@ class ReturnsController < ApplicationController
           @return.images.create(image: image)
         end
       end
+      @return_log.return = @return
+      @return_log.user = current_user
+      @return_log.comment = "Return was updated"
+      @return_log.save
       ReturnMailer.updated(@return).deliver_now
       flash.clear
       redirect_to return_path(@return)

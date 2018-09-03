@@ -33,6 +33,8 @@
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
+        <% if return_item.rma_status == "RMA Denied, past return period" %>
+        <% else %>
         <% if return_item.rma_number.nil? || return_item.rma_status == "Updated Info, awaiting review" && return_item.rma_number.empty? %>
           <tr>
             <td>
@@ -48,6 +50,7 @@
               <%= link_to "Open", shipping_return_path(return_item) %>
             </td>
           </tr>
+        <% end %>
         <% end %>
       <% end %>
     </table>

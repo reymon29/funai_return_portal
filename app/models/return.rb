@@ -1,7 +1,7 @@
-
 class Return < ApplicationRecord
   mount_uploader :image, ImageUploader
   has_many :images, dependent: :destroy
+  has_many :return_logs, dependent: :destroy
   belongs_to :user
   belongs_to :product
   belongs_to :return_location
@@ -22,7 +22,8 @@ class Return < ApplicationRecord
   validates :state, presence: true
   validates :zip, presence: true
   validates :country, presence: true
-  validates :rma_number, uniqueness: { message: "has already been assigned please check your past RMAs"}
+  validates :rma_number, uniqueness: { message: "has already been assigned please check your past RMAs"}, allow_blank: true
+  validates :return_tracking, uniqueness: { message: "has already been assigned please check your past RMAs"}, allow_blank: true
 
   def self.pending_approval
     @returns = self

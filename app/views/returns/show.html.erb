@@ -81,4 +81,25 @@ Funai - Return <%= @return.item_number %>
 <% end %>
   <%= link_to 'Back', returns_path, class: 'btn btn-primary' %>
   <%= link_to 'Update item', edit_return_path(@return), class: 'btn btn-info' %>
+  <a type="button" class="btn btn-default" href="" data-toggle="modal" data-target="#myModal">Case Log</a>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><%= @return.item_number %></h4>
+        </div>
+        <div class="modal-body">
+          <% @return.return_logs.each do |sample| %>
+            <%= sample.comment %> updated by <%= sample.user.store_number %> on <%= @return.created_at.strftime("%m/%d/%Y") %></br>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

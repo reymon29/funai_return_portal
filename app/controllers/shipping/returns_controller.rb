@@ -18,24 +18,39 @@ module Shipping
     end
 
     def update
+      @return_log = ReturnLog.new
       if return_params[:rma_status].empty? && return_params[:rma_number].empty?
         flash[:alert] = "RMA number and status has to be assigned"
         render :show
       elsif return_params[:rma_status] == "RMA Denied, not enough information" && return_params[:rma_number].empty?
         return_status = return_params[:rma_status]
         @return.rma_status = return_status
+        @return.return_tracking = "-"
         @return.save
+        @return_log.return = @return
+        @return_log.user = current_user
+        @return_log.comment = "Return denied"
+        @return_log.save
         ReturnMailer.updated(@return).deliver_now
         redirect_to shipping_returns_path
         flash[:notice] = "RMA has been assigned"
       elsif return_params[:rma_status] == "RMA Denied, past return period" && return_params[:rma_number].empty?
         return_status = return_params[:rma_status]
         @return.rma_status = return_status
+        @return.return_tracking = "-"
         @return.save
+        @return_log.return = @return
+        @return_log.user = current_user
+        @return_log.comment = "RMA Denied"
+        @return_log.save
         ReturnMailer.updated(@return).deliver_now
         redirect_to shipping_returns_path
         flash[:notice] = "RMA has been assigned"
       elsif @return.update(return_params)
+        @return_log.return = @return
+        @return_log.user = current_user
+        @return_log.comment = "Return assigned #{params[:return][:rma_number]} #{params[:return][:return_tracking]}"
+        @return_log.save
         ReturnMailer.updated(@return).deliver_now
         redirect_to shipping_returns_path
         flash[:notice] = "RMA has been assigned"
