@@ -1,7 +1,13 @@
 <h4>Hi <%= @return.user.store_number %></h4>
 
 <p><%= @return.item_number %> has been updated.</p>
-<p>Allow us 24-48 hours to review.</p>
+<p>Status <%= @return.rma_status %></p>
+<p>Tracking: <%if @return.rma_status == "RMA Approved, assigning shipping"%>
+<%= @return.return_carrier %>: Shipping will be assigned shortly
+<% else %>
+<%= @return.return_carrier %> || <%= @return.return_tracking %>
+<% end %>
+</p>
 
 <p><%= @return.product.model_number %> <%= @return.serial_number %></br></br>
 Pickup Address</br>
@@ -12,3 +18,5 @@ Pickup Address</br>
 
 <p>Sincerly, Funai Team</p>
 Login to your account please visit us again at <%= link_to "Funai Portal", dashboard_url %>
+
+<p>Please note: A FedEx return label is emailed sepeartely. If LTL-TSG is assigned then our frieght company TSG will be contacting you within 14 business days and once they have assigned BOL then they will reach out to schedule a pick up. </p>
