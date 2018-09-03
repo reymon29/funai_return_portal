@@ -19,6 +19,8 @@ class ReturnsController < ApplicationController
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
     @product = Product.find_by_id(params[:return][:product_id].to_i)
+    @location = params[:return][:country] == "US" ? ReturnLocation.find_by_id(1) : ReturnLocation.find_by_id(2)
+    @return.return_location = @location
     if @product.nil?
       flash[:alert] = "Model number is required"
     else

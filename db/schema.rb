@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_024656) do
+ActiveRecord::Schema.define(version: 2018_09_03_003852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(version: 2018_08_28_024656) do
     t.string "carrier_default"
   end
 
+  create_table "return_locations", force: :cascade do |t|
+    t.string "company"
+    t.string "attention_name"
+    t.string "address"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "country"
+    t.string "contact_number"
+  end
+
   create_table "returns", force: :cascade do |t|
     t.bigint "item_number"
     t.string "serial_number"
@@ -73,7 +85,9 @@ ActiveRecord::Schema.define(version: 2018_08_28_024656) do
     t.string "return_carrier"
     t.date "date_tracking"
     t.string "store_number"
+    t.bigint "return_location_id"
     t.index ["product_id"], name: "index_returns_on_product_id"
+    t.index ["return_location_id"], name: "index_returns_on_return_location_id"
     t.index ["user_id"], name: "index_returns_on_user_id"
   end
 
@@ -106,5 +120,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_024656) do
   end
 
   add_foreign_key "returns", "products"
+  add_foreign_key "returns", "return_locations"
   add_foreign_key "returns", "users"
 end
