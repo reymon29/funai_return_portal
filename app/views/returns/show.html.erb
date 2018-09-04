@@ -92,7 +92,7 @@ Funai - Return <%= @return.item_number %>
         </div>
         <div class="modal-body">
           <% @return.return_logs.each do |sample| %>
-            <%= sample.comment %> updated by <%= sample.user.store_number %> on <%= @return.created_at.strftime("%m/%d/%Y") %></br>
+            <div class="log-list"><%= sample.comment %></div> <div class="from-logs">by <%= sample.user.store_number %> on <%= @return.created_at.strftime("%m/%d/%Y") %></div></br>
           <% end %>
         </div>
         <div class="modal-footer">

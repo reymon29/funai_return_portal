@@ -25,7 +25,6 @@ module Shipping
       elsif return_params[:rma_status] == "RMA Denied, not enough information" && return_params[:rma_number].empty?
         return_status = return_params[:rma_status]
         @return.rma_status = return_status
-        @return.return_tracking = "-"
         @return.save
         @return_log.return = @return
         @return_log.user = current_user
@@ -37,7 +36,6 @@ module Shipping
       elsif return_params[:rma_status] == "RMA Denied, past return period" && return_params[:rma_number].empty?
         return_status = return_params[:rma_status]
         @return.rma_status = return_status
-        @return.return_tracking = "-"
         @return.save
         @return_log.return = @return
         @return_log.user = current_user
