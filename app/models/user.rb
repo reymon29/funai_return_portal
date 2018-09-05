@@ -16,6 +16,10 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   after_create :send_welcome_email
 
+  # Active admin name
+  def name
+    "#{store_number}-#{first_name} #{last_name}"
+  end
   private
 
   def send_welcome_email

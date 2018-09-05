@@ -1,4 +1,5 @@
 //= require jquery
-//= require rails-ujs
-//= require ./cable
+//= require jquery_ujs
+//= require_tree .
+
 
