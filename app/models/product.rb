@@ -5,4 +5,9 @@ validates :product_type, presence: true, inclusion: { in: ['BD', 'Home Theater',
 validates :weight, presence: true
 validates :enable, presence: true
 validates :carrier_default, presence: true
+
+  #Active admin dropdown list
+  def name
+    "#{model_number}"
+  end
 end
