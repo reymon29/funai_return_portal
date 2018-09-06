@@ -1,6 +1,5 @@
 class Return < ApplicationRecord
-  mount_uploader :image, ImageUploader
-  has_many :images, dependent: :destroy
+  has_many :images
   has_many :return_logs, dependent: :destroy
   belongs_to :user
   belongs_to :product
@@ -32,12 +31,12 @@ class Return < ApplicationRecord
 
   def self.fedex_product
     @returns = self
-    @returns.where("return_carrier = ? and rma_status = ?", "FedEx", "RMA Approved, assigning shipping").or(Return.where("return_carrier = ? and rma_status = ?", "FedEx", "Pending, waiting on info")).or(Return.where("return_carrier = ? and rma_status = ?", "FedEx", "Updated Info, awaiting review")).count
+    @returns.where("return_carrier = ? and rma_status = ?", "FedEx", "RMA Approved, assigning shipping").or(Return.where("return_carrier = ? and rma_status = ?", "FedEx", "Pending, waiting on info")).or(Return.where("return_carrier = ? and rma_status = ?", "FedEx", "Updated Info, awaiting review").where.not(rma_number: nil)).count
   end
 
   def self.ltl_product
     @returns = self
-    @returns.where(["return_carrier = ? and rma_status = ?", "LTL-TSG", "RMA Approved, assigning shipping"]).or(Return.where("return_carrier = ? and rma_status = ?", "LTL-TSG", "Pending, waiting on info")).or(Return.where("return_carrier = ? and rma_status = ?", "LTL-TSG", "Updated Info, awaiting review")).count
+    @returns.where(["return_carrier = ? and rma_status = ?", "LTL-TSG", "RMA Approved, assigning shipping"]).or(Return.where("return_carrier = ? and rma_status = ?", "LTL-TSG", "Pending, waiting on info")).or(Return.where("return_carrier = ? and rma_status = ?", "LTL-TSG", "Updated Info, awaiting review").where.not(rma_number: nil)).count
   end
 
   def self.completed

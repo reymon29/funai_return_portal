@@ -55,7 +55,7 @@ class ReturnsController < ApplicationController
       flash[:notice] = "RMA was completed, please contact us if you are having trouble"
       redirect_to return_path(@return)
     else
-      flash[:notice] = "#{@return.product.model_number} #{@return.serial_number}, if you need to cancel or item number, model or serial was incorrectly entered please contact us."
+      flash[:alert] = "#{@return.product.model_number} #{@return.serial_number}, if you need to cancel or item number, model or serial was incorrectly entered please contact us."
     end
   end
 
