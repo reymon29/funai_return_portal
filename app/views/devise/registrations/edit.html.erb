@@ -14,9 +14,10 @@
             <%= f.input :address, required: true %>
             <%= f.input :address2 %>
             <%= f.input :city, required: true %>
-            <%= f.input :state, required: true %>
+            <%= f.input :state, required: true, collection: [options_for_select(us_states, us_states.rassoc("#{current_user.state}"))] %>
             <%= f.input :zip, required: true %>
-            <%= f.input :country, collection: ['USA', 'CANADA']  %>
+            <%= f.country_select :country, only: ["CA"], priority_countries: ["US"], prompt: "Select country", selected: "#{current_user.country}" %>
+
             <%= f.input :phone_number, required: true %>
             <%= f.input :email, required: true %>
 

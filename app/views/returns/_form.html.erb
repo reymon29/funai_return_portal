@@ -38,7 +38,7 @@
           <%= f.input :address, required: true, input_html: { value: "#{current_user.address}" } %>
           <%= f.input :address2, input_html: { value: "#{current_user.address2}" } %>
           <%= f.input :city, required: true, input_html: { value: "#{current_user.city}" } %>
-          <%= f.input :state, required: true, input_html: { value: "#{current_user.state}" } %>
+          <%= f.input :state, required: true, collection: [options_for_select(us_states, us_states.rassoc("#{current_user.state}"))] %>
           <%= f.input :zip, required: true, input_html: { value: "#{current_user.zip}" } %>
           <%= f.country_select :country, required: true, selected: "#{current_user.country}", only: ["CA"], priority_countries: ["US"] %>
           <%= f.input :contact_number, required: true, input_html: { value: "#{current_user.phone_number}" } %>

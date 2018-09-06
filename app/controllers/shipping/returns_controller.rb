@@ -4,10 +4,14 @@ module Shipping
     before_action :return_id_find, only: [:show, :edit, :update]
     def index
       # @returns = Return.all
-      @returns = policy_scope(Return).order(created_at: :desc)
-      respond_to do |format|
-        format.html
-        format.xls
+      if params[:query].present?
+        @returns = Return.where(item_number: params[:query])
+      else
+        @returns = policy_scope(Return).order(created_at: :desc)
+        respond_to do |format|
+          format.html
+          format.xls
+        end
       end
     end
 

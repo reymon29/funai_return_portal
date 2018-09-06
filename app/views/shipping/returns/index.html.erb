@@ -1,6 +1,49 @@
 <div class="container">
   <div class="row">
-    <h1>Aaron's returns</h1>
+    <h1 class="text-center">Returns Approval & Shipping</h1>
+    <div class="search">
+      <%= form_tag(shipping_returns_path, method: :get, class: "form-inline")  do %>
+      <div class="form-group">
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-bar",
+        placeholder: "Search Aaron's item number" %>
+      </div>
+        <%= submit_tag("Search", class: "btn btn-default") %>
+      <% end %>
+    </div>
+    <!-- Search display -->
+    <% if params[:query].present? %>
+      <table class="table table-hover">
+        <tr>
+          <th>Item Number</th>
+          <th>Model Number</th>
+          <th>RMA Status</th>
+          <th>Options</th>
+        </tr>
+        <% @returns.each do |return_item| %>
+          <tr>
+            <td>
+              <%= return_item.item_number %>
+            </td>
+            <td>
+              <%= return_item.product.model_number %>
+            </td>
+            <td>
+              <%= return_item.rma_status %>
+            </td>
+            <td>
+              <%= link_to "Open", shipping_return_path(return_item) %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+      <!-- not found -->
+      <% if @returns == [] %>
+        <h5>Not found</h5>
+      <% end %>
+    <% else %>
+    <!-- display -->
     <% @returns.each do |return_item| %>
 
     <% end %>
@@ -34,6 +77,7 @@
           <th>Item Number</th>
           <th>Model Number</th>
           <th>RMA Status</th>
+          <th>RMA Number</th>
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
@@ -49,6 +93,9 @@
             </td>
             <td>
               <%= return_item.rma_status %>
+            </td>
+            <td>
+              <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
             </td>
             <td>
               <%= link_to "Open", shipping_return_path(return_item) %>
@@ -67,25 +114,32 @@
           <th>Item Number</th>
           <th>Model Number</th>
           <th>RMA Status</th>
+          <th>RMA Number</th>
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
-        <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "FedEx" || return_item.rma_status == "Pending, waiting on info" &&  return_item.return_carrier == "FedEx" || return_item.rma_status == "Updated Info, awaiting review" &&  return_item.return_carrier == "FedEx" %>
-          <tr>
-            <td>
-              <%= return_item.item_number %>
-            </td>
-            <td>
-              <%= return_item.product.model_number %>
-            </td>
-            <td>
-              <%= return_item.rma_status %>
-            </td>
-            <td>
-              <%= link_to "Open", shipping_return_path(return_item) %>
-            </td>
-          </tr>
-         <% end %>
+        <% if return_item.rma_number.nil? %>
+        <% else %>
+          <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "FedEx" || return_item.rma_status == "Pending, waiting on info" &&  return_item.return_carrier == "FedEx" || return_item.rma_status == "Updated Info, awaiting review" &&  return_item.return_carrier == "FedEx"  %>
+            <tr>
+              <td>
+                <%= return_item.item_number %>
+              </td>
+              <td>
+                <%= return_item.product.model_number %>
+              </td>
+              <td>
+                <%= return_item.rma_status %>
+              </td>
+              <td>
+                <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
+              </td>
+              <td>
+                <%= link_to "Open", shipping_return_path(return_item) %>
+              </td>
+            </tr>
+           <% end %>
+          <% end %>
         <% end %>
       </table>
     </div>
@@ -100,25 +154,32 @@
           <th>Item Number</th>
           <th>Model Number</th>
           <th>RMA Status</th>
+          <th>RMA Number</th>
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
-        <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "LTL-TSG" || return_item.rma_status == "Pending, waiting on info" &&  return_item.return_carrier == "LTL-TSG" || return_item.rma_status == "Updated Info, awaiting review" &&  return_item.return_carrier == "LTL-TSG"  %>
-          <tr>
-            <td>
-              <%= return_item.item_number %>
-            </td>
-            <td>
-              <%= return_item.product.model_number %>
-            </td>
-            <td>
-              <%= return_item.rma_status %>
-            </td>
-            <td>
-              <%= link_to "Open", shipping_return_path(return_item) %>
-            </td>
-          </tr>
-         <% end %>
+        <% if return_item.rma_number.nil? %>
+        <% else %>
+          <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "LTL-TSG" || return_item.rma_status == "Pending, waiting on info" &&  return_item.return_carrier == "LTL-TSG" || return_item.rma_status == "Updated Info, awaiting review" &&  return_item.return_carrier == "LTL-TSG"  %>
+            <tr>
+              <td>
+                <%= return_item.item_number %>
+              </td>
+              <td>
+                <%= return_item.product.model_number %>
+              </td>
+              <td>
+                <%= return_item.rma_status %>
+              </td>
+              <td>
+                <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
+              </td>
+              <td>
+                <%= link_to "Open", shipping_return_path(return_item) %>
+              </td>
+            </tr>
+           <% end %>
+          <% end %>
         <% end %>
       </table>
     </div>
@@ -133,6 +194,8 @@
       <p>We have a total of <%= Return.denied %>.</p>
         </div>
     </div>
+    <% end %>
   </div>
 </div>
+
 
