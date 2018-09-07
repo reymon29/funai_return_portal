@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'funaiwiki', to: 'pages#funaiwiki', as: :funaiwiki
   resources :returns
   resources :images, only: [ :destroy]
+  resources :contactforms, only: [ :new, :create]
   namespace :shipping do
     resources :returns
   end
