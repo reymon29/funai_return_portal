@@ -3,7 +3,11 @@ class ReturnsController < ApplicationController
 
   def index
     # @returns = Return.all
-    @returns = policy_scope(Return).order(created_at: :desc)
+    if params[:query].present?
+      @returns = Return.where(item_number: params[:query])
+    else
+      @returns = policy_scope(Return).order(created_at: :desc)
+    end
   end
 
   def new
