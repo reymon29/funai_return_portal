@@ -17,10 +17,6 @@
   }
 }
 
-#contactform_subject{
-  width: 100%;
-  height: 120px;
-}
 .flex-container {
   margin: 0;
   padding: 0;
@@ -42,13 +38,7 @@
     font-size: 16px;
   }
 }
-#return_comment {
-  height: 100px;
-}
 
-#return_special_comments {
-  height: 100px;
-}
 .flex-container-show {
   display: flex;
   justify-content: space-between;
@@ -77,4 +67,16 @@ abbr[title]{
   font-size: 12px;
 }
 
+#return_comment {
+  height: 100px;
+}
+
+#return_special_comments {
+  height: 100px;
+}
+
+#contactform_subject{
+  width: 100%;
+  height: 120px;
+}
 
