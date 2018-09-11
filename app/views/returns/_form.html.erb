@@ -9,7 +9,7 @@
         <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "100000" } %>
         <%= f.input :store_number, require: true, input_html: { value: "#{current_user.store_number}" }, hint: 'Aaron\'s store the item belongs to.' %>
 
-        <%= f.association :product, label_method: :model_number, label: "Model number", prompt: "Choose a product" %>
+        <%= f.association :product, required: true, label_method: :model_number, label: "Model number", prompt: "Choose a product" %>
 
 
         <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.' %>
@@ -22,10 +22,10 @@
         </div>
         <div class="flex-item col-md-4 col-lg-4">
           <h4 class="fs-title">Return Reason</h4>
-          <%= f.input :part_number, collection: ['Panel', 'Digital Main', 'Power Board', 'Other item']  %>
+          <%= f.input :part_number, required: true, collection: ['Panel', 'Digital Main', 'Power Board', 'Other item']  %>
 
 
-          <%= f.input :return_reason, collection: ['Unrepairable by servicer', 'Part Not Available', 'Concealed Damage', 'No Servicer Available']  %>
+          <%= f.input :return_reason, required: true, collection: ['Unrepairable by servicer', 'Part Not Available', 'Concealed Damage', 'No Servicer Available']  %>
 
 
           <%= f.input :comment, required: true, autofocus: true, input_html: { placeholder: "Comment for the return reason"} %>
