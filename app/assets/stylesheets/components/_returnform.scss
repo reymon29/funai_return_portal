@@ -6,6 +6,8 @@
   background: white;
   border-radius: 3px;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  height:100vh; /* fix IE11 */
+  min-height:100%; /* fix IE11 */
 }
 
 .flex-item label {
