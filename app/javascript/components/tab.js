@@ -1,5 +1,4 @@
 function tabs() {
-  console.log('Hi')
   if (document.getElementById('nav-id')) {
     var header = document.getElementById("nav-id");
     var btns = header.getElementsByClassName("tab");

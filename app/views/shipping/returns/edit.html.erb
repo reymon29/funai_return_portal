@@ -4,12 +4,20 @@
 
   <h4 class="fs-title">Funai model</h4>
   <%= f.input :rma_status, required: true, collection: ["RMA Approved, assigning shipping", "RMA Denied, past return period", "RMA Denied, not enough information"]%>
-
-  <%= f.input :rma_number, required: true %>
-
+    <%= f.input :rma_number, required: true %>
   <%= f.button :submit, "Submit", class: "btn btn-primary" %>
   <%= link_to 'Cancel', dashboard_path, class: "btn btn-warning" %>
   <% end %>
 </div>
 
 
+<script>
+  let rmaType = document.getElementById('return_rma_status');
+  rmaType.addEventListener('mouseout', function(){
+  if(rmaType.value === "RMA Denied, past return period" || rmaType.value === "RMA Denied, not enough information" ){
+    document.getElementById('return_rma_number').style.display = "none";
+    } else {
+      document.getElementById('return_rma_number').style.display = "block";
+    }
+  });
+</script>
