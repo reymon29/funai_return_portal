@@ -22,7 +22,7 @@ class Return < ApplicationRecord
   validates :zip, presence: true
   validates :country, presence: true
   validates :rma_number, uniqueness: { message: "has already been assigned please check your past RMAs"}, allow_blank: true
-  validates :return_tracking, uniqueness: { message: "has already been assigned please check your past RMAs"}, allow_blank: true
+
 
   def self.pending_approval
     @returns = self

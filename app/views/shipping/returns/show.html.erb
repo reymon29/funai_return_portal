@@ -9,7 +9,7 @@ Funai - Return <%= @return.item_number %>
       <% if @return.rma_number.blank? %>
       <% else %>
         <% if @return.rma_status == "RMA Approved, assigning shipping" || @return.rma_status == "Pending, waiting on info" || @return.rma_status == "Updated Info, awaiting review" %>
-          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal" id="add-tracking">
             Add Tracking
           </button>
         <% end %>
@@ -91,31 +91,49 @@ Funai - Return <%= @return.item_number %>
   <%= link_to 'Shipping Dashboard', shipping_returns_path, class: "btn btn-default" %>
 </div>
 <!-- Button trigger modal -->
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add Tracking</h4>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Tracking</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+        <%= simple_form_for [:shipping, @return] do |f| %>
+          <%= f.error_notification %>
+          <div class="col-md-4 col-lg-4 col-sm-6">
+            <%= f.input :return_tracking, required: true %>
+            <%= f.input :rma_status, required: true, collection: ["Completed, shipping assigned"] %>
+            <%= f.input :rma_number, as: :hidden, input_html: { value: "#{@return.rma_number}" } %>
+            <%= f.input :date_tracking, as: :hidden, input_html: { value: Date.today } %>
           </div>
-          <div class="modal-body">
-            <div class="container">
-            <%= simple_form_for [:shipping, @return] do |f| %>
-              <%= f.error_notification %>
-              <div class="col-md-4 col-lg-4 col-sm-6">
-                <%= f.input :return_tracking, required: true %>
-                <%= f.input :rma_status, required: true, collection: ["Completed, shipping assigned"] %>
-                <%= f.input :rma_number, as: :hidden, input_html: { value: "#{@return.rma_number}" } %>
-                <%= f.input :date_tracking, as: :hidden, input_html: { value: Date.today } %>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= f.button :submit, "Submit", class: "btn btn-primary" %>
-          </div>
-          <% end %>
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.button :submit, "Submit", class: "btn btn-primary", id: "btn-submit" %>
+      </div>
+      <% end %>
     </div>
+  </div>
+</div>
+
+<script>
+  const trackingBTN = document.getElementById('add-tracking');
+  const rmaStatus = document.getElementById('return_rma_status');
+  const rmaTrackingNumber = document.getElementById('return_return_tracking');
+  if(trackingBTN != null){
+    trackingBTN.addEventListener('click', function(){
+    if(rmaStatus.value == "" ){
+      document.getElementById('btn-submit').style.display = "none";
+    }
+    rmaStatus.addEventListener('mouseout', function(){
+      if(rmaStatus.value == "Completed, shipping assigned" && rmaTrackingNumber.value != null){
+        document.getElementById('btn-submit').style.display = "initial";
+        }
+      });
+    });
+  }
+</script>
