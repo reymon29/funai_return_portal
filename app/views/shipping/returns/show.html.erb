@@ -130,10 +130,12 @@ Funai - Return <%= @return.item_number %>
       document.getElementById('btn-submit').style.display = "none";
     }
     rmaStatus.addEventListener('mouseout', function(){
-      if(rmaStatus.value == "Completed, shipping assigned" && rmaTrackingNumber.value != null){
-        document.getElementById('btn-submit').style.display = "initial";
-        }
-      });
+      if(rmaTrackingNumber.value != null && rmaStatus.value == "Completed, shipping assigned" ){
+        rmaTrackingNumber.addEventListener('mouseout', function() {
+          document.getElementById('btn-submit').style.display = "initial";
+        });
+      }
     });
+  });
   }
 </script>
