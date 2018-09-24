@@ -121,21 +121,27 @@ Funai - Return <%= @return.item_number %>
 </div>
 
 <script>
-  const trackingBTN = document.getElementById('add-tracking');
+
   const rmaStatus = document.getElementById('return_rma_status');
+  const btnSubmit = document.getElementById('btn-submit');
+
   const rmaTrackingNumber = document.getElementById('return_return_tracking');
-  if(trackingBTN != null){
-    trackingBTN.addEventListener('click', function(){
-    if(rmaStatus.value == "" ){
-      document.getElementById('btn-submit').style.display = "none";
+
+  btnSubmit.style.display = "none";
+  rmaStatus.style.display = "none";
+  rmaTrackingNumber.addEventListener('change', (event) => {
+    if(rmaTrackingNumber.value === ""){
+      alert('Cannot be blank, please assign a tracking #');
+      console.log('Log check');
+    } else {
+      rmaStatus.style.display = "initial";
     }
-    rmaStatus.addEventListener('mouseout', function(){
-      if(rmaTrackingNumber.value != null && rmaStatus.value == "Completed, shipping assigned" ){
-        rmaTrackingNumber.addEventListener('mouseout', function() {
-          document.getElementById('btn-submit').style.display = "initial";
-        });
-      }
-    });
   });
-  }
+
+  rmaStatus.addEventListener('change', (event) => {
+    if(rmaStatus.value === "Completed, shipping assigned"){
+      btnSubmit.style.display = "initial";
+    }
+  });
+
 </script>
