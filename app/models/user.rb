@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :return_logs
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: /[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(funaicorp|funaiservice|aarons)\.com$/, multiline: true, message: " domain is not a valid partner at this time." }
   validates :address, presence: true, length: { in: 0..60 }
   validates :address2, length: { in: 0..60 }, allow_blank: true
   validates :city, presence: true
