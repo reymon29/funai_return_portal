@@ -1,0 +1,101 @@
+.container-svg{
+  display: none;
+
+}
+#box {
+    width: 500px;
+    height: 200px;
+    background: #7fb3e0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50px;
+    box-shadow: 0 4px 15px #8d8d8e;
+}
+
+#container {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 100%;
+    height: 75px;
+}
+
+
+.pip {
+    width: 75px;
+    height: 75px;
+    background: #e9e9e9;
+    border-radius: 50%;
+    position: absolute;
+    left: 10%;
+}
+
+.pip-1 {
+    animation-name: move-1;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: -2s;
+}
+
+.pip-2 {
+    animation-name: move-2;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: -2s;
+}
+
+.pip-3 {
+    animation-name: move-3;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: -2s;
+
+}
+
+@keyframes move-1 {
+    0% {
+        left: 10%;
+    }
+
+    5% {
+        left: 10%;
+    }
+
+    100% {
+        left: 70%;
+    }
+}
+
+@keyframes move-2 {
+    0% {
+        left: 10%;
+    }
+
+    5% {
+        left: 10%;
+    }
+
+    100% {
+        left: 42.5%;
+    }
+}
+
+@keyframes move-3 {
+    0% {
+        left: 10%;
+    }
+
+    5% {
+        left: 10%;
+    }
+
+    100% {
+        left: 15%;
+    }
+}
+

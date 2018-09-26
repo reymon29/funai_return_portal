@@ -35,6 +35,7 @@ Funai - Edit Return <%= @return.item_number %>
 
         <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos." %>
       </div>
+
       <div class="flex-item col-md-4 col-lg-4">
         <h4 class="fs-title">Pick up address</h4>
         <%= f.input :attention_name, required: true, label: "Contact Name", input_html: { value: "#{@return.attention_name}"  } %>
@@ -51,4 +52,33 @@ Funai - Edit Return <%= @return.item_number %>
     </div>
   <% end %>
 </div>
+<div class="container-svg">
+  <div class="row">
+    <h1 class="text-center">Loading... Please wait..</h1>
+    <div id="box">
+      <div id="container">
+        <div class="pip pip-1"></div>
+        <div class="pip pip-2"></div>
+        <div class="pip pip-3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const btnSave = document.querySelector(".btn-primary");
+const defaultSVG = document.querySelector(".container-svg");
+const defaultFlex = document.querySelector(".flex-container");
+const defaultAlert = document.querySelector(".alert");
+btnSave.addEventListener('click', (event) => {
+  defaultFlex.style.display = "none";
+  defaultAlert.style.display = "none";
+  defaultSVG.style.display = "initial";
+});
+
+</script>
+
+
+
+
 
