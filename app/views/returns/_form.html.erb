@@ -3,6 +3,9 @@
   <%= f.error_notification %>
     <div class="flex-item">
       <h1>Create a return</h1>
+      <div class="notes">
+        <abbr title="required">*</abbr> note are required fields.
+      </div>
       <div class="flex-item col-md-4 col-lg-4">
        <h4 class="fs-title">Funai model</h4>
       <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "1000000000" }, placeholder: "1000000000" %>

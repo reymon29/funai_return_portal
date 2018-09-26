@@ -23,6 +23,8 @@ class Return < ApplicationRecord
   validates :state, presence: true
   validates :zip, presence: true
   validates :country, presence: true
+  validates :contact_number, presence: true, format: { with: /^[0-9]{10}$/, multiline: true,
+    message: "format 5555555555" }
   validates :rma_number, uniqueness: { message: "has already been assigned please check your past RMAs"}, allow_blank: true
 
 
