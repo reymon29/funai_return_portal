@@ -4,5 +4,3 @@ loadDynamicBannerText();
 
 import { tabs } from '../components/tab';
 tabs();
-
-
