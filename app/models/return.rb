@@ -1,4 +1,6 @@
 class Return < ApplicationRecord
+  extend FriendlyId
+  friendly_id :item_number, use: [:slugged, :finders]
   has_many :images
   has_many :return_logs, dependent: :destroy
   belongs_to :user

@@ -103,7 +103,7 @@ class ReturnsController < ApplicationController
   private
 
   def return_id_find
-    @return = Return.find(params[:id])
+    @return = Return.friendly.find(params[:id])
     authorize @return
   end
 
