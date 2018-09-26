@@ -22,6 +22,9 @@ Funai -
             <%= f.country_select :country, only: ["CA"], priority_countries: ["US"], prompt: "Select country", selected: "#{current_user.country}" %>
 
             <%= f.input :phone_number, required: true %>
+            <%= f.input :location_type, collection: [ ["Store", "store_front"],
+              ["Fulfillment Center", "fulfillment_center"],
+              ["Service Center", "service_center"]], prompt: "Select Location Type" %>
             <%= f.input :email, required: true %>
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

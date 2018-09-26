@@ -10,6 +10,7 @@
        <h4 class="fs-title">Funai model</h4>
       <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "1000000000" }, placeholder: "1000000000" %>
       <%= f.input :store_number, require: true, input_html: { value: "#{current_user.store_number}" }, hint: 'Aaron\'s location the item belongs to.' %>
+      <%= f.input :location_type, require: true, include_blank: false, collection: [options_for_select(location_type, location_type.rassoc("#{current_user.location_type}"))], hint: 'Pick up loction type.' %>
       <%= f.association :product, required: true, label_method: :model_number, label: "Model number", prompt: "Choose a product" %>
       <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
       <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
