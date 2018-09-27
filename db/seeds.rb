@@ -677,7 +677,7 @@ ReturnLocation.create(
             state: "OH",
             zip: "43125",
             country: "US",
-            contact_number: "614-645-6000")
+            contact_number: "6146456000")
 ReturnLocation.create(
             company: "COSMO COMMUNICATIONS CANADA",
             attention_name: "Aaron's Product Return",
@@ -686,4 +686,205 @@ ReturnLocation.create(
             state: "ON",
             zip: "L3R0B6",
             country: "CA",
-            contact_number: "614-645-6000")
+            contact_number: "6146456000")
+
+puts '<'
+puts 'creating Service Center Locations'
+
+ServiceCenter.create(
+             store_number: "C0S01",
+             contact_name: "Alan Beeks",
+             email: "C0S01@aarons.com",
+             address: "500 US Hwy. 92",
+             state: "Auburndale",
+             city: "FL",
+             zip: "33823",
+             country: "US",
+             contact_number: "8639658300")
+
+ServiceCenter.create(
+             store_number: "C0S02",
+             contact_name: "Joe Shannon",
+             email: "C0S02@aarons.com",
+             address: "14824 Tomball Pkwy. Suite 100",
+             state: "Houston",
+             city: "TX",
+             zip: "77086",
+             country: "US",
+             contact_number: "2815837858")
+
+ServiceCenter.create(
+             store_number: "C0S03",
+             contact_name: "Chris Giordano",
+             email: "C0S03@aarons.com",
+             address: "5003 Terminus Dr.",
+             state: "Fairburn",
+             city: "GA",
+             zip: "30213",
+             country: "US",
+             contact_number: "7709697770")
+
+ServiceCenter.create(
+             store_number: "C0S04",
+             contact_name: "Bob King",
+             email: "C0S04@aarons.com",
+             address: "4985 Frusta Dr. Suite C",
+             state: "Obetz",
+             city: "OH",
+             zip: "43207",
+             country: "US",
+             contact_number: "6144972719")
+
+ServiceCenter.create(
+             store_number: "C0S06",
+             contact_name: "Don Heng",
+             email: "C0S06@aarons.com",
+             address: "915 Heinz Way",
+             state: "Grand Prairie",
+             city: "TX",
+             zip: "75051",
+             country: "US",
+             contact_number: "9726473582")
+
+ServiceCenter.create(
+             store_number: "C0S09",
+             contact_name: "Brandon Berman",
+             email: "C0S09@aarons.com",
+             address: "121 Bata Blvd.",
+             state: "Belcamp",
+             city: "MD",
+             zip: "21017",
+             country: "US",
+             contact_number: "4102736028")
+
+ServiceCenter.create(
+             store_number: "C0S10",
+             contact_name: "Travis Ray",
+             email: "C0S10@aarons.com",
+             address: "12801 Jamesburg Dr.",
+             state: "Huntersville",
+             city: "NC",
+             zip: "28078",
+             country: "US",
+             contact_number: "7046557373")
+
+ServiceCenter.create(
+             store_number: "C0S13",
+             contact_name: "Robert Anderson",
+             email: "C0S13@aarons.com",
+             address: "825 N. 73rd. Ave. Suite 142",
+             state: "Phoenix",
+             city: "AZ",
+             zip: "85009",
+             country: "US",
+             contact_number: "6239364366")
+
+ServiceCenter.create(
+             store_number: "C0S14",
+             contact_name: "Eric Bullington",
+             email: "C0S14@aarons.com",
+             address: "1034 Gallatin Pike S.",
+             state: "Madison",
+             city: "TN",
+             zip: "37115",
+             country: "US",
+             contact_number: "6156124881")
+
+ServiceCenter.create(
+             store_number: "C0S15",
+             contact_name: "David Cox (Brent)",
+             email: "C0S15@aarons.com",
+             address: "5500 SW. 38th. St.",
+             state: "Oklahoma City",
+             city: "OK",
+             zip: "73107",
+             country: "US",
+             contact_number: "4056842106")
+
+ServiceCenter.create(
+             store_number: "C0S17",
+             contact_name: "Brendon Phillips",
+             email: "C0S17@aarons.com",
+             address: "595 Perry Rd. Suite 107",
+             state: "Plainfield",
+             city: "IN",
+             zip: "46168",
+             country: "US",
+             contact_number: "3178389548")
+
+ServiceCenter.create(
+             store_number: "C0S18",
+             contact_name: "Ralph Cornell",
+             email: "C0S18@aarons.com",
+             address: "803 S. Wheatley St.",
+             state: "Ridgeland",
+             city: "MS",
+             zip: "39157",
+             country: "US",
+             contact_number: "6019521331")
+
+ServiceCenter.create(
+             store_number: "C0S22",
+             contact_name: "Arun Kanuga",
+             email: "C0S22@aarons.com",
+             address: "7010 Sunrise Blvd",
+             state: "Citrus Heights",
+             city: "CA",
+             zip: "95610",
+             country: "US",
+             contact_number: "9167271019")
+
+ServiceCenter.create(
+             store_number: "C0S24",
+             contact_name: "Mike Jarczewski",
+             email: "C0S24@aarons.com",
+             address: "1 Kansas Ave.",
+             state: "Kansas City",
+             city: "KS",
+             zip: "66105",
+             country: "US",
+             contact_number: "9133711836")
+
+ServiceCenter.create(
+             store_number: "C0S25",
+             contact_name: "Larry Bierschank",
+             email: "C0S25@aarons.com",
+             address: "460 Nixon Rd. Suite 110",
+             state: "Cheswick",
+             city: "PA",
+             zip: "15024",
+             country: "US",
+             contact_number: "7242752158")
+
+ServiceCenter.create(
+             store_number: "C0S26",
+             contact_name: "Joel Weaver",
+             email: "joel.weaver@aarons.com",
+             address: "15355 E. Colfax Ave. Unit K",
+             state: "Aurora",
+             city: "CO",
+             zip: "80011",
+             country: "US",
+             contact_number: "7208593409")
+
+ServiceCenter.create(
+             store_number: "C0S27",
+             contact_name: "Service",
+             email: "C0S27@aarons.com",
+             address: "100 Prestige Park Rd.",
+             state: "East Hartford",
+             city: "CT",
+             zip: "06108",
+             country: "US",
+             contact_number: "8602907827")
+
+ServiceCenter.create(
+             store_number: "C0S28",
+             contact_name: "Service",
+             email: "C0S28@aarons.com",
+             address: "2525 Pine Ave. Ste 200",
+             state: "Niagara Falls",
+             city: "NY",
+             zip: "14301",
+             country: "US",
+             contact_number: "7162842059")
