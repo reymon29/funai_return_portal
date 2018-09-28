@@ -12,11 +12,13 @@ class ReturnsController < ApplicationController
 
   def new
     @return = Return.new
+    @services = ServiceCenter.all
     @image = @return.images.build
     authorize @return
   end
 
   def create
+    @services = ServiceCenter.all
     @return = Return.new(return_params)
     @return_log = ReturnLog.new
     @return.rma_status = "Submitted for Approval"
