@@ -76,7 +76,7 @@
         storeZip.value = "<%= service.zip  %>"
         storeCountry.value = "<%= service.country  %>"
         storeContact.value = "<%= service.contact_number  %>"
-
+      <% end %>
       } else if(storeNumber.value != "<%= current_user.store_number %>"){
 
       } else {
@@ -89,6 +89,5 @@
         storeCountry.value = "<%= current_user.country %>"
         storeContact.value = "<%= current_user.phone_number %>"
       }
-    <% end %>
 });
 </script>
