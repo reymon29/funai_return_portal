@@ -12,11 +12,13 @@ class ReturnsController < ApplicationController
 
   def new
     @return = Return.new
+    @services = ServiceCenter.all
     @image = @return.images.build
     authorize @return
   end
 
   def create
+    @services = ServiceCenter.all
     @return = Return.new(return_params)
     @return_log = ReturnLog.new
     @return.rma_status = "Submitted for Approval"
@@ -108,6 +110,6 @@ class ReturnsController < ApplicationController
   end
 
   def return_params
-    params.require(:return).permit(:item_number, :model_number, :store_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id, :attention_name, :address, :address2, :city, :zip, :state, :country ,:contact_number, :special_comments, images_attributes: [:image, :return_id])
+    params.require(:return).permit(:item_number, :location_type, :model_number, :store_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id, :attention_name, :address, :address2, :city, :zip, :state, :country ,:contact_number, :special_comments, images_attributes: [:image, :return_id])
   end
 end

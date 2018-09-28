@@ -9,7 +9,8 @@
       <div class="flex-item col-md-4 col-lg-4">
        <h4 class="fs-title">Funai model</h4>
       <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "1000000000" }, placeholder: "1000000000" %>
-      <%= f.input :store_number, require: true, input_html: { value: "#{current_user.store_number}" }, hint: 'Aaron\'s location the item belongs to.' %>
+      <%= f.input :store_number, require: true, placeholder: "F469 or C0S01", hint: 'Aaron\'s location the item belongs to.' %>
+      <%= f.input :location_type, require: true, include_blank: false, collection: [options_for_select(location_type)], hint: 'Pick up loction type.' %>
       <%= f.association :product, required: true, label_method: :model_number, label: "Model number", prompt: "Choose a product" %>
       <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
       <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
@@ -25,14 +26,14 @@
     </div>
     <div class="flex-item col-md-4 col-lg-4">
       <h4 class="fs-title">Pick up address</h4>
-      <%= f.input :attention_name, required: true, label: "Contact Name", input_html: { value: "#{current_user.first_name} #{current_user.last_name}"  } %>
-      <%= f.input :address, required: true, input_html: { value: "#{current_user.address}" } %>
-      <%= f.input :address2, input_html: { value: "#{current_user.address2}" } %>
-      <%= f.input :city, required: true, input_html: { value: "#{current_user.city}" } %>
-      <%= f.input :state, required: true, collection: [options_for_select(us_states, us_states.rassoc("#{current_user.state}"))] %>
-      <%= f.input :zip, required: true, input_html: { value: "#{current_user.zip}" } %>
-      <%= f.country_select :country, required: true, selected: "#{current_user.country}", only: ["CA"], priority_countries: ["US"] %>
-      <%= f.input :contact_number, required: true, input_html: { value: "#{current_user.phone_number}" } %>
+      <%= f.input :attention_name, required: true, label: "Contact Name" %>
+      <%= f.input :address, required: true %>
+      <%= f.input :address2 %>
+      <%= f.input :city, required: true %>
+      <%= f.input :state, required: true, collection: [options_for_select(us_states)] %>
+      <%= f.input :zip, required: true %>
+      <%= f.country_select :country, required: true, only: ["CA"], priority_countries: ["US"] %>
+      <%= f.input :contact_number, required: true %>
       <%= f.input :special_comments, placeholder: "Instructions we may need." %>
       <div class="btn-section">
         <%= f.button :submit, "Submit", class: "btn btn-primary" %>
@@ -55,15 +56,39 @@
 </div>
 
 <script>
-const btnSave = document.querySelector(".btn-primary");
-const defaultSVG = document.querySelector(".container-svg");
-const defaultFlex = document.querySelector(".flex-container");
-const defaultAlert = document.querySelector(".alert");
-btnSave.addEventListener('click', (event) => {
-  defaultFlex.style.display = "none";
-  defaultAlert.style.display = "none";
-  defaultSVG.style.display = "initial";
+  const storeNumber = document.getElementById("return_store_number");
+  const storeType = document.getElementById("return_location_type");
+  const storePick = document.getElementById("return_attention_name");
+  const storeAddress = document.getElementById("return_address");
+  const storeCity = document.getElementById("return_city");
+  const storeState = document.getElementById("return_state");
+  const storeZip = document.getElementById("return_zip");
+  const storeCountry = document.getElementById("return_country");
+  const storeContact = document.getElementById("return_contact_number");
+  storeNumber.addEventListener("change", (event) => {
+    <% @services.each do |service| %>
+      if(storeNumber.value == "<%= service.store_number %>" || storeNumber.value== "<%= service.store_number.downcase %>"){
+        storePick.value = "<%= service.contact_name %>";
+        storeType.value = "service_center"
+        storeAddress.value = "<%= service.address  %>"
+        storeCity.value = "<%= service.city  %>"
+        storeState.value = "<%= service.state  %>"
+        storeZip.value = "<%= service.zip  %>"
+        storeCountry.value = "<%= service.country  %>"
+        storeContact.value = "<%= service.contact_number  %>"
+
+      } else if(storeNumber.value != "<%= current_user.store_number %>"){
+
+      } else {
+        storePick.value = "<%= current_user.first_name %> <%= current_user.last_name %>";
+        storeType.value = "<%= current_user.location_type %> <%= current_user.last_name %>"
+        storeAddress.value = "<%= current_user.address %>"
+        storeCity.value = "<%= current_user.city %>"
+        storeState.value = "<%= current_user.state %>"
+        storeZip.value = "<%= current_user.zip %>"
+        storeCountry.value = "<%= current_user.country %>"
+        storeContact.value = "<%= current_user.phone_number %>"
+      }
+    <% end %>
 });
-
 </script>
-
