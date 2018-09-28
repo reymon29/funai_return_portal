@@ -673,7 +673,7 @@ ReturnLocation.create(
             company: "Funai Service",
             attention_name: "Aaron's Product Return",
             address: "2425 Speigel Dr",
-            city: "Columbus",
+            city: "Groveport",
             state: "OH",
             zip: "43125",
             country: "US",
