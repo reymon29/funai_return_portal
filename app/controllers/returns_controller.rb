@@ -20,6 +20,7 @@ class ReturnsController < ApplicationController
 
   def create
     @services = ServiceCenter.all
+    @product_model = Product.where(enable: true)
     @return = Return.new(return_params)
     @return_log = ReturnLog.new
     @return.rma_status = "Submitted for Approval"
