@@ -5,8 +5,9 @@ Funai - Return <%= @return.item_number %>
   <h2>Item Number: <%= @return.item_number %></h2>
     <div class="flex-item-show">
     <h4>RMA Status: <%= @return.rma_status %> || <%= @return.rma_number.nil? ? "No RMA # Assigned" :  @return.rma_number %> </h4>
-    <% if @return.rma_status = "%RMA Denied%" %>
+    <% if @return.rma_number.blank? %>
     <% else %>
+
     <h4>Shipping Method: <%= @return.return_carrier %> || <%= @return.return_tracking.nil? ? "Awaiting to be assigned" :  @return.return_tracking %></h4>
     <% end %>
     </div>
