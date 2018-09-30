@@ -13,8 +13,8 @@
       <%= f.input :location_type, require: true, include_blank: false, collection: [options_for_select(location_type)], hint: 'Pick up loction type.' %>
       <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", label_method: :model_number, collection: @product_model, value_method: :id %>
       <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
-      <%= f.input :invoice_date,  as: :string, input_html: { class: "datepicker" }, hint: 'Aaron\'s PO invoice date .'  %>
-      <%= f.input :lease_date, as: :string, input_html: { class: "datepicker" }, hint: 'Aaron\'s inital lease date.' %>
+      <%= f.input :invoice_date, as: :date, hint: 'Aaron\'s PO invoice date .'  %>
+      <%= f.input :lease_date, as: :date,  hint: 'Aaron\'s inital lease date.' %>
       </div>
     </div>
     <div class="flex-item col-md-4 col-lg-4">
@@ -56,16 +56,16 @@
 </div>
 
 <script>
-  if (document.querySelector('.container-svg')) {
-  const btnSave = document.querySelector(".btn-primary");
-  const defaultSVG = document.querySelector(".container-svg");
-  const defaultFlex = document.querySelector(".flex-container");
-  const defaultAlert = document.querySelector(".alert");
+
+  var btnSave = document.querySelector(".btn-primary");
+  var defaultSVG = document.querySelector(".container-svg");
+  var defaultFlex = document.querySelector(".flex-container");
+  var defaultAlert = document.querySelector(".alert");
   btnSave.addEventListener('click', function() {
     defaultFlex.style.display = "none";
-    defaultSVG.style.display = "initial";
+    defaultSVG.style.display = "inline";
   });
-}
+
 </script>
 
 <script>

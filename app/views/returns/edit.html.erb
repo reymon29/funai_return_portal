@@ -18,9 +18,9 @@ Funai - Edit Return <%= @return.item_number %>
 
 
 
-          <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
+          <%= f.input :invoice_date, as: :date,  hint: 'Aaron\'s PO invoice date .'  %>
 
-          <%= f.input :lease_date, as: :date, html5: true, hint: 'Aaron\'s inital lease date.' %>
+          <%= f.input :lease_date, as: :date, hint: 'Aaron\'s inital lease date.' %>
         </div>
       </div>
       <div class="flex-item col-md-4 col-lg-4">
@@ -76,7 +76,7 @@ Funai - Edit Return <%= @return.item_number %>
   btnSave.addEventListener('click', function() {
     defaultFlex.style.display = "none";
     defaultAlert.style.display = "none";
-    defaultSVG.style.display = "initial";
+    defaultSVG.style.display = "inline";
   });
 
 </script>
