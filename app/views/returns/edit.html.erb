@@ -65,20 +65,20 @@ Funai - Edit Return <%= @return.item_number %>
   </div>
 </div>
 
+
+
 <script>
-const btnSave = document.querySelector(".btn-primary");
-const defaultSVG = document.querySelector(".container-svg");
-const defaultFlex = document.querySelector(".flex-container");
-const defaultAlert = document.querySelector(".alert");
-btnSave.addEventListener('click', (event) => {
-  defaultFlex.style.display = "none";
-  defaultAlert.style.display = "none";
-  defaultSVG.style.display = "initial";
-});
+
+  var btnSave = document.querySelector(".btn-primary");
+  var defaultSVG = document.querySelector(".container-svg");
+  var defaultFlex = document.querySelector(".flex-container");
+  var defaultAlert = document.querySelector(".alert");
+  btnSave.addEventListener('click', function() {
+    defaultFlex.style.display = "none";
+    defaultAlert.style.display = "none";
+    defaultSVG.style.display = "initial";
+  });
 
 </script>
-
-
-
 
 
