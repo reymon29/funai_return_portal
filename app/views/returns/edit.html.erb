@@ -18,9 +18,12 @@ Funai - Edit Return <%= @return.item_number %>
 
 
 
-          <%= f.input :invoice_date, as: :date,  hint: 'Aaron\'s PO invoice date .'  %>
+          <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
 
-          <%= f.input :lease_date, as: :date, hint: 'Aaron\'s inital lease date.' %>
+          <% if @return.lease_date.nil? %>
+          <% else %>
+          <%= f.input :lease_date, as: :date, html5: true, hint: 'Aaron\'s inital lease date.' %>
+          <% end %>
         </div>
       </div>
       <div class="flex-item col-md-4 col-lg-4">
@@ -47,8 +50,10 @@ Funai - Edit Return <%= @return.item_number %>
         <%= f.country_select :country, required: true, selected: "#{@return.country}", only: ["CA"], priority_countries: ["US"] %>
         <%= f.input :contact_number, required: true, input_html: { value: "#{@return.contact_number}" } %>
         <%= f.input :special_comments, input_html: {placeholder: "Instructions we may need." } %>
-        <%= f.button :submit, "Submit", class: "btn btn-primary" %>
-        <%= link_to 'Cancel', dashboard_path, class: "btn btn-warning" %>
+        <div class="btn-section">
+          <%= f.button :submit, "Submit", class: "btn btn-primary" %>
+          <%= link_to 'Cancel', dashboard_path, class: "btn btn-warning" %>
+        </div>
     </div>
   <% end %>
 </div>
