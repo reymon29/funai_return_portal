@@ -7,14 +7,17 @@
         <abbr title="required">*</abbr> note are required fields.
       </div>
       <div class="flex-item col-md-4 col-lg-4">
-       <h4 class="fs-title">Funai model</h4>
-      <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "1000000000" }, placeholder: "1000000000" %>
-      <%= f.input :store_number, require: true, placeholder: "F469 or C0S01", hint: 'Aaron\'s location the item belongs to.' %>
-      <%= f.input :location_type, require: true, include_blank: false, collection: [options_for_select(location_type)], hint: 'Pick up loction type.' %>
-      <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", label_method: :model_number, collection: @product_model, value_method: :id %>
-      <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
-      <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
-      <%= f.input :lease_date, as: :date, html5: true, hint: 'Aaron\'s inital lease date.' %>
+         <h4 class="fs-title">Funai model</h4>
+        <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "1000000000" }, placeholder: "1000000000" %>
+        <%= f.input :store_number, require: true, placeholder: "F469 or C0S01", hint: 'Aaron\'s location the item belongs to.' %>
+        <%= f.input :location_type, require: true, include_blank: false, collection: [options_for_select(location_type)], hint: 'Pick up loction type.' %>
+        <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", label_method: :model_number, collection: @product_model, value_method: :id %>
+        <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
+        <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
+        <%= f.input :lease_date, as: :date, html5: true, hint: 'Aaron\'s inital lease date.' %>
+        <div class="check-box">
+          <input type="checkbox" id="no_lease" onclick="myFunction()" class="form-group"><small class="form-text text-muted">No Lease - if item has not been leased to a customer.</small></input>
+        </div>
       </div>
     </div>
     <div class="flex-item col-md-4 col-lg-4">
@@ -56,6 +59,19 @@
 </div>
 
 <script>
+
+  var btnSave = document.querySelector(".btn-primary");
+  var defaultSVG = document.querySelector(".container-svg");
+  var defaultFlex = document.querySelector(".flex-container");
+  var defaultAlert = document.querySelector(".alert");
+  btnSave.addEventListener('click', function() {
+    defaultFlex.style.display = "none";
+    defaultSVG.style.display = "inline";
+  });
+
+</script>
+
+<script>
   var storeNumber = document.getElementById("return_store_number");
   var storeType = document.getElementById("return_location_type");
   var storePick = document.getElementById("return_attention_name");
@@ -89,4 +105,16 @@
       }
       <% end %>
 });
+</script>
+
+<script>
+  function myFunction() {
+  var btnLease = document.getElementById("no_lease");
+  var dateLease = document.getElementById("return_lease_date");
+  if (btnLease.checked == true){
+    dateLease.disabled = true;
+  } else {
+    dateLease.disabled = false;
+  }
+}
 </script>

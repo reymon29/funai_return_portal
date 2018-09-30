@@ -139,13 +139,13 @@ Funai - Return <%= @return.item_number %>
       alert('Cannot be blank, please assign a tracking #');
       console.log('Log check');
     } else {
-      rmaStatus.style.display = "initial";
+      rmaStatus.style.display = "inline";
     }
   });
 
   rmaStatus.addEventListener('change', (event) => {
     if(rmaStatus.value === "Completed, shipping assigned"){
-      btnSubmit.style.display = "initial";
+      btnSubmit.style.display = "inline";
     }
   });
 

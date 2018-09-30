@@ -23,7 +23,8 @@ Funai - Return <%= @return.item_number %>
       <p> Model: <%= @return.product.model_number %></p>
       <p> Serial: <%= @return.serial_number %></p>
       <p> Invoice Date: <%= @return.invoice_date.strftime("%m/%d/%Y") %></p>
-      <p> Lease Date: <%= @return.lease_date.strftime("%m/%d/%Y") %></p>
+
+      <p> Lease Date: <%= @return.lease_date.nil? ? "Not available" : @return.lease_date.strftime("%m/%d/%Y") %></p>
     </div>
     <div class="flex-item-show col-md-4">
       <h5>Aaron's Return Reason</h5>
