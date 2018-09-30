@@ -75,21 +75,28 @@ class ReturnsController < ApplicationController
 
   def update
     @return_log = ReturnLog.new
+    @return.store_number.upcase
+    @services = ServiceCenter.all
     @return.rma_status = "Updated Info, awaiting review"
     @product = Product.find_by(id: params[:return][:product_id])
     @return.product = @product
     @location = params[:return][:country] == "US" ? ReturnLocation.find_by_id(1) : ReturnLocation.find_by_id(2)
     @return.return_location = @location
-    if @product.nil?
-      flash[:alert] = "Model number is required"
-    else
-      @return.return_carrier = @product.carrier_default
-    end
+
     if @return.update(return_params)
 
       if params[:images]
         params[:images].each do |image|
           @return.images.create(image: image)
+        end
+      end
+      if @product.nil?
+        flash[:alert] = "Model number is required"
+      else
+        if @services.find_by(store_number: @return.store_number)
+          @return.return_carrier = "LTL-TSG"
+        else
+          @return.return_carrier = @product.carrier_default
         end
       end
       @return_log.return = @return
