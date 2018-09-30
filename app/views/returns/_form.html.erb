@@ -56,16 +56,16 @@
 </div>
 
 <script>
-  const storeNumber = document.getElementById("return_store_number");
-  const storeType = document.getElementById("return_location_type");
-  const storePick = document.getElementById("return_attention_name");
-  const storeAddress = document.getElementById("return_address");
-  const storeCity = document.getElementById("return_city");
-  const storeState = document.getElementById("return_state");
-  const storeZip = document.getElementById("return_zip");
-  const storeCountry = document.getElementById("return_country");
-  const storeContact = document.getElementById("return_contact_number");
-  storeNumber.addEventListener("change", (event) => {
+  var storeNumber = document.getElementById("return_store_number");
+  var storeType = document.getElementById("return_location_type");
+  var storePick = document.getElementById("return_attention_name");
+  var storeAddress = document.getElementById("return_address");
+  var storeCity = document.getElementById("return_city");
+  var storeState = document.getElementById("return_state");
+  var storeZip = document.getElementById("return_zip");
+  var storeCountry = document.getElementById("return_country");
+  var storeContact = document.getElementById("return_contact_number");
+  storeNumber.addEventListener("change", function() {
     <% @services.each do |service| %>
       if(storeNumber.value == "<%= service.store_number %>" || storeNumber.value== "<%= service.store_number.downcase %>"){
         storePick.value = "<%= service.contact_name %>";
