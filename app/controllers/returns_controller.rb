@@ -22,6 +22,8 @@ class ReturnsController < ApplicationController
     @services = ServiceCenter.all
     @product_model = Product.where(enable: true)
     @return = Return.new(return_params)
+    @return.store_number.upcase
+    @return.serial_number.upcase
     @return_log = ReturnLog.new
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
@@ -31,7 +33,11 @@ class ReturnsController < ApplicationController
     if @product.nil?
       flash[:alert] = "Model number is required"
     else
-      @return.return_carrier = @product.carrier_default
+      if @services.find_by(store_number: @return.store_number)
+        @return.return_carrier = "LTL-TSG"
+      else
+        @return.return_carrier = @product.carrier_default
+      end
     end
     authorize @return
     if @return.save

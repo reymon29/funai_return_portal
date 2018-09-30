@@ -33,7 +33,7 @@ Funai - Return <%= @return.item_number %>
     <div class="flex-item-show">
       <h5>Return Reason</h5>
       <p> Invoice Date: <%= @return.invoice_date.strftime("%m/%d/%Y") %></p>
-      <p> Lease Date: <%= @return.lease_date.strftime("%m/%d/%Y") %></p>
+      <p> Lease Date: <%= @return.lease_date.nil? ? "Not available" : @return.lease_date.strftime("%m/%d/%Y") %></p>
       <p>Return Reason: <%= @return.return_reason %></p>
       <p>Part: <%= @return.part_number %></p>
       <p>Return Comment: <%= @return.return_reason %></p>
