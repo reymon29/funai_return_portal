@@ -34,7 +34,11 @@ class ReturnsController < ApplicationController
       flash[:alert] = "Model number is required"
     else
       if @services.find_by(store_number: @return.store_number)
-        @return.return_carrier = "LTL-TSG"
+        if @product.product_type === "TV"
+          @return.return_carrier = "LTL-TSG"
+        else
+          @return.return_carrier = "FedEx"
+        end
       else
         @return.return_carrier = @product.carrier_default
       end

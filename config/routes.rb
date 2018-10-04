@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'dashboard', to: 'pages#dashboard', as: :dashboard
   get 'funaiwiki', to: 'pages#funaiwiki', as: :funaiwiki
+  get 'funaiprivacy', to: 'pages#funaiprivacy', as: :funaiprivacy
   resources :returns
   resources :images, only: [ :destroy]
   resources :contactforms, only: [ :new, :create]

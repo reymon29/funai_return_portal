@@ -10,7 +10,7 @@
          <h4 class="fs-title">Funai model</h4>
         <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "1000000000" }, placeholder: "1000000000" %>
         <%= f.input :store_number, require: true, placeholder: "F469 or C0S01", hint: 'Aaron\'s location the item belongs to.' %>
-        <%= f.input :location_type, require: true, include_blank: false, collection: [options_for_select(location_type)], hint: 'Pick up loction type.' %>
+        <%= f.input :location_type, require: true, include_blank: false, collection: [options_for_select(location_type)], prompt: "Select your location", hint: 'Pick up location type.' %>
         <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", label_method: :model_number, collection: @product_model, value_method: :id %>
         <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
         <%= f.input :invoice_date, as: :date, html5: true, hint: 'Aaron\'s PO invoice date .'  %>
@@ -24,7 +24,7 @@
       <h4 class="fs-title">Return Reason</h4>
       <%= f.input :part_number, required: true, collection: ['Panel', 'Digital Main', 'Power Board', 'Other item'], prompt: "Choose a item"  %>
       <%= f.input :return_reason, required: true, collection: ['Unrepairable by servicer', 'Part Not Available', 'Concealed Damage', 'No Servicer Available'], prompt: "Choose a reason" %>
-      <%= f.input :comment, required: true, autofocus: true, input_html: { placeholder: "Comment for the return reason"} %>
+      <%= f.input :comment, required: true, autofocus: true, input_html: { placeholder: "Return reason comment"} %>
       <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos. Accepted formats jpg jpeg gif png" %>
     </div>
     <div class="flex-item col-md-4 col-lg-4">
@@ -33,7 +33,7 @@
       <%= f.input :address, required: true %>
       <%= f.input :address2 %>
       <%= f.input :city, required: true %>
-      <%= f.input :state, required: true, collection: [options_for_select(us_states)] %>
+      <%= f.input :state, required: true, collection: [options_for_select(us_states)], prompt: "Select your state" %>
       <%= f.input :zip, required: true %>
       <%= f.country_select :country, required: true, only: ["CA"], priority_countries: ["US"] %>
       <%= f.input :contact_number, required: true %>
@@ -118,3 +118,5 @@
   }
 }
 </script>
+
+
