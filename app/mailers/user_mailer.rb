@@ -8,6 +8,6 @@ class UserMailer < ApplicationMailer
 
   def contact(user)
     @user = user
-    mail(to: "funaicontact@gmail.com", cc: "#{@user.email}", subject: "#{@user.name} has a question for Funai")
+    mail(to: "funai_aarons@funaiservice.com", cc: "#{@user.email}", subject: "#{@user.name} has a question for Funai")
   end
 end

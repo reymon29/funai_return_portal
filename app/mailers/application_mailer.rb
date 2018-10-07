@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'funaicontact@gmail.com'
+  default from: 'funai_aarons@funaiservice.com'
   layout 'mailer'
 end

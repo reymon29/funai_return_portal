@@ -57,7 +57,7 @@ Funai - Return Items for <%= current_user.store_number %>
         <th>RMA Number</th>
         <th>Options</th>
       </tr>
-    <% @returns.last(15).each do |return_item| %>
+    <% @returns.first(15).each do |return_item| %>
       <tr>
         <td>
           <%= return_item.item_number %>
