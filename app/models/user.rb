@@ -14,6 +14,7 @@ class User < ApplicationRecord
   validates :country, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :tos, presence: true
   validates :phone_number, presence: true, format: { with: /^[0-9]{10}$/, multiline: true,
     message: "format 5555555555" }
   validates :location_type, presence: true
