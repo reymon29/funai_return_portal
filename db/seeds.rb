@@ -888,3 +888,23 @@ ServiceCenter.create(
              zip: "14301",
              country: "US",
              contact_number: "7162842059")
+
+puts '<'
+puts 'creating user'
+
+User.create(
+  email: "rmontemayor@funaiservice.com",
+  store_number: "Funai",
+  address: "2425 Speigel Dr",
+  city: "Groveport",
+  zip: "43125",
+  state: "OH",
+  country: "US",
+  admin: false,
+  address2: nil,
+  first_name: "Rey",
+  last_name: "Montemayor",
+  phone_number: "3102940678",
+  location_type: "service_center",
+  tos: true
+  )
