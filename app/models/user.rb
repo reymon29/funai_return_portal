@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :phone_number, presence: true, format: { with: /^[0-9]{10}$/, multiline: true,
     message: "format 5555555555" }
   validates :location_type, presence: true
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   # Active admin name
   def name

@@ -906,5 +906,6 @@ User.create(
   last_name: "Montemayor",
   phone_number: "3102940678",
   location_type: "service_center",
-  tos: true
+  tos: true,
+  password: "TopSecret"
   )
