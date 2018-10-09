@@ -82,28 +82,17 @@
   var storeCountry = document.getElementById("return_country");
   var storeContact = document.getElementById("return_contact_number");
   storeNumber.addEventListener("change", function() {
-    <% @services.each do |service| %>
-      if(storeNumber.value == "<%= service.store_number %>" || storeNumber.value== "<%= service.store_number.downcase %>"){
-        storePick.value = "<%= service.contact_name %>";
-        storeType.value = "service_center";
-        storeAddress.value = "<%= service.address  %>";
-        storeCity.value = "<%= service.city  %>";
-        storeState.value = "<%= service.state  %>";
-        storeZip.value = "<%= service.zip  %>";
-        storeCountry.value = "<%= service.country  %>";
-        storeContact.value = "<%= service.contact_number  %>";
-      } else if(storeNumber.value != "<%= current_user.store_number %>"){
-      } else {
-        storePick.value = "<%= current_user.first_name %> <%= current_user.last_name %>";
-        storeType.value = "<%= current_user.location_type %>";
-        storeAddress.value = "<%= current_user.address %>";
-        storeCity.value = "<%= current_user.city %>";
-        storeState.value = "<%= current_user.state %>";
-        storeZip.value = "<%= current_user.zip %>";
-        storeCountry.value = "<%= current_user.country %>";
-        storeContact.value = "<%= current_user.phone_number %>";
-      }
-      <% end %>
+  if(storeNumber.value != "<%= current_user.store_number %>"){
+  } else {
+    storePick.value = "<%= current_user.first_name %> <%= current_user.last_name %>";
+    storeType.value = "<%= current_user.location_type %>";
+    storeAddress.value = "<%= current_user.address %>";
+    storeCity.value = "<%= current_user.city %>";
+    storeState.value = "<%= current_user.state %>";
+    storeZip.value = "<%= current_user.zip %>";
+    storeCountry.value = "<%= current_user.country %>";
+    storeContact.value = "<%= current_user.phone_number %>";
+  }
 });
 </script>
 
