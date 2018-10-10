@@ -49,39 +49,124 @@ Funai - Return Items for <%= current_user.store_number %>
       <% end %>
     <% else %>
     <!-- display -->
-    <table class="table table-hover">
-      <tr>
-        <th>Item Number</th>
-        <th>Model Number</th>
-        <th>RMA Status</th>
-        <th>RMA Number</th>
-        <th>Options</th>
-      </tr>
-    <% @returns.first(15).each do |return_item| %>
-      <tr>
-        <td>
-          <%= return_item.item_number %>
-        </td>
-        <td>
-          <%= return_item.product.model_number %>
-        </td>
-        <td>
-          <%= return_item.rma_status %>
-        </td>
-        <td>
-          <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
-        </td>
-        <td>
-          <%= link_to "Open", return_path(return_item) %>
-          <% if policy(Return).destroy? %>
-          <%= link_to "Delete", return_path(return_item), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-        </td>
-      </tr>
+    <% @returns.each do |return_item| %>
+
     <% end %>
-    </table>
+
+    <div class="nav nav-tabs" id="nav-id">
+      <a class="navbar-wagon-link navbar-wagon-item item-over" data-toggle="tab" href="#home">
+        <span>Last 15 items</span>
+      </a>
+      <a class="navbar-wagon-link navbar-wagon-item item-over" data-toggle="tab" href="#menu1">
+        <span>Past 30 days</span>
+      </a>
+      <a class="navbar-wagon-link navbar-wagon-item item-over" data-toggle="tab" href="#menu2">
+        <span>Past 90 days</span>
+      </a>
+    </div>
+
+    <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <table class="table table-hover">
+        <tr>
+          <th>Item Number</th>
+          <th>Model Number</th>
+          <th>RMA Status</th>
+          <th>RMA Number</th>
+          <th>Options</th>
+        </tr>
+        <% @returns.each do |return_item| %>
+          <tr>
+            <td>
+              <%= return_item.item_number %>
+            </td>
+            <td>
+              <%= return_item.product.model_number %>
+            </td>
+            <td>
+              <%= return_item.rma_status %>
+            </td>
+            <td>
+              <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
+            </td>
+            <td>
+              <%= link_to "Open", return_path(return_item) %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <!-- 30 days -->
+    <div id="menu1" class="tab-pane fade">
+        <table class="table table-hover">
+        <tr>
+          <th>Item Number</th>
+          <th>Model Number</th>
+          <th>RMA Status</th>
+          <th>RMA Number</th>
+          <th>Options</th>
+        </tr>
+        <% @returns.thirty.each do |return_item| %>
+
+            <tr>
+              <td>
+                <%= return_item.item_number %>
+              </td>
+              <td>
+                <%= return_item.product.model_number %>
+              </td>
+              <td>
+                <%= return_item.rma_status %>
+              </td>
+              <td>
+                <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
+              </td>
+              <td>
+                <%= link_to "Open", return_path(return_item) %>
+              </td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+    <!-- 90 days -->
+    <div id="menu2" class="tab-pane fade">
+      <table class="table table-hover">
+        <tr>
+          <th>Item Number</th>
+          <th>Model Number</th>
+          <th>RMA Status</th>
+          <th>RMA Number</th>
+          <th>Options</th>
+        </tr>
+        <% @returns.ninety.each do |return_item| %>
+
+            <tr>
+              <td>
+                <%= return_item.item_number %>
+              </td>
+              <td>
+                <%= return_item.product.model_number %>
+              </td>
+              <td>
+                <%= return_item.rma_status %>
+              </td>
+              <td>
+                <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
+              </td>
+              <td>
+                <%= link_to "Open", return_path(return_item) %>
+              </td>
+            </tr>
+           <% end %>
+
+      </table>
+    </div>
+    </div>
     <% end %>
   </div>
 </div>
+
+
+
   <%= link_to "Dashboard", dashboard_path, class: "btn btn-primary" %>
 
