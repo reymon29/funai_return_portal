@@ -11,6 +11,9 @@ Funai - Edit Return <%= @return.item_number %>
           <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "100000" }, readonly: true %>
           <%= f.input :store_number, require: true, input_html: { value: "#{@return.store_number}" }, hint: 'Aaron\'s store the item belongs to.' %>
 
+          <%= f.input :location_type, collection: [ ["Store", "store_front"],
+              ["Fulfillment Center", "fulfillment_center"],
+              ["Service Center", "service_center"]], prompt: "Select location type", selected: "#{@return.location_type}" %>
           <%= f.association :product, as: :hidden ,label_method: :model_number, label: "Model number", readonly: true %>
 
 
