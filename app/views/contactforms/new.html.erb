@@ -8,6 +8,7 @@
           <%= f.input :name, input_html: { value: "#{current_user.first_name} #{current_user.last_name}" } %>
           <%= f.input :email, input_html: { value: "#{current_user.email}" }  %>
           <%= f.input :subject, input_html: { placeholder: "Enter your question, if you are asking for information make sure to include your model number, serial number, item number and comments."} %>
+          <%= recaptcha_tags %>
           <div class="form-actions">
             <%= f.button :submit, "Send", class: "btn btn-primary"%>
           </div>
