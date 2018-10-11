@@ -23,7 +23,7 @@
 
 .flex-item .form-control {
   font-size: 14px;
-  width: 100%;
+  width: 80%;
   height: 32px;
   margin-right: 99px;
   color: black;
@@ -49,9 +49,12 @@
   margin-bottom: 15px;
 }
 
-#new_return{
+.new_return{
     width: 75%;
   }
+.edit_return{
+  width: 75%;
+}
 @media only screen and (max-width: 600px) {
 
     .flex-item .form-control {
