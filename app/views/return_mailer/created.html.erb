@@ -1,14 +1,15 @@
-<h5>Hi <%= @return.user.first_name %></h5>
+<%= @return.user.store_number %>,
 
 <p><%= @return.item_number %> has been created.</p>
-<p>Allow us 24-48 hours to review.</p>
 <p><%= @return.product.model_number %></br>
-<%= @return.serial_number %></br>
+<%= @return.serial_number %></br></br>
+Pick up address:</br>
 <%= @return.store_number %>
 <%= @return.address %>
 <%= @return.address2 %>
 <%= @return.city %>, <%= @return.state %> <%= @return.zip %>
 </p>
+<p>Allow us 24-48 hours to review.</br> If you need to update the return request please login to your account.</p>
 
-<p>Sincerly, Funai Team</p>
+<p>Sincerely, Funai Team</p>
 <%= link_to "Funai Portal", dashboard_url %>

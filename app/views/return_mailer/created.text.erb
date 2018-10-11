@@ -1,9 +1,16 @@
-Hi <%= @return.user.first_name %>
+<%= @return.user.store_number %>,
 
+<%= @return.item_number %> has been created.
+<%= @return.product.model_number %>
+<%= @return.serial_number %>
 
-  <%= @return.item_number %> has been created and now under review.
-  Allow us 24-48 hours to review.
+Pick up address:
+<%= @return.store_number %>
+<%= @return.address %>
+<%= @return.address2 %>
+<%= @return.city %>, <%= @return.state %> <%= @return.zip %>
 
+Allow us 24-48 hours to review. If you need to update the return request please login to your account.
 
-Sincerly, Funai Team
+Sincerely, Funai Team
 <%= link_to "Funai Portal", dashboard_url %>
