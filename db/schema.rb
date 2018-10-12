@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_06_020423) do
+ActiveRecord::Schema.define(version: 2018_10_12_072658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 2018_10_06_020423) do
   create_table "returns", force: :cascade do |t|
     t.bigint "item_number"
     t.string "serial_number"
-    t.date "invoice_date"
-    t.date "lease_date"
+    t.string "invoice_date"
+    t.string "lease_date"
     t.string "part_number"
     t.string "return_reason"
     t.text "comment"

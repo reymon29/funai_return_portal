@@ -18,10 +18,12 @@ Funai - Edit Return <%= @return.item_number %>
 
 
           <%= f.input :serial_number, as: :hidden, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', readonly: true %>
+           <%= f.input :invoice_date, as: :string, required: false, input_html: {class: "datepicker"},  hint: 'Aaron\'s PO invoice date .'  %>
+
 
           <% if @return.lease_date.nil? %>
           <% else %>
-          <%= f.input :lease_date, as: :date, html5: true, hint: 'Aaron\'s inital lease date.' %>
+          <%= f.input :lease_date, as: :string, required: false, input_html: {class: "datepicker"},  hint: 'Aaron\'s inital lease date.' %>
           <% end %>
         </div>
       </div>
