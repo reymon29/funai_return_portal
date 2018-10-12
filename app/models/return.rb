@@ -53,10 +53,10 @@ class Return < ApplicationRecord
   end
 
   def self.thirty
-   @returns = Return.where(created_at: (Date.today - 30)..Date.today)
+   @returns = Return.where(created_at: (Date.today - 30)..Date.tomorrow)
   end
 
   def self.ninety
-   @returns = Return.where(created_at: (Date.today - 90)..Date.today)
+   @returns = Return.where(created_at: (Date.today - 90)..Date.tomorrow)
   end
 end
