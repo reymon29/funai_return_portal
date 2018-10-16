@@ -7,6 +7,8 @@
   <p>Based off the information posted we cannot accept the return, please review the wiki page and update the return.</p>
   <% elsif @return.rma_status == "RMA Denied, past return period"%>
   <p>The item posted cannot be accepted it is past the return policy.</p>
+  <% elsif @return.rma_status == "RMA Cancelled" %>
+  <p>The return has been cancelled.</p>
 <% else %>
   Tracking:<%= @return.return_carrier %> || <%= @return.return_tracking %>
 <% end %>

@@ -5,11 +5,11 @@ class ReturnPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user || user.admin
+    record.user == user || user.admin || user.aaronsmgr?
   end
 
   def update?
-    record.user == user || user.admin
+    record.user == user || user.admin || user.aaronsmgr?
   end
 
   def destroy?
@@ -20,6 +20,8 @@ class ReturnPolicy < ApplicationPolicy
     def resolve
       # scope.all
       if user.admin?
+        scope.all
+      elsif user.aaronsmgr?
         scope.all
       else
         scope.where(user: user)
