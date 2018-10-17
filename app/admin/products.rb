@@ -1,4 +1,5 @@
 ActiveAdmin.register Product do
+  config.filters = false
   permit_params :model_number, :product_type, :weight, :carrier_default, :enable
   actions :index, :show, :new, :create, :update, :edit
 

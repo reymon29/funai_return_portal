@@ -1,9 +1,9 @@
 ActiveAdmin.register User do
+  config.filters = false
   permit_params :email, :store_number, :address, :city, :zip, :state, :country, :admin, :aaronsmgr ,:address2, :first_name, :last_name, :phone_number, :password, :password_confirmation
   actions :index, :show, :new, :create, :update, :edit
 
   index do
-    selectable_column
     column :email
     column :id
     column :first_name
