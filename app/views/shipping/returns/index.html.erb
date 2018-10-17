@@ -81,7 +81,7 @@
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
-        <% if return_item.rma_status == "RMA Denied, past return period" || return_item.rma_status == "RMA Denied, not enough information" %>
+        <% if return_item.rma_status == "RMA Denied, past return period" || return_item.rma_status == "RMA Denied, not enough information" || return_item.rma_status == "RMA Cancelled"%>
         <% else %>
         <% if return_item.rma_status.empty? || return_item.rma_number.nil? || return_item.rma_status == "Updated Info, awaiting review" && return_item.rma_number.empty? %>
           <tr>
@@ -95,7 +95,13 @@
               <%= return_item.rma_status %>
             </td>
             <td>
-              <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
+              <% if return_item.rma_number.nil? %>
+                <%= "No RMA assigned" %>
+              <% elsif return_item.rma_number.empty? %>
+                <%= "No RMA assigned" %>
+              <% else %>
+                <%= return_item.rma_number %>
+              <% end %>
             </td>
             <td>
               <%= link_to "Open", shipping_return_path(return_item) %>
@@ -118,7 +124,7 @@
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
-        <% if return_item.rma_number.nil? %>
+        <% if return_item.rma_number.nil? || return_item.rma_number.empty? %>
         <% else %>
           <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "FedEx" || return_item.rma_status == "Pending, waiting on info" &&  return_item.return_carrier == "FedEx" || return_item.rma_status == "Updated Info, awaiting review" &&  return_item.return_carrier == "FedEx"  %>
             <tr>
@@ -146,8 +152,11 @@
     <!-- Items for LTL shipping -->
     <div id="menu2" class="tab-pane fade">
       <h3>Shipping TSG</h3>
-      <%= link_to shipping_returns_path(format: "xls") do %>
-        <i class="fas fa-file-excel">Export to Excel</i>
+      <% if @returns.empty? %>
+      <% else %>
+        <%= link_to shipping_returns_path(format: "xls") do %>
+          <i class="fas fa-file-excel">Export to Excel</i>
+        <% end %>
       <% end %>
       <table class="table table-hover">
         <tr>
@@ -158,7 +167,7 @@
           <th>Options</th>
         </tr>
         <% @returns.each do |return_item| %>
-        <% if return_item.rma_number.nil? %>
+        <% if return_item.rma_number.nil? || return_item.rma_number.empty? %>
         <% else %>
           <% if return_item.rma_status == "RMA Approved, assigning shipping" && return_item.return_carrier == "LTL-TSG" || return_item.rma_status == "Pending, waiting on info" &&  return_item.return_carrier == "LTL-TSG" || return_item.rma_status == "Updated Info, awaiting review" &&  return_item.return_carrier == "LTL-TSG"  %>
             <tr>

@@ -48,6 +48,17 @@ module Shipping
         ReturnMailer.updated(@return).deliver_now
         redirect_to shipping_returns_path
         flash[:notice] = "RMA has been assigned"
+      elsif return_params[:rma_status] == "RMA Cancelled"
+        return_status = return_params[:rma_status]
+        @return.rma_status = return_status
+        @return.save
+        @return_log.return = @return
+        @return_log.user = current_user
+        @return_log.comment = "RMA cancelled"
+        @return_log.save
+        ReturnMailer.updated(@return).deliver_now
+        redirect_to shipping_returns_path
+        flash[:notice] = "RMA has been cancelled"
       elsif @return.update(return_params)
         @return_log.return = @return
         @return_log.user = current_user
