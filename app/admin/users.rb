@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :store_number, :address, :city, :zip, :state, :country, :admin, :address2, :first_name, :last_name, :phone_number, :password, :password_confirmation
+  permit_params :email, :store_number, :address, :city, :zip, :state, :country, :admin, :aaronsmgr ,:address2, :first_name, :last_name, :phone_number, :password, :password_confirmation
   actions :index, :show, :new, :create, :update, :edit
 
   index do
@@ -17,6 +17,7 @@ ActiveAdmin.register User do
     column :country
     column :phone_number
     column :admin
+    column :aaronsmgr
     column :created_at
     column :sign_in_count
     actions
@@ -36,6 +37,7 @@ ActiveAdmin.register User do
       row :country
       row :phone_number
       row :admin
+      row :aaronsmgr
       row :created_at
       row :sign_in_count
     end
@@ -59,6 +61,7 @@ ActiveAdmin.register User do
   f.input :country
   f.input :phone_number
   f.input :admin
+  f.input :aaronsmgr
   end
   f.actions         # adds the 'Submit' and 'Cancel' buttons
 end
