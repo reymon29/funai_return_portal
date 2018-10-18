@@ -37,7 +37,9 @@ Funai - Edit Return <%= @return.item_number %>
 
         <%= f.input :comment, required: true, autofocus: true, input_html: { placeholder: "Comment for the return reason"} %>
 
-        <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos." %>
+        <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos. Accepted formats jpg jpeg gif png" %>
+        <button id="btn-example-file-reset" type="button" class="btn btn-default">Remove images</button>
+        <div id="preview"></div>
       </div>
 
       <div class="flex-item col-md-4 col-lg-4">

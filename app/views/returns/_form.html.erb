@@ -15,7 +15,7 @@
         <%= f.input :location_type, collection: [ ["Store", "store_front"],
               ["Fulfillment Center", "fulfillment_center"],
               ["Service Center", "service_center"]], prompt: "Select location type", hint: 'Pick up location type.' %>
-        <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", label_method: :model_number, collection: @product_model, value_method: :id %>
+        <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", label_method: :name, value_method: :id %>
         <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
         <%= f.input :invoice_date, as: :string, required: false, input_html: {class: "datepicker"},  hint: 'Aaron\'s PO invoice date .'  %>
         <%= f.input :lease_date, as: :string, required: false, input_html: {class: "datepicker"},  hint: 'Aaron\'s inital lease date.' %>

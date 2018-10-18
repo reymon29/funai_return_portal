@@ -13,7 +13,7 @@ class ReturnsController < ApplicationController
   def new
     @return = Return.new
     @services = ServiceCenter.all
-    @product_model = Product.where(enable: true)
+    @product_model = Product.order(:model_number).where(enable: true)
     @image = @return.images.build
     authorize @return
   end

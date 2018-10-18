@@ -7,6 +7,6 @@ validates :carrier_default, presence: true, inclusion: { in: ["FedEx", "LTL-TSG"
 
   #Active admin dropdown list
   def name
-    "#{model_number}"
+    "#{model_number} - #{product_type}"
   end
 end
