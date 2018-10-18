@@ -1,5 +1,7 @@
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 <div class="flex-container">
-  <%= simple_form_for [@return] do |f| %>
+  <%= simple_form_for @return do |f| %>
   <%= f.error_notification %>
     <div class="flex-item">
       <h1>Create return request</h1>
@@ -9,7 +11,7 @@
       <div class="flex-item col-md-4 col-lg-4">
          <h4 class="fs-title">Funai model</h4>
         <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "1000000000" }, placeholder: "1000000000" %>
-        <%= f.input :store_number, require: true, placeholder: "F469 or C0S01", hint: 'Aaron\'s location the item belongs to.' %>
+        <%= f.input :store_number, require: true, placeholder: "F469 or C0S01", hint: 'Aaron\'s store location' %>
         <%= f.input :location_type, collection: [ ["Store", "store_front"],
               ["Fulfillment Center", "fulfillment_center"],
               ["Service Center", "service_center"]], prompt: "Select location type", hint: 'Pick up location type.' %>
@@ -27,14 +29,18 @@
       <%= f.input :part_number, required: true, collection: ['Panel', 'Digital Main', 'Power Board', 'Other item'], prompt: "Choose a item"  %>
       <%= f.input :return_reason, required: true, collection: ['Unrepairable by servicer', 'Part Not Available', 'Concealed Damage', 'No Servicer Available'], prompt: "Choose a reason" %>
       <%= f.input :comment, required: true, autofocus: true, input_html: { placeholder: "Return reason comment"} %>
+
       <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos. Accepted formats jpg jpeg gif png" %>
+      <button id="btn-example-file-reset" type="button" class="btn btn-default">Remove images</button>
+      <div id="preview"></div>
+
     </div>
     <div class="flex-item col-md-4 col-lg-4">
       <h4 class="fs-title">Pick up address</h4>
-      <%= f.input :attention_name, required: true, label: "Contact Name" %>
-      <%= f.input :address, required: true %>
+      <%= f.input :attention_name, required: true, label: "Contact Name", placeholder: "Sam Thompson" %>
+      <%= f.input :address, required: true, placeholder: "12120 15 St STE 104" %>
       <%= f.input :address2 %>
-      <%= f.input :city, required: true %>
+      <%= f.input :city, required: true, placeholder: "Grandview" %>
       <%= f.input :state, required: true, collection: [['Alabama', 'AL'],
               ['Alaska', 'AK'],
               ['Arizona', 'AZ'],
@@ -100,9 +106,9 @@
               ['Saskatchewan', 'SK' ],
               ['Yukon', 'IT' ]],
               prompt: "Select state" %>
-      <%= f.input :zip, required: true %>
+      <%= f.input :zip, required: true, placeholder: "64030" %>
       <%= f.country_select :country, required: true, only: ["CA"], priority_countries: ["US"] %>
-      <%= f.input :contact_number, required: true %>
+      <%= f.input :contact_number, required: true, placeholder: "8167650866" %>
       <%= f.input :special_comments, placeholder: "Instructions we may need." %>
       <div class="btn-section">
         <%= f.button :submit, "Submit", class: "btn btn-primary" %>
@@ -114,6 +120,8 @@
 <div class="container-svg">
   <div class="row">
     <h1 class="text-center">Loading... Please wait..</h1>
+    <h5 class="text-center">May take a few minutes.</h5>
+    <h6 class="text-center">Depending on if you are uploading high resolution images.</h6>
     <div id="box">
       <div id="container">
         <div class="pip pip-1"></div>
@@ -174,5 +182,6 @@
   }
 }
 </script>
+
 
 
