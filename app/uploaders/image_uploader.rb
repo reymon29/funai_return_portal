@@ -7,6 +7,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
 
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -49,7 +50,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+
+
+  def public_id
+   @name = original_filename.split(".", -1)
+    return "aarons/" + @name[0]
+  end
 end
