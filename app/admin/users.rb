@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   config.filters = false
-  permit_params :email, :store_number, :address, :city, :zip, :state, :country, :admin, :aaronsmgr ,:address2, :first_name, :last_name, :phone_number, :password, :password_confirmation
+  permit_params :email, :store_number, :address, :city, :zip, :state, :country, :location_type ,:tos, :admin, :aaronsmgr ,:address2, :first_name, :last_name, :phone_number, :password, :password_confirmation
   actions :index, :show, :new, :create, :update, :edit
 
   index do
@@ -16,6 +16,7 @@ ActiveAdmin.register User do
     column :zip
     column :country
     column :phone_number
+    column :location_type
     column :admin
     column :aaronsmgr
     column :created_at
@@ -36,34 +37,39 @@ ActiveAdmin.register User do
       row :zip
       row :country
       row :phone_number
+      row :location_type
       row :admin
       row :aaronsmgr
       row :created_at
+      row :tos
       row :sign_in_count
     end
     active_admin_comments
   end
 
   form do |f|
-  f.semantic_errors # shows errors on :base
-  f.inputs 'Users' do
-  f.input :email
-  f.input :password
-  f.input :password_confirmation
-  f.input :first_name
-  f.input :last_name
-  f.input :store_number
-  f.input :address
-  f.input :address2
-  f.input :city
-  f.input :state
-  f.input :zip
-  f.input :country
-  f.input :phone_number
-  f.input :admin
-  f.input :aaronsmgr
+    f.semantic_errors # shows errors on :base
+      f.inputs 'Users' do
+      f.input :email
+      f.input :password
+      f.input :password_confirmation
+      f.input :first_name
+      f.input :last_name
+      f.input :store_number
+      f.input :address
+      f.input :address2
+      f.input :city
+      f.input :state
+      f.input :zip
+      f.input :country
+      f.input :phone_number
+      f.input :location_type, :as => :select,  :collection => [ ["Store", "store_front"],
+              ["Fulfillment Center", "fulfillment_center"],
+              ["Service Center", "service_center"]]
+      f.input :tos
+      f.input :admin
+      f.input :aaronsmgr
+    end
+    f.actions         # adds the 'Submit' and 'Cancel' buttons
   end
-  f.actions         # adds the 'Submit' and 'Cancel' buttons
-end
-
 end
