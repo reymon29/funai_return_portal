@@ -88,7 +88,7 @@ Funai -
             <%= f.input :location_type, collection: [ ["Store", "store_front"],
               ["Fulfillment Center", "fulfillment_center"],
               ["Service Center", "service_center"]], prompt: "Select Location Type" %>
-            <%= f.input :email, required: true %>
+            <%= f.input :email, required: true, readonly: true %>
             <%= f.input :tos, as: :hidden, input_html: { value: "#{current_user.tos}" }%>
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
