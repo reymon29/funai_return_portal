@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :tos, acceptance: { message: 'must be accepted' }
   validates :phone_number, presence: true, format: { with: /^[0-9]{10}$/, multiline: true,
     message: "format 5555555555" }
-  validates :store_number, presence: true, format: { with: /^[C-FA-Z0-9_.-]*$/, multiline: true, message: "format example F000 or C0S00" }
+  validates :store_number, presence: true, format: { with: /^[C-FA-Z0-9_.-]*$/, multiline: true, message: "acceptable formats F000 or C0S00" }
   validates :location_type, presence: true
   before_validation :normalize_name, on: [ :create, :update ]
   after_create :send_welcome_email
@@ -32,10 +32,10 @@ class User < ApplicationRecord
 
   def normalize_name
       self.store_number = store_number.upcase
-      self.first_name = first_name.capitalize
-      self.last_name = last_name.capitalize
+      self.first_name = first_name.titleize
+      self.last_name = last_name.titleize
       self.address = address.titleize
-      self.address2 = address2.titleize
+      self.address2 = if address2.nil? then address2 else address2.titleize end
       self.city = city.titleize
   end
 

@@ -894,14 +894,32 @@ puts 'creating user'
 
 User.create(
   email: "rmontemayor@funaiservice.com",
-  store_number: "Funai",
+  store_number: "FUNAI",
   address: "2425 Speigel Dr",
   city: "Groveport",
   zip: "43125",
   state: "OH",
   country: "US",
-  admin: false,
+  admin: true,
   address2: nil,
+  first_name: "Rey",
+  last_name: "Montemayor",
+  phone_number: "3102940678",
+  location_type: "service_center",
+  tos: true,
+  password: "TopSecret"
+  )
+
+User.create(
+  email: "rmontemayor@funaicorp.com",
+  store_number: "FUNAI",
+  address: "19900 Van Ness",
+  city: "Torrance",
+  zip: "90501",
+  state: "CA",
+  country: "US",
+  admin: false,
+  address2: "ste b",
   first_name: "Rey",
   last_name: "Montemayor",
   phone_number: "3102940678",
