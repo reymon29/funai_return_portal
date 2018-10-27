@@ -10,16 +10,16 @@ class User < ApplicationRecord
   validates :address2, length: { in: 0..60 }, allow_blank: true
   validates :city, presence: true
   validates :state, presence: true
-  validates :zip, presence: true, length: { in: 5..6 }
+  validates :zip, presence: true, length: { in: 5..6, message: "format for US: 90501 or CA: L5H3B1" }
   validates :country, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :tos, acceptance: { message: 'must be accepted' }
   validates :phone_number, presence: true, format: { with: /^[0-9]{10}$/, multiline: true,
     message: "format 5555555555" }
-  validates :store_number, presence: true
+  validates :store_number, presence: true, format: { with: /^[C-FA-Z0-9_.-]*$/, multiline: true, message: "format example F000 or C0S00" }
   validates :location_type, presence: true
-  before_validation :normalize_name, on: :create
+  before_validation :normalize_name, on: [ :create, :update ]
   after_create :send_welcome_email
 
 
