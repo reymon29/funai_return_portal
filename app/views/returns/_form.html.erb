@@ -10,9 +10,8 @@
          <h4 class="fs-title">Funai model</h4>
         <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', placeholder: "12341244432" %>
 
-        <div class="autocomplete form-group" style="width: 314px;">
-          <label class="form-control-label string required" for="return_item_number">Location Store Number <abbr title="required">*</abbr></label>
-          <input id="return_store_number" type="text" name="return[store_number]" placeholder="F469 or C0S01" class="form-control">
+        <div class="autocomplete" style="width: 314px;">
+         <%= f.input :store_number, placeholder: "F649 or C0S02" %>
         </div>
 
         <%= f.input :location_type, collection: [ ["Store", "store_front"],
