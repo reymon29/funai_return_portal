@@ -8,8 +8,7 @@
       </div>
       <div class="flex-item col-md-4 col-lg-4">
          <h4 class="fs-title">Funai model</h4>
-        <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', input_html: {  min: "1000000000" }, placeholder: "1000000000" %>
-
+        <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', placeholder: "12341244432" %>
 
         <div class="autocomplete form-group">
           <label class="form-control-label string required" for="return_item_number">Location Store Number <abbr title="required">*</abbr></label>
@@ -18,11 +17,10 @@
           <small class="form-text text-muted">Aaron's location for pickup.</small>
         </div>
 
-
         <%= f.input :location_type, collection: [ ["Store", "store_front"],
               ["Fulfillment Center", "fulfillment_center"],
               ["Service Center", "service_center"]], prompt: "Select location type", hint: 'Pick up location type.' %>
-        <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", label_method: :name, value_method: :id %>
+        <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", collection: @product_model %>
         <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
         <%= f.input :invoice_date, as: :string, required: false, input_html: {class: "datepicker"},  hint: 'Aaron\'s PO invoice date .'  %>
         <%= f.input :lease_date, as: :string, required: false, input_html: {class: "datepicker"},  hint: 'Aaron\'s inital lease date.' %>

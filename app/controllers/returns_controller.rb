@@ -20,7 +20,6 @@ class ReturnsController < ApplicationController
 
   def create
     @services = ServiceCenter.all
-    @product_model = Product.where(enable: true)
     @return = Return.new(return_params)
     @return.store_number.upcase
     @return.serial_number.upcase

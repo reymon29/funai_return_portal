@@ -5,7 +5,7 @@ validates :product_type, presence: true, inclusion: { in: ['BD', 'Home Theater',
 validates :weight, presence: true
 validates :carrier_default, presence: true, inclusion: { in: ["FedEx", "LTL-TSG"] }
 
-  #Active admin dropdown list
+ #Active admin and return form dropdown list
   def name
     "#{model_number} - #{product_type}"
   end
