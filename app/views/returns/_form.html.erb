@@ -284,7 +284,7 @@ function autocomplete(inp, arr) {
 }
 
 /*An array containing all the country names in the world:*/
-var countries = ["Afghanistan", "<%= current_user.store_number %>"];
+var countries = ["<%= current_user.store_number %>"];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("return_store_number"), countries);
