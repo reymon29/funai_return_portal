@@ -10,11 +10,9 @@
          <h4 class="fs-title">Funai model</h4>
         <%= f.input :item_number, required: true, autofocus: true, hint: 'Aaron\'s item number reference.', placeholder: "12341244432" %>
 
-        <div class="autocomplete form-group">
+        <div class="autocomplete form-group" style="width: 314px;">
           <label class="form-control-label string required" for="return_item_number">Location Store Number <abbr title="required">*</abbr></label>
-          <input id="return_store_number" type="text" name="return[store_number]" placeholder="F469 or C0S01">
-
-          <small class="form-text text-muted">Aaron's location for pickup.</small>
+          <input id="return_store_number" type="text" name="return[store_number]" placeholder="F469 or C0S01" class="form-control">
         </div>
 
         <%= f.input :location_type, collection: [ ["Store", "store_front"],
@@ -36,7 +34,7 @@
       <%= f.input :comment, required: true, autofocus: true, input_html: { placeholder: "Return reason comment"} %>
 
       <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos. Accepted formats jpg jpeg gif png" %>
-      <button id="btn-example-file-reset" type="button" class="btn btn-default">Remove images</button>
+
       <div id="preview"></div>
 
     </div>

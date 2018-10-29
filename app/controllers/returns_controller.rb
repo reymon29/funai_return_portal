@@ -20,13 +20,14 @@ class ReturnsController < ApplicationController
 
   def create
     @services = ServiceCenter.all
+    @product_model = Product.order(:model_number).where(enable: true)
     @return = Return.new(return_params)
     @return.store_number.upcase
     @return.serial_number.upcase
     @return_log = ReturnLog.new
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
-    @product = Product.find_by_id(params[:return][:product_id].to_i)
+    @product = @product_model.find_by_id(params[:return][:product_id].to_i)
     @location = params[:return][:country] == "US" ? ReturnLocation.find_by_id(1) : ReturnLocation.find_by_id(2)
     @return.return_location = @location
     if @product.nil?

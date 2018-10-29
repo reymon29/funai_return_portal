@@ -35,7 +35,7 @@ $(function(){
   })
 })
 
-$('#btn-example-file-reset').on('click', function(e){
+$('#return_images').on('click', function(e){
    var $el = $('#return_images');
    var $el2 = $('#preview');
    $el.wrap('<form>').closest('form').get(0).reset();
@@ -43,3 +43,5 @@ $('#btn-example-file-reset').on('click', function(e){
    $el2.empty();
 
 });
+
+
