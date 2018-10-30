@@ -38,7 +38,6 @@ Funai - Edit Return <%= @return.item_number %>
         <%= f.input :comment, required: true, autofocus: true, input_html: { placeholder: "Comment for the return reason"} %>
 
         <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos. Accepted formats jpg jpeg gif png" %>
-        <button id="btn-example-file-reset" type="button" class="btn btn-default">Remove images</button>
         <div id="preview"></div>
       </div>
 
@@ -63,6 +62,8 @@ Funai - Edit Return <%= @return.item_number %>
 <div class="container-svg">
   <div class="row">
     <h1 class="text-center">Loading... Please wait..</h1>
+    <h5 class="text-center">May take a few minutes.</h5>
+    <h6 class="text-center">Depending on if you are uploading high resolution images.</h6>
     <div id="box">
       <div id="container">
         <div class="pip pip-1"></div>
