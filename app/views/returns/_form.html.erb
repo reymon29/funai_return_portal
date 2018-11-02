@@ -39,7 +39,7 @@
 
     </div>
     <div class="flex-item col-md-4 col-lg-4">
-      <h4 class="fs-title">Pick up address</h4>
+      <h4 class="fs-title">Pick up location address</h4>
       <%= f.input :attention_name, required: true, label: "Contact Name", placeholder: "Sam Thompson" %>
       <%= f.input :address, required: true, placeholder: "12120 15 St STE 104" %>
       <%= f.input :address2 %>
@@ -170,6 +170,8 @@ function autocomplete(inp, arr) {
 
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
+    var list = document.getElementsByClassName("text-muted");
+    list[1].style.display = "none";
       var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/
       closeAllLists();
@@ -269,8 +271,6 @@ function autocomplete(inp, arr) {
   function closeAllLists(elmnt) {
     /*close all autocomplete lists in the document,
     except the one passed as an argument:*/
-    var list = document.getElementsByClassName("text-muted");
-    list[1].style.display = "none";
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
       if (elmnt != x[i] && elmnt != inp) {
