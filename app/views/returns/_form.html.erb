@@ -33,7 +33,7 @@
       <%= f.input :return_reason, required: true, collection: ['Unrepairable by servicer', 'Part Not Available', 'Concealed Damage', 'No Servicer Available'], prompt: "Choose a reason" %>
       <%= f.input :comment, required: true, autofocus: true, input_html: { placeholder: "Return reason comment"} %>
 
-      <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "You may upload multiple photos. Accepted formats jpg jpeg gif png" %>
+      <%= f.input :images,  as: :file, input_html: { multiple: true, name: "images[]" }, hint: "Upload photos accepted formats jpg jpeg gif png." %>
 
       <div id="preview"></div>
 

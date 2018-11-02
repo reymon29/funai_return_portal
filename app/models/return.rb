@@ -10,6 +10,7 @@ class Return < ApplicationRecord
   validates :user_id, presence: true
   validates :item_number, length: { in: 10..16 }, uniqueness: { message: "has already been submitted please check your past RMAs or contact us"}, presence: true
   validates :product_id, presence: true
+  validates :store_number, presence: true, format: { with: /^[C-FA-Z0-9_.-]*$/, multiline: true, message: "acceptable formats F000 or C0S00" }
   validates :serial_number, uniqueness: { scope: :item_number, message: "has already been submitted please check your past RMAs or contact us"}, presence: true, length: { is: 14 }
   validates :invoice_date, presence: true
   validates :return_reason, presence: true
@@ -25,6 +26,7 @@ class Return < ApplicationRecord
   validates :country, presence: true
   validates :contact_number, presence: true, format: { with: /^[0-9]{10}$/, multiline: true,
     message: "format 5555555555" }
+  validates :location_type, presence: true
   validates :rma_number, uniqueness: { message: "has already been assigned please check your past RMAs"}, allow_blank: true
   before_validation :normalize_name, on: [ :create, :update ]
 
