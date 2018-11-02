@@ -14,7 +14,8 @@ class Return < ApplicationRecord
   validates :invoice_date, presence: true
   validates :return_reason, presence: true
   validates :part_number, presence: true
-  validates :comment, length: { in: 5..100 }
+  validates :comment, length: { in: 5..100 }, format: { with: /^(?=.*[A-Za-z0-9])[A-Za-z0-9 _ .'!""]*$/, multiline: true, message: "text only"}
+  validates :special_comments, length: { in: 5..100 }, format: { with: /^(?=.*[A-Za-z0-9])[A-Za-z0-9 _ .'!""]*$/, multiline: true, message: "text only"}, allow_blank: true
   validates :attention_name, presence: true
   validates :address, presence: true, length: { in: 0..60 }
   validates :address2, length: { in: 0..60 }, allow_blank: true
