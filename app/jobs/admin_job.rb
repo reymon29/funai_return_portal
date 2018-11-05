@@ -3,6 +3,6 @@ class AdminJob < ApplicationJob
 
   def perform
     puts "Queue email service"
-    AdminMailer.weekly_email.deliver_now
+    AdminMailer.deliver_now
   end
 end
