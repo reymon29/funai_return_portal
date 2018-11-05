@@ -97,7 +97,6 @@ GEM
       rest-client
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
-    connection_pool (2.2.2)
     countries (2.1.4)
       i18n_data (~> 0.8.0)
       money (~> 6.9)
@@ -201,8 +200,6 @@ GEM
     pundit (2.0.0)
       activesupport (>= 3.0.0)
     rack (2.0.5)
-    rack-protection (2.0.4)
-      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -264,12 +261,6 @@ GEM
     sassc (1.12.1)
       ffi (~> 1.9.6)
       sass (>= 3.3.0)
-    sidekiq (5.2.2)
-      connection_pool (~> 2.2, >= 2.2.2)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 5)
-    sidekiq-failures (1.0.0)
-      sidekiq (>= 4.0.0)
     simple_form (4.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -346,8 +337,6 @@ DEPENDENCIES
   recaptcha
   redis
   sass-rails
-  sidekiq
-  sidekiq-failures (~> 1.0)
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
