@@ -20,7 +20,6 @@
               ["Service Center", "service_center"]], prompt: "Select location type", required: true, hint: 'Pick up location type.' %>
         <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", collection: @product_model %>
         <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
-        <%= f.input :invoice_date, required: true,as: :string, input_html: {class: "datepicker"},  hint: 'Aaron\'s PO invoice date .'  %>
         <%= f.input :lease_date, as: :string, required: false, input_html: {class: "datepicker"},  hint: 'Aaron\'s inital lease date.' %>
         <div class="check-box">
           <input type="checkbox" id="no_lease" onclick="myFunction()" class="form-group"><small class="form-text text-muted">No Lease - if item has not been leased to a customer.</small></input>
