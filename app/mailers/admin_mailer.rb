@@ -4,7 +4,9 @@ class AdminMailer < ApplicationMailer
     @return_pending = Return.pending_approval
     @return_fedex = Return.fedex_product
     @return_tsg = Return.ltl_product
-    mail( to: "rmontemayor@funaiservice.com, nhart@funaiservice.com, kchen@funaiservice.com, aguerra@funaicorp.com, ANguyen@funaicorp.com, cgibson@funaiservice.com",
+    # mail( to: "rmontemayor@funaiservice.com, nhart@funaiservice.com, kchen@funaiservice.com, aguerra@funaicorp.com, ANguyen@funaicorp.com, cgibson@funaiservice.com",
+    # subject: "Funai Pending Stats")
+    mail( to: "rmontemayor@funaiservice.com",
     subject: "Funai Pending Stats")
   end
 end
