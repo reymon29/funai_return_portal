@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  require "sidekiq/web"
-  authenticate :user, lambda { |u| u.admin } do
-    mount Sidekiq::Web => '/sidekiq'
-  end
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { passwords: "passwords", registrations: "registrations" }
   devise_scope :user do

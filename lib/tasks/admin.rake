@@ -1,6 +1,6 @@
-namespace :user do
-  desc "Sending email daily"
-  task "send" do |t, args|
+namespace :email do
+  desc "Pending counts daily email"
+  task "send" do
     AdminJob.perform_now
   end
 end
