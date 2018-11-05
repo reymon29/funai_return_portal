@@ -22,8 +22,6 @@ class ReturnsController < ApplicationController
     @services = ServiceCenter.all
     @product_model = Product.order(:model_number).where(enable: true)
     @return = Return.new(return_params)
-    @return.store_number.upcase
-    @return.serial_number.upcase
     @return_log = ReturnLog.new
     @return.rma_status = "Submitted for Approval"
     @return.user = current_user
@@ -79,7 +77,6 @@ class ReturnsController < ApplicationController
 
   def update
     @return_log = ReturnLog.new
-    @return.store_number.upcase
     @services = ServiceCenter.all
     @return.rma_status = "Updated Info, awaiting review"
     @product = Product.find_by(id: params[:return][:product_id])
@@ -129,6 +126,6 @@ class ReturnsController < ApplicationController
   end
 
   def return_params
-    params.require(:return).permit(:item_number, :location_type, :model_number, :store_number, :serial_number, :invoice_date, :lease_date, :part_number, :return_reason, :comment, :product_id, :attention_name, :address, :address2, :city, :zip, :state, :country ,:contact_number, :special_comments, images_attributes: [:image, :return_id])
+    params.require(:return).permit(:item_number, :location_type, :model_number, :store_number, :serial_number, :lease_date, :part_number, :return_reason, :comment, :product_id, :attention_name, :address, :address2, :city, :zip, :state, :country ,:contact_number, :special_comments, images_attributes: [:image, :return_id])
   end
 end
