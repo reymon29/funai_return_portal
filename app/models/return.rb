@@ -62,6 +62,11 @@ class Return < ApplicationRecord
    @returns = Return.where(created_at: (Date.today - 90)..Date.tomorrow)
   end
 
+  def self.sort_rmas
+    @returns = Return.all
+    @returns.order('updated_at desc, rma_number desc')
+  end
+
   private
 
   def normalize_name
