@@ -7,7 +7,7 @@
         <%= text_field_tag :query,
         params[:query],
         class: "form-control search-bar",
-        placeholder: "Search Aaron's item number" %>
+        placeholder: "Search RMA# | item number" %>
       </div>
         <%= submit_tag("Search", class: "btn btn-default") %>
       <% end %>
@@ -83,7 +83,7 @@
         <% @returns.each do |return_item| %>
         <% if return_item.rma_status == "RMA Denied, past return period" || return_item.rma_status == "RMA Denied, not enough information" || return_item.rma_status == "RMA Cancelled"%>
         <% else %>
-        <% if return_item.rma_status == "Submitted for Approval" && return_item.rma_number.empty? || return_item.rma_status == "Updated Info, awaiting review" && return_item.rma_number.empty? || return_item.rma_number.nil?%>
+        <% if return_item.rma_status == "Submitted for Approval" && return_item.rma_number.blank? || return_item.rma_status == "Updated Info, awaiting review" && return_item.rma_number.blank? || return_item.rma_number.nil? %>
           <tr>
             <td>
               <%= return_item.item_number %>
@@ -197,6 +197,7 @@
       <h3>Completed</h3>
       <p>Great job! We have completed a total of <%= Return.completed %>.</p>
         </div>
+
     <!-- Denied items -->
     <div id="menu4" class="tab-pane fade">
       <h3>Denied</h3>

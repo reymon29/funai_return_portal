@@ -5,7 +5,7 @@ module Shipping
     def index
       # @returns = Return.all
       if params[:query].present?
-        @returns = Return.where(item_number: params[:query])
+        @returns = Return.where("item_number = ? or rma_number = ?", params[:query], params[:query])
       else
         @returns = policy_scope(Return).order(created_at: :desc)
         respond_to do |format|
