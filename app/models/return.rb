@@ -31,7 +31,7 @@ class Return < ApplicationRecord
 
   def self.pending_approval
     @returns = self
-    @returns.where(rma_status: "Submitted for Approval").or(Return.where(rma_status: "Updated Info, awaiting review")).count
+    @returns.where(rma_status: "Submitted for Approval").or(Return.where("rma_status = ? and rma_number = ?", "Updated Info, awaiting review", nil)).count
   end
 
   def self.fedex_product

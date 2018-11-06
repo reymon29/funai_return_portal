@@ -83,7 +83,7 @@
         <% @returns.each do |return_item| %>
         <% if return_item.rma_status == "RMA Denied, past return period" || return_item.rma_status == "RMA Denied, not enough information" || return_item.rma_status == "RMA Cancelled"%>
         <% else %>
-        <% if return_item.rma_status.empty? || return_item.rma_number.nil? || return_item.rma_status == "Updated Info, awaiting review" && return_item.rma_number.empty? %>
+        <% if return_item.rma_status.empty? || return_item.rma_number.nil? || return_item.rma_status == "Updated Info, awaiting review" && return_item.rma_number.nil? %>
           <tr>
             <td>
               <%= return_item.item_number %>
