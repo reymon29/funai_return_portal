@@ -83,6 +83,19 @@ class ReturnsController < ApplicationController
     @return.product = @product
     @location = params[:return][:country] == "US" ? ReturnLocation.find_by_id(1) : ReturnLocation.find_by_id(2)
     @return.return_location = @location
+    if @product.nil?
+      flash[:alert] = "Model number is required"
+    else
+      if @services.find_by(store_number: @return.store_number)
+        if @product.product_type === "TV"
+          @return.return_carrier = "LTL-TSG"
+        else
+          @return.return_carrier = "FedEx"
+        end
+      else
+        @return.return_carrier = @product.carrier_default
+      end
+    end
 
     if @return.update(return_params)
 
@@ -91,15 +104,7 @@ class ReturnsController < ApplicationController
           @return.images.create(image: image)
         end
       end
-      if @product.nil?
-        flash[:alert] = "Model number is required"
-      else
-        if @services.find_by(store_number: @return.store_number)
-          @return.return_carrier = "LTL-TSG"
-        else
-          @return.return_carrier = @product.carrier_default
-        end
-      end
+
       @return_log.return = @return
       @return_log.user = current_user
       @return_log.comment = "Return was updated"
