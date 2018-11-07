@@ -64,7 +64,7 @@ class Return < ApplicationRecord
 
   def self.sort_rmas
     @returns = Return.all
-    @returns.order('updated_at desc, rma_number desc')
+    @returns.order('rma_number desc')
   end
 
   private
