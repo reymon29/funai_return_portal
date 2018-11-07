@@ -72,9 +72,8 @@ Funai - Edit Return <%= @return.item_number %>
 </div>
 
 
-
+<%= content_for(:after_js) do %>
 <script>
-
   var btnSave = document.querySelector(".btn-primary");
   var defaultSVG = document.querySelector(".container-svg");
   var defaultFlex = document.querySelector(".flex-container");
@@ -84,7 +83,6 @@ Funai - Edit Return <%= @return.item_number %>
     defaultAlert.style.display = "none";
     defaultSVG.style.display = "inline";
   });
-
 </script>
-
+<% end %>
 

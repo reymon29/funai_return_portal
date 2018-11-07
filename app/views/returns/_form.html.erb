@@ -133,7 +133,7 @@
     </div>
   </div>
 </div>
-
+<%= content_for(:after_js) do %>
 <script>
 
   var btnSave = document.querySelector(".btn-primary");
@@ -290,4 +290,5 @@ var countries = ["<%= current_user.store_number %>"];
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("return_store_number"), countries);
 </script>
+<% end %>
 

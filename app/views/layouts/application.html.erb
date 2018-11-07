@@ -26,9 +26,10 @@
     <div class="content">
     <%= render 'shared/flashes' %>
     <%= yield %>
-      <%= javascript_include_tag 'application' %>
-      <%= javascript_pack_tag 'application' %>
     </div>
     <%= render 'shared/footer' %>
   </body>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_pack_tag 'application' %>
+  <%= yield(:after_js) %>
 </html>

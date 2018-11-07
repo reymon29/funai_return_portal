@@ -112,7 +112,7 @@ Funai - Return <%= @return.item_number %>
           <%= f.error_notification %>
           <div class="col-md-4 col-lg-4 col-sm-6">
             <%= f.input :return_tracking, required: true %>
-            <%= f.input :rma_status, required: true, collection: ["Completed, shipping assigned"] %>
+            <%= f.input :rma_status, required: true, collection: ["Completed, shipping assigned"], prompt: "Completed, shipping assigned" %>
             <%= f.input :rma_number, as: :hidden, input_html: { value: "#{@return.rma_number}" } %>
             <%= f.input :date_tracking, as: :hidden, input_html: { value: Date.today } %>
           </div>
@@ -126,14 +126,11 @@ Funai - Return <%= @return.item_number %>
     </div>
   </div>
 </div>
-
+<%= content_for(:after_js) do %>
 <script>
-
   const rmaStatus = document.getElementById('return_rma_status');
   const btnSubmit = document.getElementById('btn-submit');
-
   const rmaTrackingNumber = document.getElementById('return_return_tracking');
-
   btnSubmit.style.display = "none";
   rmaStatus.style.display = "none";
   rmaTrackingNumber.addEventListener('change', (event) => {
@@ -142,13 +139,8 @@ Funai - Return <%= @return.item_number %>
       console.log('Log check');
     } else {
       rmaStatus.style.display = "inline";
-    }
-  });
-
-  rmaStatus.addEventListener('change', (event) => {
-    if(rmaStatus.value === "Completed, shipping assigned"){
       btnSubmit.style.display = "inline";
     }
   });
-
 </script>
+<% end %>
