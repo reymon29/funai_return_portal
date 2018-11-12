@@ -67,10 +67,11 @@ class Return < ApplicationRecord
     @returns = Return.all
     @returns.each do |item|
       if item.rma_number != nil
-        array << [item.id, item.rma_number]
+         rma = item.rma_number.split('RMA')
+        array << [rma[1], item.id, item.item_number, item.rma_number]
       end
     end
-    array.sort! {|x,y| y <=> x }
+    array.sort! {|y, z| z <=> y}
 
   end
 
