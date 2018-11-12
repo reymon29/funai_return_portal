@@ -63,8 +63,15 @@ class Return < ApplicationRecord
   end
 
   def self.sort_rmas
+    array = []
     @returns = Return.all
-    @returns.order('rma_number desc')
+    @returns.each do |item|
+      if item.rma_number != nil
+        array << [item.id, item.rma_number]
+      end
+    end
+    array.sort! {|x,y| y <=> x }
+
   end
 
   private
