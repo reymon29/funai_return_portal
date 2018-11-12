@@ -18,7 +18,11 @@
         <%= f.input :location_type, collection: [ ["Store", "store_front"],
               ["Fulfillment Center", "fulfillment_center"],
               ["Service Center", "service_center"]], prompt: "Select location type", required: true, hint: 'Pick up location type.' %>
+
         <%= f.association :product, required: true, label: "Model number", prompt: "Choose a product", collection: @product_model %>
+
+
+
         <%= f.input :serial_number, required: true, autofocus: true, hint: 'Aaron\'s Funai serial #.', placeholder: "ME1A1234567890" %>
         <%= f.input :lease_date, as: :string, required: false, input_html: {class: "datepicker"},  hint: 'Aaron\'s inital lease date.' %>
         <div class="check-box">

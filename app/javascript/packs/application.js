@@ -4,6 +4,7 @@ loadDynamicBannerText();
 import { tabs } from '../components/tab';
 tabs();
 import "../plugins/flatpickr"
+import '../components/select2';
 
 $(function(){
   $(".form-control-file").on("change", function(){

@@ -12,10 +12,8 @@ ActiveAdmin.register_page "Dashboard" do
     end
     panel "Recent Approved RMAs" do
       ul do
-        Return.sort_rmas.last(25).map do |return_item|
-          if return_item.rma_number != nil
-            li link_to(return_item.rma_number, admin_return_path(return_item))
-          end
+        Return.sort_rmas.last(5).each do |rma_item|
+          li rma_item[1]
         end
       end
     end
