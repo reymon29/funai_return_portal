@@ -12,7 +12,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
     panel "Recent Approved RMAs" do
       ul do
-        Return.sort_rmas.last(15).each do |rma_item|
+        Return.sort_rmas.first(15).each do |rma_item|
           li link_to(rma_item[3], admin_return_path(rma_item[2]))
         end
       end
