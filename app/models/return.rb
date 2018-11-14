@@ -64,14 +64,12 @@ class Return < ApplicationRecord
 
   def self.sort_rmas
     array = []
-    @returns = Return.all
+    @returns = Return.where.not(rma_number: [nil, ""])
     @returns.each do |item|
-      if item.rma_number != nil
-         rma = item.rma_number.split('RMA')
-        array << [rma[1], item.id, item.item_number, item.rma_number]
-      end
+      rma = item.rma_number.split('RMA')
+      array << [rma[1], item.id, item.item_number, item.rma_number]
     end
-    array.sort {|y, z| z <=> y}
+    array.sort! {|y, z| z <=> y}
 
   end
 
