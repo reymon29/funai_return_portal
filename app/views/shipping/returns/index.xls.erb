@@ -34,7 +34,7 @@
         <Cell><Data ss:Type="String">deliverto_contact_number</Data></Cell>
       </Row>
     <% @returns.each do |return_item| %>
-    <% if return_item.rma_status != "Completed, shipping assigned" && return_item.rma_number != nil && return_item.return_carrier == "LTL-TSG" && return_item.rma_number != "" %>
+    <% if return_item.rma_status != "Completed, shipping assigned" && return_item.rma_status != "RMA Cancelled" && return_item.rma_number != nil && return_item.return_carrier == "LTL-TSG" && return_item.rma_number != "" %>
       <Row>
         <Cell><Data ss:Type="String"><%= return_item.rma_number %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.rma_status %></Data></Cell>
