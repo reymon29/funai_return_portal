@@ -71,7 +71,7 @@ class Return < ApplicationRecord
         array << [rma[1], item.id, item.item_number, item.rma_number]
       end
     end
-    array.sort! {|y, z| z <=> y}
+    array.sort {|y, z| z <=> y}
 
   end
 
