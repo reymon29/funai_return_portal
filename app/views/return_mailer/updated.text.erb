@@ -1,6 +1,6 @@
 Hi <%= @return.user.store_number %>
 <%= @return.item_number %> has been updated.
-Status <%= @return.rma_status %>
+Status <%= @return.rma_status %> <%= if @return.rma_number.blank? then else @return.rma_number end%>
 <%if @return.rma_status == "RMA Approved, assigning shipping" %>
   <%= @return.return_carrier %>Tracking: Shipping will be assigned shortly
 <% elsif @return.rma_status == "RMA Denied, please review again" %>
@@ -13,6 +13,6 @@ Tracking:<%= @return.return_carrier %> || <%= @return.return_tracking %>
 
 <%= @return.product.model_number %> <%= @return.serial_number %>
 
-Sincerly, Funai Team
+Sincerely, Funai Team
 
 Please note: If FedEx is assigned a return label is emailed separately. If LTL-TSG is assigned then our freight company TSG will be contacting you within 14-20 business days once a BOL is assigned, then they will reach out to schedule a pickup.
