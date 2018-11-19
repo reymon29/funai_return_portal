@@ -26,6 +26,7 @@ class Return < ApplicationRecord
   validates :contact_number, presence: true, format: { with: /^[0-9]{10}$/, multiline: true,
     message: "format 5555555555" }
   validates :location_type, presence: true
+  validates :rma_status, inclusion: { in: ["Submitted for Approval", "Updated Info, awaiting review", "RMA Approved, assigning shipping", "RMA Denied, past return period", "RMA Denied, not enough information", "RMA Cancelled", "Completed, shipping assigned"] }
   validates :rma_number, uniqueness: { message: "has already been assigned please check your past RMAs"}, allow_blank: true, format: { with: /^[RMA]+[\d]*$/, multiline: true, message: "format RMA0000000"}
   before_validation :normalize_name, on: [ :create, :update ]
 
