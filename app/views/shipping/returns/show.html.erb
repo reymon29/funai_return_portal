@@ -11,11 +11,9 @@ Funai - Return <%= @return.item_number %>
     <% end %>
       <% if @return.rma_number.blank? %>
       <% else %>
-        <% if @return.rma_status == "RMA Approved, assigning shipping" || @return.rma_status == "Pending, waiting on info" || @return.rma_status == "Updated Info, awaiting review" %>
           <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal" id="add-tracking">
             Add Tracking
           </button>
-        <% end %>
       <% end %>
     </div>
   <div class="flex-container-show">
