@@ -3,8 +3,10 @@ class ReturnsController < ApplicationController
 
   def index
     # @returns = Return.all
+    @user = current_user
+
     if params[:query].present?
-      @returns = Return.where(item_number: params[:query])
+      @returns = Return.where("item_number = ? and user_id = ?", params[:query], @user)
     else
       @returns = policy_scope(Return).order(created_at: :desc)
     end

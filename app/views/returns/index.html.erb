@@ -45,13 +45,11 @@ Funai - Return Items for <%= current_user.store_number %>
       </table>
       <!-- not found -->
       <% if @returns == [] %>
-        <h5>Not found</h5>
+        <h5>Not found or item belongs to another user.</h5>
+        <h5>For more information <%= link_to "Contact us", new_contactform_path %>.</h5>
       <% end %>
     <% else %>
     <!-- display -->
-    <% @returns.each do |return_item| %>
-
-    <% end %>
 
     <div class="nav nav-tabs" id="nav-id">
       <a class="navbar-wagon-link navbar-wagon-item item-over" data-toggle="tab" href="#home">
@@ -75,7 +73,7 @@ Funai - Return Items for <%= current_user.store_number %>
           <th>RMA Number</th>
           <th>Options</th>
         </tr>
-        <% @returns.each do |return_item| %>
+        <% @returns.limit(15).each do |return_item| %>
           <tr>
             <td>
               <%= return_item.item_number %>
