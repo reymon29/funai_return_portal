@@ -6,45 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+puts '<'
+puts 'creating Return Locations'
 
-store_random = ['F1234', 'C1234', 'D1234', 'F1234'].sample
-model_number_random = ['50PFL5601/F7', '50MV336V/F7', '40MV336V/F7', '65PFL5603/F7'].sample
-part_number_random = ['Panel', 'Power Board', 'Digital Main', 'More than one reason refer to comment' ].sample
-rma_status = "Submitted for Approval"
-# 10.times do
-#  create_user = User.new(
-#     email: Faker::Internet.email,
-#     first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     password: 'TopSecret',
-#     store_number: store_random,
-#     address: Faker::Address.street_name,
-#     address2: Faker::Address.secondary_address,
-#     city: Faker::Address.city,
-#     state: Faker::Address.state_abbr,
-#     zip: Faker::Address.zip,
-#     country: "USA"
-#     )
-#  create_user.save
-#  puts "user created"
-
-# 15.times do
-#   create_return = Return.new(
-#     item_number: Faker::IDNumber.valid,
-#     model_number: model_number_random,
-#     serial_number: Faker::Invoice.reference,
-#     invoice_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
-#     lease_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
-#     part_number: part_number_random,
-#     return_reason: Faker::Lorem.sentence,
-#     comment: Faker::Lorem.paragraphs(1),
-#     rma_status: rma_status
-#     )
-#   create_return.user = create_user
-#   create_return.save
-#   puts "User has been assigned returns"
-  # end
-# end
+ReturnLocation.create(
+            company: "Funai Service",
+            attention_name: "Aaron's Product Return",
+            address: "2425 Speigel Dr",
+            city: "Groveport",
+            state: "OH",
+            zip: "43125",
+            country: "US",
+            contact_number: "6146456000")
+ReturnLocation.create(
+            company: "COSMO COMMUNICATIONS CANADA",
+            attention_name: "Aaron's Product Return",
+            address: "2750 14TH AVE UNIT G11",
+            city: "MARKHAM",
+            state: "ON",
+            zip: "L3R0B6",
+            country: "CA",
+            contact_number: "6146456000")
 
 puts '<'
 puts 'creating model list'
@@ -666,27 +648,82 @@ model_78 = Product.new(
                 )
 model_78.save
 
-puts '<'
-puts 'creating Return Locations'
 
-ReturnLocation.create(
-            company: "Funai Service",
-            attention_name: "Aaron's Product Return",
-            address: "2425 Speigel Dr",
-            city: "Groveport",
-            state: "OH",
-            zip: "43125",
-            country: "US",
-            contact_number: "6146456000")
-ReturnLocation.create(
-            company: "COSMO COMMUNICATIONS CANADA",
-            attention_name: "Aaron's Product Return",
-            address: "2750 14TH AVE UNIT G11",
-            city: "MARKHAM",
-            state: "ON",
-            zip: "L3R0B6",
-            country: "CA",
-            contact_number: "6146456000")
+store_random = ['F1234', 'C1234', 'D1234', 'F1234'].sample
+part_number_random = ['Panel', 'Power Board', 'Digital Main', 'More than one reason refer to comment' ].sample
+rma_status = "Submitted for Approval"
+# 100.times do
+#  create_user = User.new(
+#     email: Faker::Internet.email,
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     password: 'TopSecret',
+#     store_number: store_random,
+#     address: Faker::Address.street_name,
+#     address2: Faker::Address.secondary_address,
+#     city: Faker::Address.city,
+#     state: Faker::Address.state_abbr,
+#     zip: Faker::Address.zip,
+#     country: "USA"
+#     )
+#  create_user.save
+#  puts "user created"
+
+user_new = User.new(
+  email: "rmontemayor@funaiservice.com",
+  store_number: "FUNAI",
+  address: "2425 Speigel Dr",
+  city: "Groveport",
+  zip: "43125",
+  state: "OH",
+  country: "US",
+  admin: true,
+  address2: nil,
+  first_name: "Rey",
+  last_name: "Montemayor",
+  phone_number: "3102940678",
+  location_type: "service_center",
+  tos: true,
+  password: "TopSecret"
+  )
+user_new.save
+80.times do
+  @return_log = ReturnLog.new
+  create_return = Return.new(
+    item_number: Faker::IDNumber.valid,
+    product: Product.find_by(id: 1),
+    serial_number: Faker::String.random(14),
+    lease_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
+    part_number: part_number_random,
+    return_reason: Faker::Lorem.sentence,
+    rma_status: rma_status,
+    return_location: ReturnLocation.find_by_id(1),
+    return_carrier: "FedEx",
+    location_type: "store_front",
+    store_number: user_new.store_number,
+    attention_name: user_new.store_number,
+    address: user_new.address,
+    city: user_new.city,
+    zip: user_new.zip,
+    state: user_new.state,
+    country: user_new.country,
+    contact_number: user_new.phone_number
+    )
+  create_return.user = User.find_by(id: 1)
+  if create_return.save
+    print "Return Saved"
+  else
+    print "#{create_return.errors.full_messages}"
+  end
+    @return_log.return = create_return
+    @return_log.user = user_new
+    @return_log.comment = "Return request created"
+    @return_log.save
+  # create_return.user = create_user
+  # create_return.save
+  puts "User has been assigned returns"
+  end
+# end
 
 puts '<'
 puts 'creating Service Center Locations'
@@ -892,38 +929,4 @@ ServiceCenter.create(
 puts '<'
 puts 'creating user'
 
-User.create(
-  email: "rmontemayor@funaiservice.com",
-  store_number: "FUNAI",
-  address: "2425 Speigel Dr",
-  city: "Groveport",
-  zip: "43125",
-  state: "OH",
-  country: "US",
-  admin: true,
-  address2: nil,
-  first_name: "Rey",
-  last_name: "Montemayor",
-  phone_number: "3102940678",
-  location_type: "service_center",
-  tos: true,
-  password: "TopSecret"
-  )
 
-User.create(
-  email: "rmontemayor@funaicorp.com",
-  store_number: "FUNAI",
-  address: "19900 Van Ness",
-  city: "Torrance",
-  zip: "90501",
-  state: "CA",
-  country: "US",
-  admin: false,
-  address2: "ste b",
-  first_name: "Rey",
-  last_name: "Montemayor",
-  phone_number: "3102940678",
-  location_type: "service_center",
-  tos: true,
-  password: "TopSecret"
-  )

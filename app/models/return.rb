@@ -55,12 +55,16 @@ class Return < ApplicationRecord
     @returns.where(["rma_status = ?", "RMA Denied, past return period"]).or(Return.where(["rma_status = ?", "RMA Denied, not enough information"])).count
   end
 
+  def self.fifteen
+   @returns = Return.last(15)
+  end
+
   def self.thirty
-   @returns = Return.where(created_at: (Date.today - 30)..Date.tomorrow)
+   @returns = Return.where(created_at: (Date.today - 30)..Date.tomorrow).limit(45)
   end
 
   def self.ninety
-   @returns = Return.where(created_at: (Date.today - 90)..Date.tomorrow)
+   @returns = Return.where(created_at: (Date.today - 90)..Date.tomorrow).limit(100)
   end
 
   def self.sort_rmas

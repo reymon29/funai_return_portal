@@ -64,107 +64,20 @@ Funai - Return Items for <%= current_user.store_number %>
     </div>
 
     <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <table class="table table-hover">
-        <tr>
-          <th>Item Number</th>
-          <th>Model Number</th>
-          <th>RMA Status</th>
-          <th>RMA Number</th>
-          <th>Options</th>
-        </tr>
-        <% @returns.each do |return_item| %>
-          <tr>
-            <td>
-              <%= return_item.item_number %>
-            </td>
-            <td>
-              <%= return_item.product.model_number %>
-            </td>
-            <td>
-              <%= return_item.rma_status %>
-            </td>
-            <td>
-              <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
-            </td>
-            <td>
-              <%= link_to "Open", return_path(return_item) %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-    <!-- 30 days -->
-    <div id="menu1" class="tab-pane fade">
-        <table class="table table-hover">
-        <tr>
-          <th>Item Number</th>
-          <th>Model Number</th>
-          <th>RMA Status</th>
-          <th>RMA Number</th>
-          <th>Options</th>
-        </tr>
-        <% @returns.thirty.each do |return_item| %>
-
-            <tr>
-              <td>
-                <%= return_item.item_number %>
-              </td>
-              <td>
-                <%= return_item.product.model_number %>
-              </td>
-              <td>
-                <%= return_item.rma_status %>
-              </td>
-              <td>
-                <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
-              </td>
-              <td>
-                <%= link_to "Open", return_path(return_item) %>
-              </td>
-            </tr>
-        <% end %>
-      </table>
-    </div>
-    <!-- 90 days -->
-    <div id="menu2" class="tab-pane fade">
-      <table class="table table-hover">
-        <tr>
-          <th>Item Number</th>
-          <th>Model Number</th>
-          <th>RMA Status</th>
-          <th>RMA Number</th>
-          <th>Options</th>
-        </tr>
-        <% @returns.ninety.each do |return_item| %>
-
-            <tr>
-              <td>
-                <%= return_item.item_number %>
-              </td>
-              <td>
-                <%= return_item.product.model_number %>
-              </td>
-              <td>
-                <%= return_item.rma_status %>
-              </td>
-              <td>
-                <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
-              </td>
-              <td>
-                <%= link_to "Open", return_path(return_item) %>
-              </td>
-            </tr>
-           <% end %>
-
-      </table>
-    </div>
+      <div id="home" class="tab-pane fade in active">
+        <%= render 'last', return: @return  %>
+      </div>
+      <!-- 30 days -->
+      <div id="menu1" class="tab-pane fade">
+        <%= render 'thirty', return: @return  %>
+      </div>
+      <!-- 90 days -->
+      <div id="menu2" class="tab-pane fade">
+        <%= render 'ninety', return: @return  %>
+      </div>
     </div>
     <% end %>
   </div>
 </div>
-
-
-
-  <%= link_to "Dashboard", dashboard_path, class: "btn btn-primary" %>
+<%= link_to "Dashboard", dashboard_path, class: "btn btn-primary" %>
 

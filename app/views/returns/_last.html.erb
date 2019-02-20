@@ -1,0 +1,28 @@
+      <table class="table table-hover">
+        <tr>
+          <th>Item Number</th>
+          <th>Model Number</th>
+          <th>RMA Status</th>
+          <th>RMA Number</th>
+          <th>Options</th>
+        </tr>
+        <% @returns.fifteen.each do |return_item| %>
+          <tr>
+            <td>
+              <%= return_item.item_number %>
+            </td>
+            <td>
+              <%= return_item.product.model_number %>
+            </td>
+            <td>
+              <%= return_item.rma_status %>
+            </td>
+            <td>
+              <%= return_item.rma_number.nil? ? "No RMA assigned" : return_item.rma_number %>
+            </td>
+            <td>
+              <%= link_to "Open", return_path(return_item) %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
