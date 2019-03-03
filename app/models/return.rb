@@ -56,7 +56,7 @@ class Return < ApplicationRecord
   end
 
   def self.fifteen
-   @returns = Return.last(15)
+   @returns = Return.first(15)
   end
 
   def self.thirty
