@@ -20,6 +20,10 @@
 
 .flex-container-show {
   display: flex;
+  flex-flow: row wrap;
+
+  /* Then we define how is distributed the remaining space */
+  justify-content: flex-end;
 
   p {
   font-size: 14px;
@@ -32,8 +36,8 @@
     font-size: 18px;
   }
   .flex-item-show{
-    padding: 15px 25px;
-    flex-wrap: nowrap;
+    box-sizing: inherit;
+    padding-bottom: 15px;
   }
 }
 

@@ -17,7 +17,7 @@ Funai - Return <%= @return.item_number %>
       <% end %>
     </div>
   <div class="flex-container-show">
-    <div class="flex-item-show">
+    <div class="flex-item-show col-md-4 col-sm-4">
       <h5> Contact</h5>
       <p>From: <%= @return.user.store_number %></br>
       <a href= "mailto:<%= @return.user.email %>"><%= @return.user.email %></a></p>
@@ -25,13 +25,13 @@ Funai - Return <%= @return.item_number %>
       <p>Submitted on: <%= @return.created_at.strftime("%m/%d/%Y") %></p>
     </div>
 
-    <div class="flex-item-show">
+    <div class="flex-item-show col-md-4 col-sm-4">
       <h5>Model</h5>
       <p> Model: <%= @return.product.model_number %></p>
       <p> Serial: <%= @return.serial_number %></p>
       <p> Weight: <%= @return.product.weight %> lbs</p>
     </div>
-    <div class="flex-item-show">
+    <div class="flex-item-show col-md-4 col-sm-4">
       <h5>Return Reason</h5>
       <p> Lease Date: <%= @return.lease_date.nil? ? "Not available" : @return.lease_date %></p>
       <p>Return Reason: <%= @return.return_reason %></p>
@@ -40,14 +40,14 @@ Funai - Return <%= @return.item_number %>
     </div>
   </div>
   <div class="flex-container-show">
-    <div class="flex-item-show">
+    <div class="flex-item-show col-md-4 col-sm-4">
       <h5>Pickup Address</h5>
       <p> <%= @return.store_number %></br><%= @return.attention_name %></br>
        <%= @return.address %> <%= @return.address2 %> </br><%=  @return.city %> <%= @return.state %> <%= @return.zip %> <%= @return.country %></p>
       <p><%= @return.contact_number %></p>
       <p>Special Message: <%= @return.special_comments %></p>
     </div>
-    <div class="flex-item-show">
+    <div class="flex-item-show col-md-4 col-sm-4">
       <h5>Return Location</h5>
       <p><%= @return.return_location.company %></br>
       <%= @return.return_location.attention_name %></br>
