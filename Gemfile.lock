@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: 21469050740f9d5fba2c584296a9d3c278f2fd09
+  revision: 475d2ad9bbbff247027ea0f1ebc0bc511d672e54
   specs:
     activeadmin (2.0.0.rc1)
       arbre (~> 1.1, >= 1.1.1)
@@ -17,13 +17,13 @@ GIT
 
 GIT
   remote: git://github.com/activeadmin/inherited_resources.git
-  revision: 95d1e24d97dd0f871fecfea662805953d7fcd44b
+  revision: ef943a6b6d5d0fdb5ea29adbcfada8b576a79d9b
   specs:
-    inherited_resources (1.9.0)
+    inherited_resources (1.10.0.rc1)
       actionpack (>= 5.0, < 6.0)
       has_scope (~> 0.6)
       railties (>= 5.0, < 6.0)
-      responders
+      responders (~> 2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -237,7 +237,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    recaptcha (4.13.1)
+    recaptcha (4.13.2)
       json
     redis (4.1.0)
     responders (2.4.1)
