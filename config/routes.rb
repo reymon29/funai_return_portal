@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_out', to:'devise/sessions#destroy'
   end
-
-
   root to: 'pages#home'
   get 'dashboard', to: 'pages#dashboard', as: :dashboard
   get 'funaiwiki', to: 'pages#funaiwiki', as: :funaiwiki
@@ -16,6 +14,5 @@ Rails.application.routes.draw do
   namespace :shipping do
     resources :returns
   end
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
