@@ -17,7 +17,9 @@
       <table class="table table-hover">
         <tr>
           <th>Item Number</th>
+          <th>Email</th>
           <th>Model Number</th>
+          <th>Serial Number</th>
           <th>RMA Status</th>
           <th>Options</th>
         </tr>
@@ -27,7 +29,13 @@
               <%= return_item.item_number %>
             </td>
             <td>
+              <%= return_item.user.email %>
+            </td>
+            <td>
               <%= return_item.product.model_number %>
+            </td>
+            <td>
+              <%= return_item.serial_number %>
             </td>
             <td>
               <%= return_item.rma_status %>
@@ -75,7 +83,9 @@
       <table class="table table-hover">
         <tr>
           <th>Item Number</th>
+          <th>Email</th>
           <th>Model Number</th>
+          <th>Serial Number</th>
           <th>RMA Status</th>
           <th>RMA Number</th>
           <th>Options</th>
@@ -89,7 +99,13 @@
               <%= return_item.item_number %>
             </td>
             <td>
+              <%= return_item.user.email %>
+            </td>
+            <td>
               <%= return_item.product.model_number %>
+            </td>
+            <td>
+              <%= return_item.serial_number %>
             </td>
             <td>
               <%= return_item.rma_status %>
