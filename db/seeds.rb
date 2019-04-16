@@ -687,42 +687,7 @@ user_new = User.new(
   password: "TopSecret"
   )
 user_new.save
-80.times do
-  @return_log = ReturnLog.new
-  create_return = Return.new(
-    item_number: Faker::IDNumber.valid,
-    product: Product.find_by(id: 1),
-    serial_number: Faker::String.random(14),
-    lease_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
-    part_number: part_number_random,
-    return_reason: Faker::Lorem.sentence,
-    rma_status: rma_status,
-    return_location: ReturnLocation.find_by_id(1),
-    return_carrier: "FedEx",
-    location_type: "store_front",
-    store_number: user_new.store_number,
-    attention_name: user_new.store_number,
-    address: user_new.address,
-    city: user_new.city,
-    zip: user_new.zip,
-    state: user_new.state,
-    country: user_new.country,
-    contact_number: user_new.phone_number
-    )
-  create_return.user = User.find_by(id: 1)
-  if create_return.save
-    print "Return Saved"
-  else
-    print "#{create_return.errors.full_messages}"
-  end
-    @return_log.return = create_return
-    @return_log.user = user_new
-    @return_log.comment = "Return request created"
-    @return_log.save
-  # create_return.user = create_user
-  # create_return.save
-  puts "User has been assigned returns"
-  end
+
 # end
 
 puts '<'
