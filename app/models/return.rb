@@ -29,13 +29,13 @@ class Return < ApplicationRecord
   validates :rma_status, inclusion: { in: ["Submitted for Approval", "Updated Info, awaiting review", "RMA Approved, assigning shipping", "RMA Denied, past return period", "RMA Denied, not enough information", "RMA Cancelled", "Completed, shipping assigned"] }
   validates :rma_number, uniqueness: { message: "has already been assigned please check your past RMAs"}, allow_blank: true, format: { with: /^[RMA]+[\d]*$/, multiline: true, message: "format RMA0000000"}
   before_validation :normalize_name, on: [ :create, :update ]
-  validate :canada_not_authorized, on: :create
+  # validate :canada_not_authorized, on: :create
 
-  def canada_not_authorized
-    if return_location.country === "CA"
-      errors.add(:canada_not_authorized, "We do not accept claims from Canada please contact your US affiliate HQ for further instruction")
-    end
-  end
+  # def canada_not_authorized
+  #   if return_location.country === "CA"
+  #     errors.add(:canada_not_authorized, "We do not accept claims from Canada please contact your US affiliate HQ for further instruction")
+  #   end
+  # end
 
   def self.pending_approval
     @returns = self
