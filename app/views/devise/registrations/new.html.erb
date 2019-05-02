@@ -70,16 +70,18 @@ Funai - Signup
               ['Wyoming', 'WY'],
               ["           "],
               ['Alberta', 'AB' ],
-              ['Manitoba', 'BC' ],
+              ['British Columbia', 'BC' ],
+              ['Manitoba', 'MB' ],
               ['New Brunswick', 'NB' ],
               ['Newfoundland and Labrador', 'NL' ],
               ['Nova Scotia', 'NS' ],
               ['Northwest Territories', 'NT' ],
               ['Nunavut', 'NU' ],
               ['Ontario', 'ON' ],
+              ['Prince Edward Island', 'PE' ],
               ['Quebec', 'OC' ],
               ['Saskatchewan', 'SK' ],
-              ['Yukon', 'IT' ]],
+              ['Yukon', 'YT' ]],
               prompt: "Select state" %>
             <%= f.input :zip, required: true %>
             <%= f.country_select :country, only: ["CA"], priority_countries: ["US"], prompt: "Select country" %>
