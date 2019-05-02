@@ -54,15 +54,17 @@ module StatesHelper
       ['Wyoming', 'WY'],
       ["           "],
       ['Alberta', 'AB' ],
-      ['Manitoba', 'BC' ],
+      ['British Columbia', 'BC' ],
+      ['Manitoba', 'MB' ],
       ['New Brunswick', 'NB' ],
       ['Newfoundland and Labrador', 'NL' ],
       ['Nova Scotia', 'NS' ],
       ['Northwest Territories', 'NT' ],
       ['Nunavut', 'NU' ],
       ['Ontario', 'ON' ],
+      ['Prince Edward Island', 'PE' ],
       ['Quebec', 'OC' ],
       ['Saskatchewan', 'SK' ],
-      ['Yukon', 'IT' ]]
+      ['Yukon', 'YT' ]]
   end
 end
