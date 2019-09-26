@@ -1,8 +1,8 @@
 Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
 
-Prototype returns portal.
+Return portal for a store front locations. Allows crediting, shipping and store manage there product return requests.
 
-Demo
-https://radiant-peak-98658.herokuapp.com/
+
+
 
 
