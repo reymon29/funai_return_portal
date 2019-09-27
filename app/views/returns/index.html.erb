@@ -1,5 +1,5 @@
 <%= content_for(:meta_title) do %>
-Funai - Return Items for <%= current_user.store_number %>
+Funai - RMA Log for <%= current_user.store_number %>
 <% end %>
 <div class="container">
   <div class="row">
@@ -14,7 +14,7 @@ Funai - Return Items for <%= current_user.store_number %>
         class: "form-control search-bar",
         placeholder: "Search Aaron's item number" %>
       </div>
-        <%= submit_tag("Search", class: "btn btn-default") %>
+        <%= submit_tag("Search", class: "btn btn-default", id:"searchq") %>
       <% end %>
     </div>
     <!-- Search display -->
@@ -80,4 +80,5 @@ Funai - Return Items for <%= current_user.store_number %>
   </div>
 </div>
 <%= link_to "Dashboard", dashboard_path, class: "btn btn-primary" %>
+
 
