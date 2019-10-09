@@ -43,7 +43,7 @@
         <Cell><Data ss:Type="String"><%= return_item.product.model_number %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.serial_number %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.location_type %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= return_item.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= return_item.created_at.strftime("%m/%d/%Y") %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.store_number %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.attention_name %></Data></Cell>
         <Cell><Data ss:Type="String"><%= return_item.address %></Data></Cell>
