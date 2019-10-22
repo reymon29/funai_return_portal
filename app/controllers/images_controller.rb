@@ -1,7 +1,13 @@
 class ImagesController < ApplicationController
 
   def index
-    @images = policy_scope(Image).all
+    if params[:start_date].present?
+      @start_date = params[:start_date]
+      @end_date = params[:end_date]
+      @images = policy_scope(Image).where("created_at BETWEEN ? AND ?", @start_date, @end_date)
+    else
+      @images = policy_scope(Image).where(created_at: (Date.today - 30)..Date.tomorrow).limit(45)
+    end
   end
 
   def destroy
@@ -17,4 +23,5 @@ class ImagesController < ApplicationController
   def return_id_find
     @return = Return.friendly.find(@image.return_id)
   end
+
 end
