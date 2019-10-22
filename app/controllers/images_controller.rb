@@ -1,5 +1,9 @@
 class ImagesController < ApplicationController
 
+  def index
+    @images = policy_scope(Image).all
+  end
+
   def destroy
     @image = Image.find(params[:id])
     @image.remove_image = true

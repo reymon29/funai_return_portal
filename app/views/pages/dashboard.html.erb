@@ -1,5 +1,5 @@
-<%= content_for(:title) do %>
-Funai - Dashboard for <%= current_user.store_number %>
+<%= content_for(:meta_title) do %>
+Funai - Dashboard
 <% end %>
 <% if flash.nil? %>
 <% elsif flash[:notice]%>
@@ -11,12 +11,15 @@ Funai - Dashboard for <%= current_user.store_number %>
     <div class="col-sm-4 col-sm-offset-4 text-center">
       <h1>Welcome, <%= current_user.first_name %></h1>
       <h2>Dashboard</h2>
-      <% if current_user.admin %>
+      <% if current_user.admin? %>
         <%= link_to  shipping_returns_path, class: "navbar-wagon-link" do %>
           <h4>Approval and Shipping</h4>
         <% end %>
         <%= link_to  admin_dashboard_path, class: "navbar-wagon-link" do %>
           <h4>Admin Dashboard</h4>
+        <% end %>
+        <%= link_to images_path, class: "navbar-wagon-link" do %>
+          <h4>Photo Viewer</h4>
         <% end %>
       <% else %>
         <%= link_to new_return_path, class: "navbar-wagon-link" do%>
