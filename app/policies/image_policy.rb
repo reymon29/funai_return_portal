@@ -1,5 +1,4 @@
 class ImagePolicy < ApplicationPolicy
-
   def create?
     return true
   end

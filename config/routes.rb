@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'funaiwiki', to: 'pages#funaiwiki', as: :funaiwiki
   get 'funaiprivacy', to: 'pages#funaiprivacy', as: :funaiprivacy
   resources :returns
-  resources :images, only: [ :destroy]
+  resources :images, only: [ :index, :destroy]
   resources :contactforms, only: [ :new, :create]
   namespace :shipping do
     resources :returns

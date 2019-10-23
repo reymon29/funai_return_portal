@@ -5,19 +5,7 @@
     margin: 0;
   }
 }
-#query {
-  font-size: 12px;
-}
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  font-size: 9px;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  font-size: 9px;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  font-size: 9px;
-}
-:-moz-placeholder { /* Firefox 18- */
+input[type="text"].search-bar::-webkit-input-placeholder {
   font-size: 9px;
 }

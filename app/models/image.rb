@@ -1,5 +1,4 @@
 class Image < ApplicationRecord
-belongs_to :return
-mount_uploader :image, ImageUploader
-
+  belongs_to :return
+  mount_uploader :image, ImageUploader
 end
