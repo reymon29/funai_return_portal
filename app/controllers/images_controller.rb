@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
       @end_date = params[:end_date]
       @images = policy_scope(Image).where("created_at BETWEEN ? AND ?", @start_date, @end_date)
     else
-      @images = policy_scope(Image).where(created_at: (Date.today - 30)..Date.tomorrow).limit(45)
+      @images = policy_scope(Image).where(created_at: (Date.today - 15)..Date.tomorrow).limit(45)
     end
   end
 
