@@ -16,8 +16,19 @@ Funai - Image Viewer
       <% end %>
     </div>
     <% if params[:start_date].nil? %>
-      <!-- Search display -->
-
+      <!-- Open front display -->
+      <div class="container">
+        <div class="row">
+          <% @images.each do |my_image| %>
+            <div class="my_image_view col-sm-6 col-md-3">
+              <a href="shipping/returns/<%= my_image.return_id %>">
+                <%= cl_image_tag my_image.image, width:250, height:250, padding: 10 %>
+                </a>
+              <span><a href="<%= my_image.image %>" class="btn btn-primary">Open Image</a></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
     <% elsif @images.empty?%>
       <!-- not found -->
       <div class="col-md-4 col-offset-md-8">
@@ -31,10 +42,10 @@ Funai - Image Viewer
         <div class="row">
           <% @images.each do |my_image| %>
             <div class="my_image_view col-sm-6 col-md-3">
-              <%= link_to shipping_returns_path(my_image.return.id) do %>
+              <a href="shipping/returns/<%= my_image.return_id %>">
                 <%= cl_image_tag my_image.image, width:250, height:250, padding: 10 %>
-                <% end %>
-              <span><a href="<%= my_image.image %>">Open Image</a></span>
+                </a>
+              <span><a href="<%= my_image.image %>" class="btn btn-primary">Open Image</a></span>
             </div>
           <% end %>
         </div>
@@ -42,4 +53,3 @@ Funai - Image Viewer
     <% end %>
   </div>
 </div>
-
