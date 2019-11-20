@@ -8,7 +8,7 @@ class Return < ApplicationRecord
   belongs_to :return_location
   accepts_nested_attributes_for :images, allow_destroy: :destroy
   validates :user_id, presence: true
-  validates :item_number, length: { in: 10..16 }, uniqueness: { message: "has already been submitted please check your past RMAs or contact us"}, presence: true
+  validates :item_number, length: { in: 8..16 }, uniqueness: { message: "has already been submitted please check your past RMAs or contact us"}, presence: true
   validates :product_id, presence: true
   validates :store_number, presence: true, format: { with: /^[C-FA-Z0-9_.-]*$/, multiline: true, message: "acceptable formats F000 or C0S00" }
   validates :serial_number, uniqueness: { scope: :item_number, message: "has already been submitted please check your past RMAs or contact us"}, presence: true, length: { is: 14 }
