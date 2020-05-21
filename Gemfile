@@ -25,7 +25,7 @@ gem 'uglifier'
 gem 'webpacker'
 # gem 'postmark-rails'
 gem "recaptcha"
-
+gem 'fedex'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

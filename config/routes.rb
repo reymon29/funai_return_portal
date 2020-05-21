@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     get '/users/sign_out', to:'devise/sessions#destroy'
   end
   root to: 'pages#home'
+
+
+  get 'fedex_apis/get_tracking/:get_tracking', to: 'fedex_apis#get_tracking', as: :get_tracking, defaults: { format: :json }
+
   get 'dashboard', to: 'pages#dashboard', as: :dashboard
   get 'funaiwiki', to: 'pages#funaiwiki', as: :funaiwiki
   get 'funaiprivacy', to: 'pages#funaiprivacy', as: :funaiprivacy

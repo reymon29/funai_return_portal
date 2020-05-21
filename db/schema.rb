@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_04_030057) do
+ActiveRecord::Schema.define(version: 2020_05_20_200528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,24 @@ ActiveRecord::Schema.define(version: 2018_11_04_030057) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
+  create_table "center_returns", force: :cascade do |t|
+    t.string "rma_no"
+    t.string "return_tracking"
+    t.string "model_no"
+    t.string "serial_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contactforms", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.text "subject"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fedex_apis", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
